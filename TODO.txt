@@ -1,0 +1,13 @@
+﻿* Export in Kick Format
+* Zoom On Animation Preview
+* Rotation 0,90,180,270
+* Shift Up and Down with carry over
+* Shift Right and left with carry over
+* Easy Access to Functions (ToolBar)
+
+
+
+
+* BUGS
+* Animation Preview Crashes when sprite has been deleted
+* 
