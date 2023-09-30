@@ -1855,6 +1855,8 @@ namespace BeebSpriter
                 }
             }
 
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
             editorPanel.Invalidate();
             spritePanel.Panel.Invalidate();
         }
@@ -1876,6 +1878,8 @@ namespace BeebSpriter
                     sprite.Bitmap[index++] = clonedImage[y * sprite.Width + ((sprite.Width - 1 + x) % sprite.Width)];
                 }
             }
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
 
             editorPanel.Invalidate();
             spritePanel.Panel.Invalidate();
@@ -1899,6 +1903,8 @@ namespace BeebSpriter
                 }
             }
 
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
             editorPanel.Invalidate();
             spritePanel.Panel.Invalidate();
         }
@@ -1920,6 +1926,8 @@ namespace BeebSpriter
                     sprite.Bitmap[index++] = clonedImage[((sprite.Height - 1 + y) % sprite.Height) * sprite.Width + x];
                 }
             }
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
 
             editorPanel.Invalidate();
             spritePanel.Panel.Invalidate();
