@@ -14,5 +14,10 @@ namespace BeebSpriter
         {
             Text = "Rename sprite";
         }
+
+        private void InitializeComponent()
+        {
+
+        }
     }
 }
