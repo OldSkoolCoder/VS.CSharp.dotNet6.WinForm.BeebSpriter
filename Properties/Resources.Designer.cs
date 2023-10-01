@@ -171,5 +171,41 @@ namespace BeebSpriter.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap ShiftLeft
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("ShiftLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap ShiftRight
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("ShiftRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap ShiftUp
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("ShiftUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap ShiftDown
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("ShiftDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
