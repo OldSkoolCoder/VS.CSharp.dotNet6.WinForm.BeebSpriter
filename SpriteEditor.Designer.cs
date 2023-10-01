@@ -174,12 +174,7 @@
             // 
             this.selectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.flipLeftrightToolStripMenuItem,
-            this.flipUpdownToolStripMenuItem,
-            this.toolStripMenuItem6,
-            this.ShiftLeftToolStripMenuItem,
-            this.ShiftRightToolStripMenuItem,
-            this.ShiftUpToolStripMenuItem,
-            this.ShiftDownToolStripMenuItem});
+            this.flipUpdownToolStripMenuItem });
             this.selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
             this.selectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.selectionToolStripMenuItem.Text = "Selection";
@@ -245,7 +240,12 @@
             // 
             this.transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiRotateClockwise,
-            this.tsmiRotateAntiClockwise});
+            this.tsmiRotateAntiClockwise,
+            this.toolStripMenuItem6,
+            this.ShiftLeftToolStripMenuItem,
+            this.ShiftRightToolStripMenuItem,
+            this.ShiftUpToolStripMenuItem,
+            this.ShiftDownToolStripMenuItem});
             this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
             this.transformToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.transformToolStripMenuItem.Text = "Transform";
