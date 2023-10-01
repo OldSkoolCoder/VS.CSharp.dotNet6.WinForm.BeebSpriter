@@ -181,6 +181,11 @@ namespace BeebSpriter
         {
             RecentFiles = new RecentFilesList(RecentFilesToolStripMenuItem, OpenSprites);
             lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
+
+            
+            MyJSON myJSON = new();
+            myJSON.LoadJson(RecentFiles);
+
         }
 
         /// <summary>
@@ -397,6 +402,13 @@ namespace BeebSpriter
                 SetAsOpened();
 
                 RecentFiles.Add(saveFileDialog1.FileName);
+
+                MyJSON jsonSave = new();
+                jsonSave.Paths = RecentFiles.Files;
+                jsonSave.SaveJson();
+
+
+
             }
         }
 

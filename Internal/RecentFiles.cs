@@ -21,6 +21,8 @@ namespace BeebSpriter.Internal
         /// </summary>
         private readonly List<string> SpriteFileList = new();
 
+        public List<String> Files;
+
         /// <summary>
         /// Action Delegate to OpenSprites(string filename) function
         /// </summary>
@@ -88,6 +90,8 @@ namespace BeebSpriter.Internal
             {
                 SpriteFileList.RemoveAt(SpriteFileList.Count - 1);
             }
+
+            Files = SpriteFileList;
 
             UpdateMenu();
         }
