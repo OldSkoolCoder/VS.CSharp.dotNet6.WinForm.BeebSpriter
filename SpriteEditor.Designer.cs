@@ -40,6 +40,9 @@
             flipLeftrightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             flipUpdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.transformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRotateClockwise = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRotateAntiClockwise = new System.Windows.Forms.ToolStripMenuItem();
             ShiftLeftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ShiftRightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ShiftUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
