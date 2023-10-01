@@ -84,11 +84,11 @@ namespace BeebSpriter
             this.ResumeLayout();
         }
 
-        public void ResizePanel()
+        public void ResizePanel(int ?scalingfactor=1)
         {
             SpriteSheet spriteSheet = SpriteSheetForm.Instance.SpriteSheet;
-            spriteDisplayWidth = sprite.Width * spriteSheet.XScale;
-            spriteDisplayHeight = sprite.Height * spriteSheet.YScale;
+            spriteDisplayWidth = sprite.Width * spriteSheet.XScale * (int)scalingfactor;
+            spriteDisplayHeight = sprite.Height * spriteSheet.YScale * (int)scalingfactor;
 
             int textWidth;
             using (Graphics g = CreateGraphics())

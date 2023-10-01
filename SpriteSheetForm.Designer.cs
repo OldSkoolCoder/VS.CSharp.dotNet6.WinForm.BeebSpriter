@@ -74,9 +74,12 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.exportFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tbZoomLevel = new System.Windows.Forms.TrackBar();
+            this.lblZoomLevel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.contextMenu.SuspendLayout();
             this.spriteContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbZoomLevel)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -340,15 +343,17 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AllowDrop = true;
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.flowLayoutPanel1.ContextMenuStrip = this.contextMenu;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(405, 455);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(405, 413);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.flowLayoutPanel1_DragEnter);
             this.flowLayoutPanel1.DragOver += new System.Windows.Forms.DragEventHandler(this.flowLayoutPanel1_DragOver);
@@ -429,11 +434,35 @@
             this.exportFileDialog1.Filter = "BBC Micro Binary File|*.bin";
             this.exportFileDialog1.Title = "Export to Beeb format";
             // 
+            // tbZoomLevel
+            // 
+            this.tbZoomLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbZoomLevel.Location = new System.Drawing.Point(0, 443);
+            this.tbZoomLevel.Minimum = 1;
+            this.tbZoomLevel.Name = "tbZoomLevel";
+            this.tbZoomLevel.Size = new System.Drawing.Size(211, 45);
+            this.tbZoomLevel.TabIndex = 2;
+            this.tbZoomLevel.Value = 1;
+            this.tbZoomLevel.ValueChanged += new System.EventHandler(this.tbZoomLevel_ValueChanged);
+            // 
+            // lblZoomLevel
+            // 
+            this.lblZoomLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblZoomLevel.AutoSize = true;
+            this.lblZoomLevel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblZoomLevel.Location = new System.Drawing.Point(217, 443);
+            this.lblZoomLevel.Name = "lblZoomLevel";
+            this.lblZoomLevel.Size = new System.Drawing.Size(68, 30);
+            this.lblZoomLevel.TabIndex = 3;
+            this.lblZoomLevel.Text = "label1";
+            // 
             // SpriteSheetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(405, 479);
+            this.Controls.Add(this.lblZoomLevel);
+            this.Controls.Add(this.tbZoomLevel);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -442,10 +471,12 @@
             this.Name = "SpriteSheetForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SpriteSheetForm_FormClosing);
+            this.Load += new System.EventHandler(this.SpriteSheetForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.contextMenu.ResumeLayout(false);
             this.spriteContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbZoomLevel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -497,6 +528,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem exportSettingsToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog exportFileDialog1;
+        private System.Windows.Forms.TrackBar tbZoomLevel;
+        private System.Windows.Forms.Label lblZoomLevel;
     }
 }
 

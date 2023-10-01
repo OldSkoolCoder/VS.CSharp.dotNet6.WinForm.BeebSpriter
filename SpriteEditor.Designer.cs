@@ -39,11 +39,26 @@
             this.selectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flipLeftrightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flipUpdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRotateClockwise = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRotateAntiClockwise = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showGridLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizontalBlockDividersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizNever = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizEvery1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizEvery2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizEvery3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizEvery4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.showVerticalBlockDividersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vertNever = new System.Windows.Forms.ToolStripMenuItem();
+            this.vertEvery1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.vertEvery2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.vertEvery3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.vertEvery4 = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,6 +79,7 @@
             this.resizeIcon = new System.Windows.Forms.ToolStripButton();
             this.currentColour = new System.Windows.Forms.Panel();
             this.editorContainer = new System.Windows.Forms.Panel();
+            this.editorPanel = new BeebSpriter.DoubleBufferedPanel();
             this.button_colourTransparent = new System.Windows.Forms.Panel();
             this.button_colour0 = new System.Windows.Forms.Panel();
             this.button_colour1 = new System.Windows.Forms.Panel();
@@ -81,19 +97,6 @@
             this.button_colour9 = new System.Windows.Forms.Panel();
             this.button_colour12 = new System.Windows.Forms.Panel();
             this.button_colour8 = new System.Windows.Forms.Panel();
-            this.horizontalBlockDividersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.horizNever = new System.Windows.Forms.ToolStripMenuItem();
-            this.horizEvery1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.horizEvery2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.horizEvery3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.horizEvery4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.showVerticalBlockDividersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vertNever = new System.Windows.Forms.ToolStripMenuItem();
-            this.vertEvery1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.vertEvery2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.vertEvery3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.vertEvery4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.editorPanel = new BeebSpriter.DoubleBufferedPanel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.editorContainer.SuspendLayout();
@@ -106,7 +109,8 @@
             this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(463, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(540, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -119,6 +123,7 @@
             this.copyToolStripMenuItem,
             this.pasteToolStripMenuItem,
             this.selectionToolStripMenuItem,
+            this.transformToolStripMenuItem,
             this.toolStripMenuItem1,
             this.undoToolStripMenuItem,
             this.redoToolStripMenuItem});
@@ -130,14 +135,14 @@
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
             this.selectAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.selectAllToolStripMenuItem.Text = "Select all";
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
             // clearSelectionToolStripMenuItem
             // 
             this.clearSelectionToolStripMenuItem.Name = "clearSelectionToolStripMenuItem";
-            this.clearSelectionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.clearSelectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearSelectionToolStripMenuItem.Text = "Clear selection";
             this.clearSelectionToolStripMenuItem.Click += new System.EventHandler(this.clearSelectionToolStripMenuItem_Click);
             // 
@@ -145,7 +150,7 @@
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
@@ -153,7 +158,7 @@
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
@@ -161,7 +166,7 @@
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
@@ -171,7 +176,7 @@
             this.flipLeftrightToolStripMenuItem,
             this.flipUpdownToolStripMenuItem});
             this.selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
-            this.selectionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.selectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.selectionToolStripMenuItem.Text = "Selection";
             // 
             // flipLeftrightToolStripMenuItem
@@ -188,16 +193,39 @@
             this.flipUpdownToolStripMenuItem.Text = "Flip up-down";
             this.flipUpdownToolStripMenuItem.Click += new System.EventHandler(this.flipUpdownToolStripMenuItem_Click);
             // 
+            // transformToolStripMenuItem
+            // 
+            this.transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiRotateClockwise,
+            this.tsmiRotateAntiClockwise});
+            this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
+            this.transformToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.transformToolStripMenuItem.Text = "Transform";
+            // 
+            // tsmiRotateClockwise
+            // 
+            this.tsmiRotateClockwise.Name = "tsmiRotateClockwise";
+            this.tsmiRotateClockwise.Size = new System.Drawing.Size(186, 22);
+            this.tsmiRotateClockwise.Text = "Rotate Clockwise";
+            this.tsmiRotateClockwise.Click += new System.EventHandler(this.tsmiRotateClockwise_Click);
+            // 
+            // tsmiRotateAntiClockwise
+            // 
+            this.tsmiRotateAntiClockwise.Name = "tsmiRotateAntiClockwise";
+            this.tsmiRotateAntiClockwise.Size = new System.Drawing.Size(186, 22);
+            this.tsmiRotateAntiClockwise.Text = "Rotate AntiClockwise";
+            this.tsmiRotateAntiClockwise.Click += new System.EventHandler(this.tsmiRotateAntiClockwise_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(159, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.undoToolStripMenuItem.Text = "Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
@@ -205,7 +233,7 @@
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
@@ -228,6 +256,104 @@
             this.showGridLinesToolStripMenuItem.Text = "Show grid lines";
             this.showGridLinesToolStripMenuItem.Click += new System.EventHandler(this.showGridLinesToolStripMenuItem_Click);
             // 
+            // horizontalBlockDividersToolStripMenuItem
+            // 
+            this.horizontalBlockDividersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.horizNever,
+            this.horizEvery1,
+            this.horizEvery2,
+            this.horizEvery3,
+            this.horizEvery4});
+            this.horizontalBlockDividersToolStripMenuItem.Name = "horizontalBlockDividersToolStripMenuItem";
+            this.horizontalBlockDividersToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.horizontalBlockDividersToolStripMenuItem.Text = "Show horizontal block dividers";
+            // 
+            // horizNever
+            // 
+            this.horizNever.Checked = true;
+            this.horizNever.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.horizNever.Name = "horizNever";
+            this.horizNever.Size = new System.Drawing.Size(221, 22);
+            this.horizNever.Text = "Never";
+            this.horizNever.Click += new System.EventHandler(this.horizNever_Click);
+            // 
+            // horizEvery1
+            // 
+            this.horizEvery1.Name = "horizEvery1";
+            this.horizEvery1.Size = new System.Drawing.Size(221, 22);
+            this.horizEvery1.Text = "Every character block";
+            this.horizEvery1.Click += new System.EventHandler(this.horizEvery1_Click);
+            // 
+            // horizEvery2
+            // 
+            this.horizEvery2.Name = "horizEvery2";
+            this.horizEvery2.Size = new System.Drawing.Size(221, 22);
+            this.horizEvery2.Text = "Every two character blocks";
+            this.horizEvery2.Click += new System.EventHandler(this.horizEvery2_Click);
+            // 
+            // horizEvery3
+            // 
+            this.horizEvery3.Name = "horizEvery3";
+            this.horizEvery3.Size = new System.Drawing.Size(221, 22);
+            this.horizEvery3.Text = "Every three character blocks";
+            this.horizEvery3.Click += new System.EventHandler(this.horizEvery3_Click);
+            // 
+            // horizEvery4
+            // 
+            this.horizEvery4.Name = "horizEvery4";
+            this.horizEvery4.Size = new System.Drawing.Size(221, 22);
+            this.horizEvery4.Text = "Every four character blocks";
+            this.horizEvery4.Click += new System.EventHandler(this.horizEvery4_Click);
+            // 
+            // showVerticalBlockDividersToolStripMenuItem
+            // 
+            this.showVerticalBlockDividersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vertNever,
+            this.vertEvery1,
+            this.vertEvery2,
+            this.vertEvery3,
+            this.vertEvery4});
+            this.showVerticalBlockDividersToolStripMenuItem.Name = "showVerticalBlockDividersToolStripMenuItem";
+            this.showVerticalBlockDividersToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.showVerticalBlockDividersToolStripMenuItem.Text = "Show vertical block dividers";
+            // 
+            // vertNever
+            // 
+            this.vertNever.Checked = true;
+            this.vertNever.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.vertNever.Name = "vertNever";
+            this.vertNever.Size = new System.Drawing.Size(212, 22);
+            this.vertNever.Text = "Never";
+            this.vertNever.Click += new System.EventHandler(this.vertNever_Click);
+            // 
+            // vertEvery1
+            // 
+            this.vertEvery1.Name = "vertEvery1";
+            this.vertEvery1.Size = new System.Drawing.Size(212, 22);
+            this.vertEvery1.Text = "Every character row";
+            this.vertEvery1.Click += new System.EventHandler(this.vertEvery1_Click);
+            // 
+            // vertEvery2
+            // 
+            this.vertEvery2.Name = "vertEvery2";
+            this.vertEvery2.Size = new System.Drawing.Size(212, 22);
+            this.vertEvery2.Text = "Every two character rows";
+            this.vertEvery2.Click += new System.EventHandler(this.vertEvery2_Click);
+            // 
+            // vertEvery3
+            // 
+            this.vertEvery3.Name = "vertEvery3";
+            this.vertEvery3.Size = new System.Drawing.Size(212, 22);
+            this.vertEvery3.Text = "Every three character rows";
+            this.vertEvery3.Click += new System.EventHandler(this.vertEvery3_Click);
+            // 
+            // vertEvery4
+            // 
+            this.vertEvery4.Name = "vertEvery4";
+            this.vertEvery4.Size = new System.Drawing.Size(212, 22);
+            this.vertEvery4.Text = "Every four character rows";
+            this.vertEvery4.Click += new System.EventHandler(this.vertEvery4_Click);
+            // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -242,28 +368,28 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(91, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(92, 22);
             this.toolStripMenuItem2.Text = "x4";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(91, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(92, 22);
             this.toolStripMenuItem3.Text = "x6";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(91, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(92, 22);
             this.toolStripMenuItem4.Text = "x8";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(91, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(92, 22);
             this.toolStripMenuItem5.Text = "x10";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
@@ -285,7 +411,7 @@
             this.resizeIcon});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(463, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(540, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -407,43 +533,59 @@
             // currentColour
             // 
             this.currentColour.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.currentColour.Location = new System.Drawing.Point(12, 52);
+            this.currentColour.Location = new System.Drawing.Point(14, 60);
+            this.currentColour.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.currentColour.Name = "currentColour";
-            this.currentColour.Size = new System.Drawing.Size(55, 53);
+            this.currentColour.Size = new System.Drawing.Size(63, 61);
             this.currentColour.TabIndex = 2;
             this.currentColour.Paint += new System.Windows.Forms.PaintEventHandler(this.currentColour_Paint);
             // 
             // editorContainer
             // 
-            this.editorContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.editorContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.editorContainer.AutoScroll = true;
             this.editorContainer.BackColor = System.Drawing.Color.Gray;
             this.editorContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.editorContainer.Controls.Add(this.editorPanel);
-            this.editorContainer.Location = new System.Drawing.Point(73, 52);
+            this.editorContainer.Location = new System.Drawing.Point(85, 60);
+            this.editorContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.editorContainer.Name = "editorContainer";
-            this.editorContainer.Size = new System.Drawing.Size(378, 396);
+            this.editorContainer.Size = new System.Drawing.Size(440, 456);
             this.editorContainer.TabIndex = 3;
             this.editorContainer.Resize += new System.EventHandler(this.panel2_Resize);
+            // 
+            // editorPanel
+            // 
+            this.editorPanel.Location = new System.Drawing.Point(0, 0);
+            this.editorPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.editorPanel.Name = "editorPanel";
+            this.editorPanel.Size = new System.Drawing.Size(399, 417);
+            this.editorPanel.TabIndex = 0;
+            this.editorPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.doubleBufferedPanel1_Paint);
+            this.editorPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.doubleBufferedPanel1_MouseDown);
+            this.editorPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.doubleBufferedPanel1_MouseMove);
+            this.editorPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.doubleBufferedPanel1_MouseUp);
             // 
             // button_colourTransparent
             // 
             this.button_colourTransparent.BackColor = System.Drawing.Color.Gray;
             this.button_colourTransparent.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colourTransparent.Location = new System.Drawing.Point(12, 111);
+            this.button_colourTransparent.Location = new System.Drawing.Point(14, 128);
+            this.button_colourTransparent.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colourTransparent.Name = "button_colourTransparent";
-            this.button_colourTransparent.Size = new System.Drawing.Size(23, 24);
+            this.button_colourTransparent.Size = new System.Drawing.Size(26, 27);
             this.button_colourTransparent.TabIndex = 4;
             this.button_colourTransparent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colourTransparent_MouseClick);
             // 
             // button_colour0
             // 
             this.button_colour0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour0.Location = new System.Drawing.Point(12, 141);
+            this.button_colour0.Location = new System.Drawing.Point(14, 163);
+            this.button_colour0.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour0.Name = "button_colour0";
-            this.button_colour0.Size = new System.Drawing.Size(23, 24);
+            this.button_colour0.Size = new System.Drawing.Size(26, 27);
             this.button_colour0.TabIndex = 5;
             this.button_colour0.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour0_MouseClick);
             this.button_colour0.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour0_MouseDoubleClick);
@@ -451,9 +593,10 @@
             // button_colour1
             // 
             this.button_colour1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour1.Location = new System.Drawing.Point(41, 141);
+            this.button_colour1.Location = new System.Drawing.Point(48, 163);
+            this.button_colour1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour1.Name = "button_colour1";
-            this.button_colour1.Size = new System.Drawing.Size(23, 24);
+            this.button_colour1.Size = new System.Drawing.Size(26, 27);
             this.button_colour1.TabIndex = 6;
             this.button_colour1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour1_MouseClick);
             this.button_colour1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour1_MouseDoubleClick);
@@ -461,9 +604,10 @@
             // button_colour3
             // 
             this.button_colour3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour3.Location = new System.Drawing.Point(41, 171);
+            this.button_colour3.Location = new System.Drawing.Point(48, 197);
+            this.button_colour3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour3.Name = "button_colour3";
-            this.button_colour3.Size = new System.Drawing.Size(23, 24);
+            this.button_colour3.Size = new System.Drawing.Size(26, 27);
             this.button_colour3.TabIndex = 8;
             this.button_colour3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour3_MouseClick);
             this.button_colour3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour3_MouseDoubleClick);
@@ -471,9 +615,10 @@
             // button_colour2
             // 
             this.button_colour2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour2.Location = new System.Drawing.Point(12, 171);
+            this.button_colour2.Location = new System.Drawing.Point(14, 197);
+            this.button_colour2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour2.Name = "button_colour2";
-            this.button_colour2.Size = new System.Drawing.Size(23, 24);
+            this.button_colour2.Size = new System.Drawing.Size(26, 27);
             this.button_colour2.TabIndex = 7;
             this.button_colour2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour2_MouseClick);
             this.button_colour2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour2_MouseDoubleClick);
@@ -481,9 +626,10 @@
             // button_colour7
             // 
             this.button_colour7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour7.Location = new System.Drawing.Point(41, 231);
+            this.button_colour7.Location = new System.Drawing.Point(48, 267);
+            this.button_colour7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour7.Name = "button_colour7";
-            this.button_colour7.Size = new System.Drawing.Size(23, 24);
+            this.button_colour7.Size = new System.Drawing.Size(26, 27);
             this.button_colour7.TabIndex = 12;
             this.button_colour7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour7_MouseClick);
             this.button_colour7.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour7_MouseDoubleClick);
@@ -491,9 +637,10 @@
             // button_colour6
             // 
             this.button_colour6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour6.Location = new System.Drawing.Point(12, 231);
+            this.button_colour6.Location = new System.Drawing.Point(14, 267);
+            this.button_colour6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour6.Name = "button_colour6";
-            this.button_colour6.Size = new System.Drawing.Size(23, 24);
+            this.button_colour6.Size = new System.Drawing.Size(26, 27);
             this.button_colour6.TabIndex = 11;
             this.button_colour6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour6_MouseClick);
             this.button_colour6.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour6_MouseDoubleClick);
@@ -501,9 +648,10 @@
             // button_colour5
             // 
             this.button_colour5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour5.Location = new System.Drawing.Point(41, 201);
+            this.button_colour5.Location = new System.Drawing.Point(48, 232);
+            this.button_colour5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour5.Name = "button_colour5";
-            this.button_colour5.Size = new System.Drawing.Size(23, 24);
+            this.button_colour5.Size = new System.Drawing.Size(26, 27);
             this.button_colour5.TabIndex = 10;
             this.button_colour5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour5_MouseClick);
             this.button_colour5.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour5_MouseDoubleClick);
@@ -511,9 +659,10 @@
             // button_colour4
             // 
             this.button_colour4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour4.Location = new System.Drawing.Point(12, 201);
+            this.button_colour4.Location = new System.Drawing.Point(14, 232);
+            this.button_colour4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour4.Name = "button_colour4";
-            this.button_colour4.Size = new System.Drawing.Size(23, 24);
+            this.button_colour4.Size = new System.Drawing.Size(26, 27);
             this.button_colour4.TabIndex = 9;
             this.button_colour4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour4_MouseClick);
             this.button_colour4.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour4_MouseDoubleClick);
@@ -521,9 +670,10 @@
             // button_colour15
             // 
             this.button_colour15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour15.Location = new System.Drawing.Point(41, 351);
+            this.button_colour15.Location = new System.Drawing.Point(48, 405);
+            this.button_colour15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour15.Name = "button_colour15";
-            this.button_colour15.Size = new System.Drawing.Size(23, 24);
+            this.button_colour15.Size = new System.Drawing.Size(26, 27);
             this.button_colour15.TabIndex = 20;
             this.button_colour15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour15_MouseClick);
             this.button_colour15.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour15_MouseDoubleClick);
@@ -531,9 +681,10 @@
             // button_colour11
             // 
             this.button_colour11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour11.Location = new System.Drawing.Point(41, 291);
+            this.button_colour11.Location = new System.Drawing.Point(48, 336);
+            this.button_colour11.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour11.Name = "button_colour11";
-            this.button_colour11.Size = new System.Drawing.Size(23, 24);
+            this.button_colour11.Size = new System.Drawing.Size(26, 27);
             this.button_colour11.TabIndex = 16;
             this.button_colour11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour11_MouseClick);
             this.button_colour11.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour11_MouseDoubleClick);
@@ -541,9 +692,10 @@
             // button_colour14
             // 
             this.button_colour14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour14.Location = new System.Drawing.Point(12, 351);
+            this.button_colour14.Location = new System.Drawing.Point(14, 405);
+            this.button_colour14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour14.Name = "button_colour14";
-            this.button_colour14.Size = new System.Drawing.Size(23, 24);
+            this.button_colour14.Size = new System.Drawing.Size(26, 27);
             this.button_colour14.TabIndex = 19;
             this.button_colour14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour14_MouseClick);
             this.button_colour14.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour14_MouseDoubleClick);
@@ -551,9 +703,10 @@
             // button_colour10
             // 
             this.button_colour10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour10.Location = new System.Drawing.Point(12, 291);
+            this.button_colour10.Location = new System.Drawing.Point(14, 336);
+            this.button_colour10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour10.Name = "button_colour10";
-            this.button_colour10.Size = new System.Drawing.Size(23, 24);
+            this.button_colour10.Size = new System.Drawing.Size(26, 27);
             this.button_colour10.TabIndex = 15;
             this.button_colour10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour10_MouseClick);
             this.button_colour10.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour10_MouseDoubleClick);
@@ -561,9 +714,10 @@
             // button_colour13
             // 
             this.button_colour13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour13.Location = new System.Drawing.Point(41, 321);
+            this.button_colour13.Location = new System.Drawing.Point(48, 370);
+            this.button_colour13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour13.Name = "button_colour13";
-            this.button_colour13.Size = new System.Drawing.Size(23, 24);
+            this.button_colour13.Size = new System.Drawing.Size(26, 27);
             this.button_colour13.TabIndex = 18;
             this.button_colour13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour13_MouseClick);
             this.button_colour13.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour13_MouseDoubleClick);
@@ -571,9 +725,10 @@
             // button_colour9
             // 
             this.button_colour9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour9.Location = new System.Drawing.Point(41, 261);
+            this.button_colour9.Location = new System.Drawing.Point(48, 301);
+            this.button_colour9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour9.Name = "button_colour9";
-            this.button_colour9.Size = new System.Drawing.Size(23, 24);
+            this.button_colour9.Size = new System.Drawing.Size(26, 27);
             this.button_colour9.TabIndex = 14;
             this.button_colour9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour9_MouseClick);
             this.button_colour9.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour9_MouseDoubleClick);
@@ -581,9 +736,10 @@
             // button_colour12
             // 
             this.button_colour12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour12.Location = new System.Drawing.Point(12, 321);
+            this.button_colour12.Location = new System.Drawing.Point(14, 370);
+            this.button_colour12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour12.Name = "button_colour12";
-            this.button_colour12.Size = new System.Drawing.Size(23, 24);
+            this.button_colour12.Size = new System.Drawing.Size(26, 27);
             this.button_colour12.TabIndex = 17;
             this.button_colour12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour12_MouseClick);
             this.button_colour12.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour12_MouseDoubleClick);
@@ -591,127 +747,19 @@
             // button_colour8
             // 
             this.button_colour8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.button_colour8.Location = new System.Drawing.Point(12, 261);
+            this.button_colour8.Location = new System.Drawing.Point(14, 301);
+            this.button_colour8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button_colour8.Name = "button_colour8";
-            this.button_colour8.Size = new System.Drawing.Size(23, 24);
+            this.button_colour8.Size = new System.Drawing.Size(26, 27);
             this.button_colour8.TabIndex = 13;
             this.button_colour8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_colour8_MouseClick);
             this.button_colour8.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.button_colour8_MouseDoubleClick);
             // 
-            // horizontalBlockDividersToolStripMenuItem
-            // 
-            this.horizontalBlockDividersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.horizNever,
-            this.horizEvery1,
-            this.horizEvery2,
-            this.horizEvery3,
-            this.horizEvery4});
-            this.horizontalBlockDividersToolStripMenuItem.Name = "horizontalBlockDividersToolStripMenuItem";
-            this.horizontalBlockDividersToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.horizontalBlockDividersToolStripMenuItem.Text = "Show horizontal block dividers";
-            // 
-            // horizNever
-            // 
-            this.horizNever.Checked = true;
-            this.horizNever.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.horizNever.Name = "horizNever";
-            this.horizNever.Size = new System.Drawing.Size(221, 22);
-            this.horizNever.Text = "Never";
-            this.horizNever.Click += new System.EventHandler(this.horizNever_Click);
-            // 
-            // horizEvery1
-            // 
-            this.horizEvery1.Name = "horizEvery1";
-            this.horizEvery1.Size = new System.Drawing.Size(221, 22);
-            this.horizEvery1.Text = "Every character block";
-            this.horizEvery1.Click += new System.EventHandler(this.horizEvery1_Click);
-            // 
-            // horizEvery2
-            // 
-            this.horizEvery2.Name = "horizEvery2";
-            this.horizEvery2.Size = new System.Drawing.Size(221, 22);
-            this.horizEvery2.Text = "Every two character blocks";
-            this.horizEvery2.Click += new System.EventHandler(this.horizEvery2_Click);
-            // 
-            // horizEvery3
-            // 
-            this.horizEvery3.Name = "horizEvery3";
-            this.horizEvery3.Size = new System.Drawing.Size(221, 22);
-            this.horizEvery3.Text = "Every three character blocks";
-            this.horizEvery3.Click += new System.EventHandler(this.horizEvery3_Click);
-            // 
-            // horizEvery4
-            // 
-            this.horizEvery4.Name = "horizEvery4";
-            this.horizEvery4.Size = new System.Drawing.Size(221, 22);
-            this.horizEvery4.Text = "Every four character blocks";
-            this.horizEvery4.Click += new System.EventHandler(this.horizEvery4_Click);
-            // 
-            // showVerticalBlockDividersToolStripMenuItem
-            // 
-            this.showVerticalBlockDividersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.vertNever,
-            this.vertEvery1,
-            this.vertEvery2,
-            this.vertEvery3,
-            this.vertEvery4});
-            this.showVerticalBlockDividersToolStripMenuItem.Name = "showVerticalBlockDividersToolStripMenuItem";
-            this.showVerticalBlockDividersToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.showVerticalBlockDividersToolStripMenuItem.Text = "Show vertical block dividers";
-            // 
-            // vertNever
-            // 
-            this.vertNever.Checked = true;
-            this.vertNever.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.vertNever.Name = "vertNever";
-            this.vertNever.Size = new System.Drawing.Size(212, 22);
-            this.vertNever.Text = "Never";
-            this.vertNever.Click += new System.EventHandler(this.vertNever_Click);
-            // 
-            // vertEvery1
-            // 
-            this.vertEvery1.Name = "vertEvery1";
-            this.vertEvery1.Size = new System.Drawing.Size(212, 22);
-            this.vertEvery1.Text = "Every character row";
-            this.vertEvery1.Click += new System.EventHandler(this.vertEvery1_Click);
-            // 
-            // vertEvery2
-            // 
-            this.vertEvery2.Name = "vertEvery2";
-            this.vertEvery2.Size = new System.Drawing.Size(212, 22);
-            this.vertEvery2.Text = "Every two character rows";
-            this.vertEvery2.Click += new System.EventHandler(this.vertEvery2_Click);
-            // 
-            // vertEvery3
-            // 
-            this.vertEvery3.Name = "vertEvery3";
-            this.vertEvery3.Size = new System.Drawing.Size(212, 22);
-            this.vertEvery3.Text = "Every three character rows";
-            this.vertEvery3.Click += new System.EventHandler(this.vertEvery3_Click);
-            // 
-            // vertEvery4
-            // 
-            this.vertEvery4.Name = "vertEvery4";
-            this.vertEvery4.Size = new System.Drawing.Size(212, 22);
-            this.vertEvery4.Text = "Every four character rows";
-            this.vertEvery4.Click += new System.EventHandler(this.vertEvery4_Click);
-            // 
-            // editorPanel
-            // 
-            this.editorPanel.Location = new System.Drawing.Point(0, 0);
-            this.editorPanel.Name = "editorPanel";
-            this.editorPanel.Size = new System.Drawing.Size(342, 361);
-            this.editorPanel.TabIndex = 0;
-            this.editorPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.doubleBufferedPanel1_Paint);
-            this.editorPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.doubleBufferedPanel1_MouseDown);
-            this.editorPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.doubleBufferedPanel1_MouseMove);
-            this.editorPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.doubleBufferedPanel1_MouseUp);
-            // 
             // SpriteEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 460);
+            this.ClientSize = new System.Drawing.Size(540, 531);
             this.Controls.Add(this.button_colour15);
             this.Controls.Add(this.button_colour11);
             this.Controls.Add(this.button_colour14);
@@ -735,6 +783,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "SpriteEditor";
             this.Text = "SpriteEditor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SpriteEditor_FormClosing);
@@ -815,5 +864,8 @@
         private System.Windows.Forms.ToolStripMenuItem vertEvery2;
         private System.Windows.Forms.ToolStripMenuItem vertEvery3;
         private System.Windows.Forms.ToolStripMenuItem vertEvery4;
+        private System.Windows.Forms.ToolStripMenuItem transformToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRotateClockwise;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRotateAntiClockwise;
     }
 }

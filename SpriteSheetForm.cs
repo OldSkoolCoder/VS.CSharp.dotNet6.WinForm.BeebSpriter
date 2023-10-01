@@ -640,7 +640,7 @@ namespace BeebSpriter
             {
                 spritePanel.Sprite.Name = renameSpriteDialog.SpriteName;
                 spritePanel.Label.Text = renameSpriteDialog.SpriteName;
-                spritePanel.ResizePanel();
+                spritePanel.ResizePanel(tbZoomLevel.Value);
 
                 IsUnsaved = true;
             }
@@ -1155,6 +1155,22 @@ namespace BeebSpriter
                     }
                 }
             }
+        }
+
+        private void tbZoomLevel_ValueChanged(object sender, EventArgs e)
+        {
+            foreach (SpritePanel sp in flowLayoutPanel1.Controls)
+            {
+                sp.ResizePanel(tbZoomLevel.Value);
+                sp.Panel.Invalidate();
+            }
+
+            lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
+        }
+
+        private void SpriteSheetForm_Load(object sender, EventArgs e)
+        {
+            lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
         }
     }
 }
