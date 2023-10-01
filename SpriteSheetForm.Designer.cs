@@ -77,6 +77,8 @@
             openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             exportFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tbZoomLevel = new System.Windows.Forms.TrackBar();
+            this.lblZoomLevel = new System.Windows.Forms.Label();
             menuStrip1.SuspendLayout();
             contextMenu.SuspendLayout();
             spriteContextMenu.SuspendLayout();
