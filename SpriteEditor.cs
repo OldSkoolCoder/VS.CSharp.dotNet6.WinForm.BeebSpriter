@@ -1812,5 +1812,141 @@ namespace BeebSpriter
             editorPanel.Invalidate();
             spritePanel.Panel.Invalidate();
         }
+
+/// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShiftLeftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShiftLeft();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShiftRightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShiftRight();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShiftUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShiftUp();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShiftDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShiftDown();
+        }
+
+        /// <summary>
+        /// Shift Image Left
+        /// </summary>
+        public void ShiftLeft()
+        {
+            AddHistory();
+
+            byte[] clonedImage = (byte[])sprite.Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < sprite.Height; y++)
+            {
+                for (int x = 1; x <= sprite.Width; x++)
+                {
+                    sprite.Bitmap[index++] = clonedImage[y * sprite.Width + (x % sprite.Width)];
+                }
+            }
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
+        /// <summary>
+        /// Shift Image Right
+        /// </summary>
+        public void ShiftRight()
+        {
+            AddHistory();
+
+            byte[] clonedImage = (byte[])sprite.Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < sprite.Height; y++)
+            {
+                for (int x = 0; x < sprite.Width; x++)
+                {
+                    sprite.Bitmap[index++] = clonedImage[y * sprite.Width + ((sprite.Width - 1 + x) % sprite.Width)];
+                }
+            }
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
+        /// <summary>
+        /// Shift Image Up
+        /// </summary>
+        public void ShiftUp()
+        {
+            AddHistory();
+
+            byte[] clonedImage = (byte[])sprite.Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 1; y <= sprite.Height; y++)
+            {
+                for (int x = 0; x < sprite.Width; x++)
+                {
+                    sprite.Bitmap[index++] = clonedImage[(y % sprite.Height) * sprite.Width + x];
+                }
+            }
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
+        /// <summary>
+        /// Shift Image Down
+        /// </summary>
+        public void ShiftDown()
+        {
+            AddHistory();
+
+            byte[] clonedImage = (byte[])sprite.Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < sprite.Height; y++)
+            {
+                for (int x = 0; x < sprite.Width; x++)
+                {
+                    sprite.Bitmap[index++] = clonedImage[((sprite.Height - 1 + y) % sprite.Height) * sprite.Width + x];
+                }
+            }
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
     }
 }
