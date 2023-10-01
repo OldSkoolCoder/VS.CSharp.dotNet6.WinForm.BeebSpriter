@@ -1,21 +1,13 @@
 ﻿* Export in Kick Format
-* Zoom On Animation Preview - Done
+* Zoom On Animation Preview
 * Rotation 0,90,180,270
 * Shift Up and Down with carry over
 * Shift Right and left with carry over
 * Easy Access to Functions (ToolBar)
-* Export Code Viewer (Based on Docsters Amiga Version)
-* Right Click Sprite Collection, Add All To Animation
-* Have Multiple Animation Collections in Project
-* Single Click on Animation List Sprite, Shows the Sprite in the Previewer
-* Double Click on Animation List Sprite, Fires the Sprite Editor with that sprite
-* Right Click Sprite Sheet Editor to Open Animation Form even if form is closed. - Done
-* Add Auto Zoom on Resize.
-* Add a recent File list in the File Menu.
 
 
 
 
 * BUGS
-* Animation Preview Crashes when sprite has been deleted - Done
+* Animation Preview Crashes when sprite has been deleted
 * 

@@ -64,7 +64,7 @@ namespace BeebSpriter
         protected override void OnShown(EventArgs e)
         {
             textBox1.Focus();
-            base.OnShown(e);
+ 	        base.OnShown(e);
         }
 
         void textBox1_GotFocus(object sender, EventArgs e)
