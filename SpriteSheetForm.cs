@@ -180,6 +180,7 @@ namespace BeebSpriter
         private void SpriteSheetForm_Load(object sender, EventArgs e)
         {
             RecentFiles = new RecentFilesList(RecentFilesToolStripMenuItem, OpenSprites);
+            lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
         }
 
         /// <summary>
@@ -1216,11 +1217,6 @@ namespace BeebSpriter
                 sp.Panel.Invalidate();
             }
 
-            lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
-        }
-
-        private void SpriteSheetForm_Load(object sender, EventArgs e)
-        {
             lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
         }
     }
