@@ -68,7 +68,7 @@ namespace BeebSpriter
             spriteSizeAcross.Enabled = spriteSize2.Checked;
             spriteSizeDown.Enabled = spriteSize2.Checked;
             spriteSizeAcrossLabel.Enabled = spriteSize2.Checked;
-            spriteSizeDownLabel.Enabled = spriteSize2.Checked;            
+            spriteSizeDownLabel.Enabled = spriteSize2.Checked;
         }
 
         private void headerTickBox_CheckedChanged(object sender, EventArgs e)

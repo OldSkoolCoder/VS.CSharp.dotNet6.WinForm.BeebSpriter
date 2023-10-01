@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeebSpriter", "BeebSpriter.csproj", "{3D27F058-96B6-4BA1-B8EB-887012BF08C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D27F058-96B6-4BA1-B8EB-887012BF08C8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D27F058-96B6-4BA1-B8EB-887012BF08C8}.Debug|x86.Build.0 = Debug|Any CPU
+		{3D27F058-96B6-4BA1-B8EB-887012BF08C8}.Release|x86.ActiveCfg = Release|x86
+		{3D27F058-96B6-4BA1-B8EB-887012BF08C8}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C65C6DB9-F2C2-4C0B-AC39-0B340FE7B71F}
+	EndGlobalSection
+EndGlobal
