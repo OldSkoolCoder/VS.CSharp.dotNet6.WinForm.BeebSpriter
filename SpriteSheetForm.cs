@@ -858,7 +858,7 @@ namespace BeebSpriter
             {
                 animationPreview = new AnimationPreview();
                 animationPreview.Show();
-                //addToAnimationPreviewToolStripMenuItem.Enabled = true;
+                addToAnimationPreviewToolStripMenuItem.Enabled = true;
             }
             else
             {
@@ -869,7 +869,7 @@ namespace BeebSpriter
         public void CloseAnimationPreview()
         {
             animationPreview = null;
-            //addToAnimationPreviewToolStripMenuItem.Enabled = false;
+            addToAnimationPreviewToolStripMenuItem.Enabled = false;
         }
 
         private void addToAnimationPreviewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -882,11 +882,6 @@ namespace BeebSpriter
                 SpritePanel spritePanel = menu.SourceControl as SpritePanel;
 
                 animationPreview.Add(spritePanel.Sprite);
-            }
-            else
-            {
-                OpenAnimationPreview();
-                addToAnimationPreviewToolStripMenuItem_Click(sender, e);
             }
         }
 
@@ -1156,5 +1151,6 @@ namespace BeebSpriter
                 }
             }
         }
+
     }
 }

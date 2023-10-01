@@ -8,48 +8,35 @@ using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using BeebSpriter.Enum;
 
 namespace BeebSpriter
 {
     public partial class AnimationPreview : Form
     {
-        // List of Sprites To Animate
         private BindingList<Sprite> spriteList = new BindingList<Sprite>();
-
-        //private bool isPlaying = false;
+        private bool isPlaying = false;
         private int currentFrame = 0;
         private int animationDirection = 1;
         private Timer timer = new Timer();
 
         public AnimationPreview()
         {
-            // Constructor for the Windows Form, this is run First.
-
             // Configure form
-            InitializeComponent();          // Auto Generated Code#
-
-            // Change the background colour of the Sprite Displaying Panel
+            InitializeComponent();
             ApplyBackgroundColour();
+            modeListBox.SelectedIndex = 0;
 
-            // Settings the active Item in the Play Mode to Index 0
-            lbMode.SelectedIndex = 0;
-
-            // Binding the Timer Tick event to the Function
             timer.Tick += new EventHandler(timer_Tick);
 
             // Set the data source for the sprite list
             lbSpriteList.DataSource = spriteList;
-
-            // Initialise the Zoom Control
-            setZoomLevel();
         }
 
         void timer_Tick(object sender, EventArgs e)
         {
-            switch (lbMode.SelectedIndex)
+            switch (modeListBox.SelectedIndex)
             {
-                case (int)AnimationMode.Cyclic:
+                case 0:
                     currentFrame++;
                     if (currentFrame >= spriteList.Count)
                     {
@@ -57,7 +44,7 @@ namespace BeebSpriter
                     }
                     break;
 
-                case (int)AnimationMode.YoYo:
+                case 1:
                     currentFrame += animationDirection;
                     if (currentFrame >= spriteList.Count)
                     {
@@ -71,7 +58,7 @@ namespace BeebSpriter
                     }
                     break;
 
-                case (int)AnimationMode.OneShot:
+                case 2:
                     if (currentFrame < spriteList.Count - 1)
                     {
                         currentFrame++;
@@ -82,22 +69,24 @@ namespace BeebSpriter
             RefreshAnimation();
         }
 
-        // Garbage Collecting, when Form Closes
+
         private void AnimationPreview_FormClosing(object sender, FormClosingEventArgs e)
         {
             SpriteSheetForm.Instance.CloseAnimationPreview();
         }
 
-        // Applying the default background colour to Sprite Panel
+
         public void ApplyBackgroundColour()
         {
             previewPanel.BackColor = SpriteSheetForm.Instance.GetBackgroundColour();
         }
 
+
         public void Add(Sprite sprite)
         {
             spriteList.Add(sprite);
         }
+
 
         public void Remove(Sprite sprite)
         {
@@ -147,18 +136,13 @@ namespace BeebSpriter
             // This is just horrible; ideally there should be some generic way to do this in both
             // places, but I'm adding this quickly, so... whatever.
 
-            //if (isPlaying && spriteList.Count > 0)
-            //if (timer.Enabled && spriteList.Count > 0)
-            if (spriteList.Count > 0)
+            if (isPlaying && spriteList.Count > 0)
             {
                 Sprite sprite = spriteList[currentFrame];
 
                 SpriteSheet spriteSheet = SpriteSheetForm.Instance.SpriteSheet;
-                //int spriteDisplayWidth = sprite.Width * spriteSheet.XScale;
-                //int spriteDisplayHeight = sprite.Height * spriteSheet.YScale;
-
-                int spriteDisplayWidth = sprite.Width * (spriteSheet.XScale * tbZoom.Value);
-                int spriteDisplayHeight = sprite.Height * (spriteSheet.YScale * tbZoom.Value);
+                int spriteDisplayWidth = sprite.Width * spriteSheet.XScale;
+                int spriteDisplayHeight = sprite.Height * spriteSheet.YScale;
 
                 // Create a bitmap dynamically each time we paint, because .NET is tricky with Bitmap
                 // objects (they cannot be modified or replaced very easily)
@@ -211,10 +195,9 @@ namespace BeebSpriter
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            //if (!isPlaying && lbSpriteList.Items.Count > 0)
-            if (!timer.Enabled && lbSpriteList.Items.Count > 0)
+            if (!isPlaying && lbSpriteList.Items.Count > 0)
             {
-                //isPlaying = true;
+                isPlaying = true;
                 currentFrame = lbSpriteList.SelectedIndex;
                 RefreshAnimation();
                 timer.Interval = tbSpeed.Value * 30;
@@ -224,67 +207,26 @@ namespace BeebSpriter
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            stopAnimation();
-        }
-
-        private void RefreshAnimation()
-        {
-            if (lbSpriteList.Items.Count != 0)
+            if (isPlaying)
             {
-                lbSpriteList.SelectedIndex = currentFrame;
-                previewPanel.Invalidate();
-            }
-            else
-            {
-                stopAnimation();
-            }
-        }
-
-        private void tbSpeed_ValueChanged(object sender, EventArgs e)
-        {
-            //if (isPlaying)
-            if (timer.Enabled)
-            {
-                timer.Interval = tbSpeed.Value * 30;
-            }
-        }
-
-        private void tbZoom_Scroll(object sender, EventArgs e)
-        {
-            setZoomLevel();
-            RefreshAnimation();
-        }
-
-        private void setZoomLevel()
-        {
-            lblZoom.Text = "x " + tbZoom.Value.ToString();
-        }
-
-        private void stopAnimation()
-        {
-            //if (isPlaying)
-            if (timer.Enabled)
-            {
-                //isPlaying = false;
+                isPlaying = false;
                 timer.Stop();
                 previewPanel.Invalidate();
             }
         }
 
-        private void lbSpriteList_Click(object sender, EventArgs e)
+        private void RefreshAnimation()
         {
-            PreviewSprite(lbSpriteList.SelectedIndex);
-        }
-
-        private void AnimationPreview_ResizeEnd(object sender, EventArgs e)
-        {
-            PreviewSprite(lbSpriteList.SelectedIndex);
-        }
-
-        private void PreviewSprite(int spriteNumber)
-        {
-            currentFrame = spriteNumber;
+            lbSpriteList.SelectedIndex = currentFrame;
             previewPanel.Invalidate();
+        }
+
+        private void tbSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            if (isPlaying)
+            {
+                timer.Interval = tbSpeed.Value * 30;
+            }
         }
     }
 }
