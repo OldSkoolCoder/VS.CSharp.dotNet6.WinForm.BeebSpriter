@@ -222,6 +222,29 @@
             ShiftDownToolStripMenuItem.Text = "Shift Down";
             ShiftDownToolStripMenuItem.Click += ShiftDownToolStripMenuItem_Click;
             // 
+            // transformToolStripMenuItem
+            // 
+            this.transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiRotateClockwise,
+            this.tsmiRotateAntiClockwise});
+            this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
+            this.transformToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.transformToolStripMenuItem.Text = "Transform";
+            // 
+            // tsmiRotateClockwise
+            // 
+            this.tsmiRotateClockwise.Name = "tsmiRotateClockwise";
+            this.tsmiRotateClockwise.Size = new System.Drawing.Size(186, 22);
+            this.tsmiRotateClockwise.Text = "Rotate Clockwise";
+            this.tsmiRotateClockwise.Click += new System.EventHandler(this.tsmiRotateClockwise_Click);
+            // 
+            // tsmiRotateAntiClockwise
+            // 
+            this.tsmiRotateAntiClockwise.Name = "tsmiRotateAntiClockwise";
+            this.tsmiRotateAntiClockwise.Size = new System.Drawing.Size(186, 22);
+            this.tsmiRotateAntiClockwise.Text = "Rotate AntiClockwise";
+            this.tsmiRotateAntiClockwise.Click += new System.EventHandler(this.tsmiRotateAntiClockwise_Click);
+            // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -345,6 +368,104 @@
             vertEvery4.Size = new System.Drawing.Size(212, 22);
             vertEvery4.Text = "Every four character rows";
             vertEvery4.Click += vertEvery4_Click;
+            // 
+            // horizontalBlockDividersToolStripMenuItem
+            // 
+            this.horizontalBlockDividersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.horizNever,
+            this.horizEvery1,
+            this.horizEvery2,
+            this.horizEvery3,
+            this.horizEvery4});
+            this.horizontalBlockDividersToolStripMenuItem.Name = "horizontalBlockDividersToolStripMenuItem";
+            this.horizontalBlockDividersToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.horizontalBlockDividersToolStripMenuItem.Text = "Show horizontal block dividers";
+            // 
+            // horizNever
+            // 
+            this.horizNever.Checked = true;
+            this.horizNever.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.horizNever.Name = "horizNever";
+            this.horizNever.Size = new System.Drawing.Size(221, 22);
+            this.horizNever.Text = "Never";
+            this.horizNever.Click += new System.EventHandler(this.horizNever_Click);
+            // 
+            // horizEvery1
+            // 
+            this.horizEvery1.Name = "horizEvery1";
+            this.horizEvery1.Size = new System.Drawing.Size(221, 22);
+            this.horizEvery1.Text = "Every character block";
+            this.horizEvery1.Click += new System.EventHandler(this.horizEvery1_Click);
+            // 
+            // horizEvery2
+            // 
+            this.horizEvery2.Name = "horizEvery2";
+            this.horizEvery2.Size = new System.Drawing.Size(221, 22);
+            this.horizEvery2.Text = "Every two character blocks";
+            this.horizEvery2.Click += new System.EventHandler(this.horizEvery2_Click);
+            // 
+            // horizEvery3
+            // 
+            this.horizEvery3.Name = "horizEvery3";
+            this.horizEvery3.Size = new System.Drawing.Size(221, 22);
+            this.horizEvery3.Text = "Every three character blocks";
+            this.horizEvery3.Click += new System.EventHandler(this.horizEvery3_Click);
+            // 
+            // horizEvery4
+            // 
+            this.horizEvery4.Name = "horizEvery4";
+            this.horizEvery4.Size = new System.Drawing.Size(221, 22);
+            this.horizEvery4.Text = "Every four character blocks";
+            this.horizEvery4.Click += new System.EventHandler(this.horizEvery4_Click);
+            // 
+            // showVerticalBlockDividersToolStripMenuItem
+            // 
+            this.showVerticalBlockDividersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vertNever,
+            this.vertEvery1,
+            this.vertEvery2,
+            this.vertEvery3,
+            this.vertEvery4});
+            this.showVerticalBlockDividersToolStripMenuItem.Name = "showVerticalBlockDividersToolStripMenuItem";
+            this.showVerticalBlockDividersToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.showVerticalBlockDividersToolStripMenuItem.Text = "Show vertical block dividers";
+            // 
+            // vertNever
+            // 
+            this.vertNever.Checked = true;
+            this.vertNever.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.vertNever.Name = "vertNever";
+            this.vertNever.Size = new System.Drawing.Size(212, 22);
+            this.vertNever.Text = "Never";
+            this.vertNever.Click += new System.EventHandler(this.vertNever_Click);
+            // 
+            // vertEvery1
+            // 
+            this.vertEvery1.Name = "vertEvery1";
+            this.vertEvery1.Size = new System.Drawing.Size(212, 22);
+            this.vertEvery1.Text = "Every character row";
+            this.vertEvery1.Click += new System.EventHandler(this.vertEvery1_Click);
+            // 
+            // vertEvery2
+            // 
+            this.vertEvery2.Name = "vertEvery2";
+            this.vertEvery2.Size = new System.Drawing.Size(212, 22);
+            this.vertEvery2.Text = "Every two character rows";
+            this.vertEvery2.Click += new System.EventHandler(this.vertEvery2_Click);
+            // 
+            // vertEvery3
+            // 
+            this.vertEvery3.Name = "vertEvery3";
+            this.vertEvery3.Size = new System.Drawing.Size(212, 22);
+            this.vertEvery3.Text = "Every three character rows";
+            this.vertEvery3.Click += new System.EventHandler(this.vertEvery3_Click);
+            // 
+            // vertEvery4
+            // 
+            this.vertEvery4.Name = "vertEvery4";
+            this.vertEvery4.Size = new System.Drawing.Size(212, 22);
+            this.vertEvery4.Text = "Every four character rows";
+            this.vertEvery4.Click += new System.EventHandler(this.vertEvery4_Click);
             // 
             // zoomToolStripMenuItem
             // 
@@ -541,6 +662,18 @@
             editorPanel.MouseDown += doubleBufferedPanel1_MouseDown;
             editorPanel.MouseMove += doubleBufferedPanel1_MouseMove;
             editorPanel.MouseUp += doubleBufferedPanel1_MouseUp;
+            // 
+            // editorPanel
+            // 
+            this.editorPanel.Location = new System.Drawing.Point(0, 0);
+            this.editorPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.editorPanel.Name = "editorPanel";
+            this.editorPanel.Size = new System.Drawing.Size(399, 417);
+            this.editorPanel.TabIndex = 0;
+            this.editorPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.doubleBufferedPanel1_Paint);
+            this.editorPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.doubleBufferedPanel1_MouseDown);
+            this.editorPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.doubleBufferedPanel1_MouseMove);
+            this.editorPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.doubleBufferedPanel1_MouseUp);
             // 
             // button_colourTransparent
             // 
@@ -837,6 +970,9 @@
         private System.Windows.Forms.ToolStripMenuItem vertEvery2;
         private System.Windows.Forms.ToolStripMenuItem vertEvery3;
         private System.Windows.Forms.ToolStripMenuItem vertEvery4;
+        private System.Windows.Forms.ToolStripMenuItem transformToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRotateClockwise;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRotateAntiClockwise;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem ShiftLeftToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ShiftRightToolStripMenuItem;

@@ -91,5 +91,47 @@ namespace BeebSpriter
                 return Name;
             }
         }
+
+        /// <summary>
+        /// Rotate Image Clockwise 90
+        /// </summary>        
+        public void rotateClockWise()
+        {
+            byte[] clonedImage = (byte[])this.Bitmap.Clone();
+
+            int index = 0;
+            for (int x = 0; x < this.Width; x++)
+            {
+                for (int y = this.Height - 1; y >= 0; y--)
+                {
+                    this.Bitmap[index++] = clonedImage[y * Width + x];
+                }
+            }
+
+            int tempVar = this.Width;
+            this.Width = this.Height;
+            this.Height = tempVar;
+        }
+
+        /// <summary>
+        /// Rotate Image Anti Clockwise 90
+        /// </summary>        
+        public void rotateAntiClockWise()
+        {
+            byte[] clonedImage = (byte[])this.Bitmap.Clone();
+
+            int index = 0;
+            for (int x = this.Width - 1; x >=0; x--)
+            {
+                for (int y = 0; y < this.Height; y++)
+                {
+                    this.Bitmap[index++] = clonedImage[y * Width + x];
+                }
+            }
+
+            int tempVar = this.Width;
+            this.Width = this.Height;
+            this.Height = tempVar;
+        }
     }
 }

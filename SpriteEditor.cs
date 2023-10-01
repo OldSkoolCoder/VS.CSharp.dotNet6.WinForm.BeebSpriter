@@ -1794,10 +1794,26 @@ namespace BeebSpriter
             }
         }
 
+
         #endregion
 
+        private void tsmiRotateClockwise_Click(object sender, EventArgs e)
+        {
+            sprite.rotateClockWise();
+            ApplyZoomToForm();
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
 
-        /// <summary>
+        private void tsmiRotateAntiClockwise_Click(object sender, EventArgs e)
+        {
+            sprite.rotateAntiClockWise();
+            ApplyZoomToForm();
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
+/// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
@@ -1932,8 +1948,5 @@ namespace BeebSpriter
             editorPanel.Invalidate();
             spritePanel.Panel.Invalidate();
         }
-
-
-
     }
 }
