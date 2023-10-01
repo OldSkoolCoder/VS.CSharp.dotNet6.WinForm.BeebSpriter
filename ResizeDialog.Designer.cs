@@ -28,121 +28,103 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.okButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.numericHeight = new System.Windows.Forms.NumericUpDown();
-            this.numericWidth = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericHeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericWidth)).BeginInit();
-            this.SuspendLayout();
+            cancelButton = new System.Windows.Forms.Button();
+            okButton = new System.Windows.Forms.Button();
+            label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            numericHeight = new System.Windows.Forms.NumericUpDown();
+            numericWidth = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)numericHeight).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericWidth).BeginInit();
+            SuspendLayout();
             // 
             // cancelButton
             // 
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(96, 67);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(74, 28);
-            this.cancelButton.TabIndex = 10;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Location = new System.Drawing.Point(112, 77);
+            cancelButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(86, 32);
+            cancelButton.TabIndex = 10;
+            cancelButton.Text = "Cancel";
+            cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 67);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(74, 28);
-            this.okButton.TabIndex = 8;
-            this.okButton.Text = "OK";
-            this.okButton.UseVisualStyleBackColor = true;
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Location = new System.Drawing.Point(14, 77);
+            okButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(86, 32);
+            okButton.TabIndex = 8;
+            okButton.Text = "OK";
+            okButton.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Height";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(10, 40);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(43, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Height";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Width";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(14, 10);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(39, 15);
+            label1.TabIndex = 6;
+            label1.Text = "Width";
             // 
             // numericHeight
             // 
-            this.numericHeight.Location = new System.Drawing.Point(53, 33);
-            this.numericHeight.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.numericHeight.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericHeight.Name = "numericHeight";
-            this.numericHeight.Size = new System.Drawing.Size(64, 20);
-            this.numericHeight.TabIndex = 7;
-            this.numericHeight.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            numericHeight.Location = new System.Drawing.Point(62, 38);
+            numericHeight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            numericHeight.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            numericHeight.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericHeight.Name = "numericHeight";
+            numericHeight.Size = new System.Drawing.Size(75, 23);
+            numericHeight.TabIndex = 7;
+            numericHeight.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numericWidth
             // 
-            this.numericWidth.Location = new System.Drawing.Point(53, 7);
-            this.numericWidth.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.numericWidth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericWidth.Name = "numericWidth";
-            this.numericWidth.Size = new System.Drawing.Size(64, 20);
-            this.numericWidth.TabIndex = 5;
-            this.numericWidth.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            numericWidth.Location = new System.Drawing.Point(62, 8);
+            numericWidth.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            numericWidth.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            numericWidth.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericWidth.Name = "numericWidth";
+            numericWidth.Size = new System.Drawing.Size(75, 23);
+            numericWidth.TabIndex = 5;
+            numericWidth.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // ResizeDialog
             // 
-            this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(184, 106);
-            this.ControlBox = false;
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.okButton);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.numericHeight);
-            this.Controls.Add(this.numericWidth);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "ResizeDialog";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Resize sprite";
-            ((System.ComponentModel.ISupportInitialize)(this.numericHeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericWidth)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AcceptButton = okButton;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            CancelButton = cancelButton;
+            ClientSize = new System.Drawing.Size(224, 136);
+            ControlBox = false;
+            Controls.Add(cancelButton);
+            Controls.Add(okButton);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(numericHeight);
+            Controls.Add(numericWidth);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "ResizeDialog";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Resize sprite";
+            ((System.ComponentModel.ISupportInitialize)numericHeight).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericWidth).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
