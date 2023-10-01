@@ -189,6 +189,29 @@
             toolStripMenuItem6.Name = "toolStripMenuItem6";
             toolStripMenuItem6.Size = new System.Drawing.Size(217, 6);
             // 
+            // transformToolStripMenuItem
+            // 
+            this.transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiRotateClockwise,
+            this.tsmiRotateAntiClockwise});
+            this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
+            this.transformToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.transformToolStripMenuItem.Text = "Transform";
+            // 
+            // tsmiRotateClockwise
+            // 
+            this.tsmiRotateClockwise.Name = "tsmiRotateClockwise";
+            this.tsmiRotateClockwise.Size = new System.Drawing.Size(186, 22);
+            this.tsmiRotateClockwise.Text = "Rotate Clockwise";
+            this.tsmiRotateClockwise.Click += new System.EventHandler(this.tsmiRotateClockwise_Click);
+            // 
+            // tsmiRotateAntiClockwise
+            // 
+            this.tsmiRotateAntiClockwise.Name = "tsmiRotateAntiClockwise";
+            this.tsmiRotateAntiClockwise.Size = new System.Drawing.Size(186, 22);
+            this.tsmiRotateAntiClockwise.Text = "Rotate AntiClockwise";
+            this.tsmiRotateAntiClockwise.Click += new System.EventHandler(this.tsmiRotateAntiClockwise_Click);
+            // 
             // ShiftLeftToolStripMenuItem
             // 
             ShiftLeftToolStripMenuItem.Image = Properties.Resources.ShiftLeft;
