@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.IO;
+using BeebSpriter.Internal;
 using System.Security.Policy;
 
 namespace BeebSpriter
@@ -40,6 +41,11 @@ namespace BeebSpriter
         ///  The sprite sheet object contains the actual data which is saved
         /// </summary>
         private SpriteSheet spriteSheet;
+
+        /// <summary>
+        /// A list of recent files
+        /// </summary>
+        private RecentFilesList RecentFiles;
 
         /// <summary>
         ///  Used in the drag/drop functionality for reordering sprites
@@ -165,6 +171,30 @@ namespace BeebSpriter
 
 
         #region Form management
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SpriteSheetForm_Load(object sender, EventArgs e)
+        {
+            RecentFiles = new RecentFilesList(RecentFilesToolStripMenuItem, OpenSprites);
+        }
+
+        /// <summary>
+        /// Opens the sprite file from the recent list menu dropdown
+        /// </summary>
+        /// <param name="filename"></param>
+        private void OpenSprites(string filename)
+        {
+            openFileDialog1.FileName = filename;
+            Open();
+
+            // Used for setting title and background colour etc.
+            saveFileDialog1.FileName = openFileDialog1.FileName;
+            SetAsOpened();
+        }
 
         /// <summary>
         ///  Configures child controls to give the appearance that no document is open
@@ -364,9 +394,10 @@ namespace BeebSpriter
                 Open();
                 saveFileDialog1.FileName = openFileDialog1.FileName;
                 SetAsOpened();
+
+                RecentFiles.Add(saveFileDialog1.FileName);
             }
         }
-
 
         /// <summary>
         ///  Actually opens the specified file
@@ -396,6 +427,8 @@ namespace BeebSpriter
 
             Cursor.Current = Cursors.Default;
             IsUnsaved = false;
+
+            RecentFiles.Add(openFileDialog1.FileName);
         }
 
 
@@ -1174,6 +1207,5 @@ namespace BeebSpriter
                 }
             }
         }
-
     }
 }
