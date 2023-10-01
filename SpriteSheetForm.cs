@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.IO;
+using System.Security.Policy;
 
 namespace BeebSpriter
 {
@@ -548,7 +549,7 @@ namespace BeebSpriter
                                            newSpriteDialog.SpriteWidth,
                                            newSpriteDialog.SpriteHeight,
                                            SpriteSheet.DefaultPalette);
- 
+
                 // Very important to call this on a new Sprite
                 // (it creates the graphical control which represents the sprite)
                 CreateSpritePanel(sprite);
@@ -874,22 +875,39 @@ namespace BeebSpriter
 
         private void addToAnimationPreviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (animationPreview != null)
-            {
-                // This is the rather long-winded way to get the object which created the context menu
-                ToolStripItem menuItem = sender as ToolStripItem;
-                ContextMenuStrip menu = menuItem.Owner as ContextMenuStrip;
-                SpritePanel spritePanel = menu.SourceControl as SpritePanel;
-
-                animationPreview.Add(spritePanel.Sprite);
-            }
-            else
+            if (animationPreview == null)
             {
                 OpenAnimationPreview();
-                addToAnimationPreviewToolStripMenuItem_Click(sender, e);
+                //addToAnimationPreviewToolStripMenuItem_Click(sender, e);
             }
+            // This is the rather long-winded way to get the object which created the context menu
+            ToolStripItem menuItem = sender as ToolStripItem;
+            ContextMenuStrip menu = menuItem.Owner as ContextMenuStrip;
+            SpritePanel spritePanel = menu.SourceControl as SpritePanel;
+
+            animationPreview.Add(spritePanel.Sprite);
         }
 
+
+        private void addAllSpritesToAnimationPreviewWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (animationPreview == null)
+            {
+                OpenAnimationPreview();
+                //addToAnimationPreviewToolStripMenuItem_Click(sender, e);
+            }
+            // This is the rather long-winded way to get the object which created the context menu
+            //ToolStripItem menuItem = sender as ToolStripItem;
+            //ContextMenuStrip menu = menuItem.Owner as ContextMenuStrip;
+            //SpritePanel spritePanel = menu.SourceControl as SpritePanel;
+
+            foreach (Sprite sprite in this.spriteSheet.SpriteList)
+            {
+
+                animationPreview.Add(sprite);
+            }
+
+        }
         #endregion
 
 
@@ -1156,5 +1174,6 @@ namespace BeebSpriter
                 }
             }
         }
+
     }
 }
