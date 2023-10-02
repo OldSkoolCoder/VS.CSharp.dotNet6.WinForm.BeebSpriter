@@ -474,7 +474,10 @@ namespace BeebSpriter
             Save();
         }
 
-
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
         /// <summary>
         ///  Actually saves to the specified file
         /// </summary>
