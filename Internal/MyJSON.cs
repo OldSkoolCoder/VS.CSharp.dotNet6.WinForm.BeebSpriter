@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Configuration;
 
 namespace BeebSpriter.Internal
 {
@@ -29,9 +30,11 @@ namespace BeebSpriter.Internal
         {
             try
             {
-
                 string json = JsonSerializer.Serialize<MyJSON>(this);
-                File.WriteAllText(this.fileName, json);
+                UserConfig config = new();
+                config.Write("Paths",json);
+
+                //File.WriteAllText(this.fileName, json);
             }
             catch (Exception err)
             {
@@ -46,11 +49,13 @@ namespace BeebSpriter.Internal
         /// <param name="res"></param>
         public void LoadJson(RecentFilesList res)
         {
-            if (!File.Exists(this.fileName)) return;
-
             try
             {
-                string jsonStr = File.ReadAllText(this.fileName);
+                UserConfig config = new();
+                var jsonStr = config.Read("Paths");
+
+                if (jsonStr == String.Empty) return;
+
                 MyJSON myJSON = JsonSerializer.Deserialize<MyJSON>(jsonStr);
                 
                 foreach (string path in myJSON.Paths)
