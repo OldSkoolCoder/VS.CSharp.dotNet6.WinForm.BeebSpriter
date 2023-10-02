@@ -174,12 +174,7 @@
             // 
             this.selectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.flipLeftrightToolStripMenuItem,
-            this.flipUpdownToolStripMenuItem,
-            this.toolStripMenuItem6,
-            this.ShiftLeftToolStripMenuItem,
-            this.ShiftRightToolStripMenuItem,
-            this.ShiftUpToolStripMenuItem,
-            this.ShiftDownToolStripMenuItem});
+            this.flipUpdownToolStripMenuItem });
             this.selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
             this.selectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.selectionToolStripMenuItem.Text = "Selection";
@@ -209,6 +204,7 @@
             | System.Windows.Forms.Keys.Left)));
             this.ShiftLeftToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.ShiftLeftToolStripMenuItem.Text = "Shift Left";
+            this.ShiftLeftToolStripMenuItem.Click += new System.EventHandler(this.ShiftLeftToolStripMenuItem_Click);
             // 
             // ShiftRightToolStripMenuItem
             // 
@@ -218,6 +214,7 @@
             | System.Windows.Forms.Keys.Right)));
             this.ShiftRightToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.ShiftRightToolStripMenuItem.Text = "Shift Right";
+            this.ShiftRightToolStripMenuItem.Click += new System.EventHandler(this.ShiftRightToolStripMenuItem_Click);
             // 
             // ShiftUpToolStripMenuItem
             // 
@@ -227,6 +224,7 @@
             | System.Windows.Forms.Keys.Up)));
             this.ShiftUpToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.ShiftUpToolStripMenuItem.Text = "Shift Up";
+            this.ShiftUpToolStripMenuItem.Click += new System.EventHandler(this.ShiftUpToolStripMenuItem_Click);
             // 
             // ShiftDownToolStripMenuItem
             // 
@@ -236,12 +234,18 @@
             | System.Windows.Forms.Keys.Down)));
             this.ShiftDownToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.ShiftDownToolStripMenuItem.Text = "Shift Down";
+            this.ShiftDownToolStripMenuItem.Click += new System.EventHandler(this.ShiftDownToolStripMenuItem_Click);
             // 
             // transformToolStripMenuItem
             // 
             this.transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiRotateClockwise,
-            this.tsmiRotateAntiClockwise});
+            this.tsmiRotateAntiClockwise,
+            this.toolStripMenuItem6,
+            this.ShiftLeftToolStripMenuItem,
+            this.ShiftRightToolStripMenuItem,
+            this.ShiftUpToolStripMenuItem,
+            this.ShiftDownToolStripMenuItem});
             this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
             this.transformToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.transformToolStripMenuItem.Text = "Transform";
