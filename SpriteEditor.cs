@@ -148,7 +148,6 @@ namespace BeebSpriter
 
         private ResizeDialog resizeDialog = new ResizeDialog();
 
-
         /// <summary>
         ///  Constructor for the SpriteEditor form
         /// </summary>
@@ -1813,7 +1812,7 @@ namespace BeebSpriter
             spritePanel.Panel.Invalidate();
         }
 
-/// <summary>
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
@@ -1942,6 +1941,45 @@ namespace BeebSpriter
                     sprite.Bitmap[index++] = clonedImage[((sprite.Height - 1 + y) % sprite.Height) * sprite.Width + x];
                 }
             }
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
+        /// <summary>
+        /// Replace one sprite colour with another colour
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReplaceColourToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReplaceColour replaceColour = new(sprite);
+
+            if (replaceColour.ShowDialog(this) == DialogResult.OK)
+            {
+                AddHistory();
+
+                sprite.ReplaceColours(replaceColour.OldColour, replaceColour.NewColour);
+
+                SpriteSheetForm.Instance.IsUnsaved = true;
+
+                editorPanel.Invalidate();
+                spritePanel.Panel.Invalidate();
+            }
+
+        }
+
+        /// <summary>
+        /// Make sprite colours negative
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NegativeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddHistory();
+            sprite.Negative(sprite.NumColours);
 
             SpriteSheetForm.Instance.IsUnsaved = true;
 

@@ -207,5 +207,23 @@ namespace BeebSpriter.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap Colours
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("Colours", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap Negative
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("Negative", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
