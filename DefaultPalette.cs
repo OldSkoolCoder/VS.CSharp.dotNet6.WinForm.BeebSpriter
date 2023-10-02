@@ -49,7 +49,8 @@ namespace BeebSpriter
                     {
                         colourPanels[i].Visible = false;
                     }
-                    this.Size = new Size(184, 111);
+                    // this.Size = new Size(184, 111);             - Original line
+                    this.Size = new Size(220, 130);
                     break;
 
                 case 4:
@@ -57,7 +58,8 @@ namespace BeebSpriter
                     {
                         colourPanels[i].Visible = false;
                     }
-                    this.Size = new Size(184, 111);
+                    // this.Size = new Size(184, 111);             - Original line
+                    this.Size = new Size(220, 130);
                     break;
             }
 
@@ -93,6 +95,11 @@ namespace BeebSpriter
         private void okButton_Click(object sender, EventArgs e)
         {
             SpriteSheetForm.Instance.SpriteSheet.DefaultPalette = (BeebPalette.Colour[])defaultPalette.Clone();
+        }
+
+        private void DefaultPalette_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
