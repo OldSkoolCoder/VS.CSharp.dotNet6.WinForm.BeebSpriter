@@ -16,7 +16,34 @@ namespace BeebSpriter
         {
             InitializeComponent();
 
-            lblVersion.Text = String.Format("BeebSpriter v{0} {1}", Application.ProductVersion, "(Pre-Release)");
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            string sVersion = String.Format("v{0}.{1}.{2}",
+                version.Major,
+                version.Minor,
+                version.Build);
+
+            string sBuildPackage = "";
+
+            switch (version.MinorRevision)
+            {
+                case 0:
+                    sBuildPackage = "(Development)";
+                    break;
+                case 1:
+                    sBuildPackage = "(Test)";
+                    break;
+                case 2:
+                    sBuildPackage = "(Pre-Release)";
+                    break;
+                case 3:
+                    sBuildPackage = "(Candidate Release)";
+                    break;
+                default:
+                    break;
+            }
+            lblVersion.Text = String.Format("BeebSpriter {0} {1}", sVersion, sBuildPackage);
+            lblBuildDate.Text = "1st October 2023";
         }
+
     }
 }
