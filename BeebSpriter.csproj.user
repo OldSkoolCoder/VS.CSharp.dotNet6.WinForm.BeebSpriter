@@ -49,6 +49,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="SpriteSheetForm.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
