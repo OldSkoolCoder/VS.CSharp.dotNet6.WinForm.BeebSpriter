@@ -48,6 +48,11 @@ namespace BeebSpriter
             set { this.palette = value; }
         }
 
+        /// <summary>
+        /// Get the number of colours used by the sprite
+        /// </summary>
+        public int NumColours => Palette.Length;
+
         public SpritePanel SpritePanel
         {
             get { return this.spritePanel; }
@@ -132,6 +137,34 @@ namespace BeebSpriter
             int tempVar = this.Width;
             this.Width = this.Height;
             this.Height = tempVar;
+        }
+
+        /// <summary>
+        /// Replace one colour with another in the sprite image
+        /// </summary>
+        /// <param name="oldColour"></param>
+        /// <param name="newColour"></param>
+        public void ReplaceColours(int oldColour, int newColour)
+        {
+            for (int index = 0; index < Bitmap.Length; index++)
+            {
+                if (Bitmap[index] == (byte)oldColour) Bitmap[index] = (byte)newColour;
+            }
+        }
+
+        /// <summary>
+        /// Make all colours negative in the sprite image
+        /// </summary>
+        /// <param name="colourDepth"></param>
+        public void Negative(int colourDepth)
+        {
+            // 255 = Transparent Colour
+
+            for (int index = 0; index < Bitmap.Length; index++)
+            {
+                if (Bitmap[index] != 255) 
+                    Bitmap[index] ^= (byte)(colourDepth - 1);
+            }
         }
     }
 }
