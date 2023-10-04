@@ -474,7 +474,34 @@ namespace BeebSpriter
             Save();
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (IsUnsaved)
+            {
+                DialogResult result = MessageBox.Show("You have unsaved work. Do you wish to save before exiting?",
+                                                      "Warning",
+                                                      MessageBoxButtons.YesNoCancel);
 
+                if (result == DialogResult.Yes)
+                {
+                    result = saveFileDialog1.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        Save();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            System.Windows.Forms.Application.Exit();
+        }
         /// <summary>
         ///  Actually saves to the specified file
         /// </summary>
