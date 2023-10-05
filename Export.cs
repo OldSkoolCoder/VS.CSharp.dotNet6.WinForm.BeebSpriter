@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,19 @@ namespace BeebSpriter
             spriteLayout1.Checked = false;
             spriteLayout2.Checked = false;
             spriteLayout3.Checked = false;
+
+            rbBeebASM.Checked = false;
+            rbKickASM.Checked = false;
+
+            switch (spriteSheet.SelectedAssembler)
+            {
+                case "BeebASM":
+                    rbBeebASM.Checked = true;
+                    break;
+                case "KickASM":
+                    rbKickASM.Checked = true;
+                    break;
+            }
 
             switch (spriteSheet.SpriteLayout)
             {
@@ -44,8 +58,8 @@ namespace BeebSpriter
                 spriteSize2.Checked = true;
                 spriteSizeAcross.Enabled = true;
                 spriteSizeDown.Enabled = true;
-                spriteSizeAcrossLabel.Enabled = true;
-                spriteSizeDownLabel.Enabled = true;
+                lblSpriteSizeAcross.Enabled = true;
+                lblSpriteSizeDown.Enabled = true;
             }
 
             if (spriteSheet.ShouldExportSeparateMask)
@@ -54,30 +68,37 @@ namespace BeebSpriter
                 masking2.Checked = true;
             }
 
-            headerTextBox.Text = spriteSheet.AssemblerSyntax;
+            txtHeader.Text = spriteSheet.AssemblerSyntax;
             if (!spriteSheet.ShouldGenerateHeader)
             {
-                headerTickBox.Checked = false;
-                headerTextBox.Enabled = false;
-                headerLabel.Enabled = false;
+                chkHeader.Checked = false;
+                txtHeader.Enabled = false;
+                lblHeader.Enabled = false;
             }
+
+            txtPreview.Text = spriteSheet.PreviewExport(SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler, SpriteSheetForm.Instance.ProjectFilename);
         }
 
         private void spriteSize2_CheckedChanged(object sender, EventArgs e)
         {
             spriteSizeAcross.Enabled = spriteSize2.Checked;
             spriteSizeDown.Enabled = spriteSize2.Checked;
-            spriteSizeAcrossLabel.Enabled = spriteSize2.Checked;
-            spriteSizeDownLabel.Enabled = spriteSize2.Checked;            
+            lblSpriteSizeAcross.Enabled = spriteSize2.Checked;
+            lblSpriteSizeDown.Enabled = spriteSize2.Checked;
         }
 
-        private void headerTickBox_CheckedChanged(object sender, EventArgs e)
+        private void chkHeader_CheckedChanged(object sender, EventArgs e)
         {
-            headerTextBox.Enabled = headerTickBox.Checked;
-            headerLabel.Enabled = headerTickBox.Checked;
+            txtHeader.Enabled = chkHeader.Checked;
+            lblHeader.Enabled = chkHeader.Checked;
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
         {
             SpriteSheet spriteSheet = SpriteSheetForm.Instance.SpriteSheet;
 
@@ -100,12 +121,36 @@ namespace BeebSpriter
 
             spriteSheet.ShouldExportSeparateMask = masking2.Checked;
 
-            spriteSheet.AssemblerSyntax = headerTextBox.Text;
-            spriteSheet.ShouldGenerateHeader = headerTickBox.Checked;
+            spriteSheet.AssemblerSyntax = txtHeader.Text;
+            spriteSheet.ShouldGenerateHeader = chkHeader.Checked;
 
             spriteSheet.HasSetExportSettings = true;
 
             SpriteSheetForm.Instance.IsUnsaved = true;
+        }
+
+        private void txtHeader_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Return)
+            {
+                SpriteSheetForm.Instance.SpriteSheet.AssemblerSyntax = txtHeader.Text;
+                txtPreview.Text = SpriteSheetForm.Instance.SpriteSheet.PreviewExport(SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler, SpriteSheetForm.Instance.ProjectFilename);
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void rbBeebASM_CheckedChanged(object sender, EventArgs e)
+        {
+            SpriteSheetForm.Instance.SpriteSheet.AssemblerSyntax = txtHeader.Text;
+            SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler = "BeebASM";
+            txtPreview.Text = SpriteSheetForm.Instance.SpriteSheet.PreviewExport(SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler, SpriteSheetForm.Instance.ProjectFilename);
+        }
+
+        private void rbKickASM_CheckedChanged(object sender, EventArgs e)
+        {
+            SpriteSheetForm.Instance.SpriteSheet.AssemblerSyntax = txtHeader.Text;
+            SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler = "KickASM";
+            txtPreview.Text = SpriteSheetForm.Instance.SpriteSheet.PreviewExport(SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler, SpriteSheetForm.Instance.ProjectFilename);
         }
     }
 }
