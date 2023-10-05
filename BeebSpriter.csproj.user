@@ -29,6 +29,9 @@
     <Compile Update="Export.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="NewGfxMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="NewSpriteDialog.cs">
       <SubType>Form</SubType>
     </Compile>

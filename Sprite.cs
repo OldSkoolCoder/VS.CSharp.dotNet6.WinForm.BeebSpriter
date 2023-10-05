@@ -228,6 +228,18 @@ namespace BeebSpriter
                 {
                     Bitmap[index++] = clonedImage[(y % Height) * Width + x];
                 }
+
+        /// Reduce colours down to lower depth
+        /// </summary>
+        /// <param name="colourDepth"></param>
+        public void ReduceColours(int colourDepth)
+        {
+            // 255 = Transparent Colour
+
+            for (int index = 0; index < Bitmap.Length; index++)
+            {
+                if (Bitmap[index] != 255)
+                    Bitmap[index] = (byte)(Bitmap[index] % colourDepth);
             }
         }
     }
