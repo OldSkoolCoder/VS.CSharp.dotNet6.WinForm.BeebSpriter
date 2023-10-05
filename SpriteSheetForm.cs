@@ -1,15 +1,11 @@
-﻿using System;
+﻿using BeebSpriter.Enum;
+using BeebSpriter.Internal;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using System.IO;
-using BeebSpriter.Internal;
-using System.Security.Policy;
 
 namespace BeebSpriter
 {
@@ -77,8 +73,7 @@ namespace BeebSpriter
         /// </summary>
         private AnimationPreview animationPreview;
 
-        #endregion
-
+        #endregion Members
 
         #region Properties
 
@@ -142,8 +137,8 @@ namespace BeebSpriter
             get { return clipboardHeight; }
             set { clipboardHeight = value; }
         }
-        #endregion
 
+        #endregion Properties
 
         #region Constructor
 
@@ -167,13 +162,12 @@ namespace BeebSpriter
             SetAsClosed();
         }
 
-        #endregion
-
+        #endregion Constructor
 
         #region Form management
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -182,10 +176,8 @@ namespace BeebSpriter
             RecentFiles = new RecentFilesList(RecentFilesToolStripMenuItem, OpenSprites);
             lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
 
-            
             MyJSON myJSON = new();
             myJSON.LoadJson(RecentFiles);
-
         }
 
         /// <summary>
@@ -220,7 +212,6 @@ namespace BeebSpriter
             toolsToolStripMenuItem.Enabled = false;
         }
 
-
         /// <summary>
         ///  Configures child controls to show everything, activate all the menu options, etc
         /// </summary>
@@ -244,7 +235,6 @@ namespace BeebSpriter
             SetFormTitle();
             ApplyBackgroundColour();
         }
-
 
         /// <summary>
         ///  Sets form title according to the currently loaded file, screen mode, and whether there
@@ -274,8 +264,7 @@ namespace BeebSpriter
             Text = title;
         }
 
-        #endregion
-
+        #endregion Form management
 
         #region File handling
 
@@ -287,7 +276,6 @@ namespace BeebSpriter
             NewSpriteSheet(0);
         }
 
-
         /// <summary>
         ///  Called when a new Mode 1 sprite sheet is created
         /// </summary>
@@ -295,7 +283,6 @@ namespace BeebSpriter
         {
             NewSpriteSheet(1);
         }
-
 
         /// <summary>
         ///  Called when a new Mode 2 sprite sheet is created
@@ -305,7 +292,6 @@ namespace BeebSpriter
             NewSpriteSheet(2);
         }
 
-
         /// <summary>
         ///  Called when a new Mode 4 sprite sheet is created
         /// </summary>
@@ -314,7 +300,6 @@ namespace BeebSpriter
             NewSpriteSheet(4);
         }
 
-
         /// <summary>
         ///  Called when a new Mode 5 sprite sheet is created
         /// </summary>
@@ -322,7 +307,6 @@ namespace BeebSpriter
         {
             NewSpriteSheet(5);
         }
-
 
         /// <summary>
         ///  Common entry point for creating a new sprite sheet
@@ -363,7 +347,6 @@ namespace BeebSpriter
             this.spriteSheet = new SpriteSheet(mode);
             SetAsOpened();
         }
-
 
         /// <summary>
         ///  Called when the user clicks "Open file..."
@@ -406,9 +389,6 @@ namespace BeebSpriter
                 MyJSON jsonSave = new();
                 jsonSave.Paths = RecentFiles.Files;
                 jsonSave.SaveJson();
-
-
-
             }
         }
 
@@ -444,7 +424,6 @@ namespace BeebSpriter
             RecentFiles.Add(openFileDialog1.FileName);
         }
 
-
         /// <summary>
         ///  Called when the user clicks on "Save as..."
         /// </summary>
@@ -455,7 +434,6 @@ namespace BeebSpriter
                 Save();
             }
         }
-
 
         /// <summary>
         ///  Called when the user clicks on "Save"
@@ -502,6 +480,7 @@ namespace BeebSpriter
 
             System.Windows.Forms.Application.Exit();
         }
+
         /// <summary>
         ///  Actually saves to the specified file
         /// </summary>
@@ -525,8 +504,7 @@ namespace BeebSpriter
             IsUnsaved = false;
         }
 
-        #endregion
-
+        #endregion File handling
 
         #region Drag and Drop functionality
 
@@ -537,7 +515,6 @@ namespace BeebSpriter
         {
             e.Effect = DragDropEffects.All;
         }
-
 
         /// <summary>
         ///  Event called when we are dragging an object on top of the sprite sheet.
@@ -590,14 +567,13 @@ namespace BeebSpriter
             }
         }
 
-        #endregion
-
+        #endregion Drag and Drop functionality
 
         #region Sprite icon handling
 
         /// <summary>
         ///  This should be called as soon as a new Sprite object is created to attach a
-        ///  graphical Windows control to it.  
+        ///  graphical Windows control to it.
         /// </summary>
         public SpritePanel CreateSpritePanel(Sprite sprite)
         {
@@ -609,7 +585,6 @@ namespace BeebSpriter
 
             return spritePanel;
         }
-
 
         /// <summary>
         ///  This is called whenever 'New sprite' is selected from the context menu
@@ -633,7 +608,6 @@ namespace BeebSpriter
                 IsUnsaved = true;
             }
         }
-
 
         /// <summary>
         ///  This is called whenever 'Delete' is selected from the sprite context menu
@@ -671,7 +645,6 @@ namespace BeebSpriter
             IsUnsaved = true;
         }
 
-
         /// <summary>
         ///  Called whenever 'Make copy...' is selected from the sprite context menu
         /// </summary>
@@ -698,7 +671,6 @@ namespace BeebSpriter
             }
         }
 
-
         /// <summary>
         ///  Called whenever 'Rename' is selected from the sprite context menu
         /// </summary>
@@ -720,8 +692,7 @@ namespace BeebSpriter
             }
         }
 
-        #endregion
-
+        #endregion Sprite icon handling
 
         #region Background colour
 
@@ -909,8 +880,7 @@ namespace BeebSpriter
             IsUnsaved = true;
         }
 
-        #endregion
-
+        #endregion Background colour
 
         #region Animation preview
 
@@ -921,7 +891,6 @@ namespace BeebSpriter
         {
             OpenAnimationPreview();
         }
-
 
         /// <summary>
         ///  Opens the animation preview form
@@ -961,7 +930,6 @@ namespace BeebSpriter
             animationPreview.Add(spritePanel.Sprite);
         }
 
-
         private void addAllSpritesToAnimationPreviewWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (animationPreview == null)
@@ -976,13 +944,11 @@ namespace BeebSpriter
 
             foreach (Sprite sprite in this.spriteSheet.SpriteList)
             {
-
                 animationPreview.Add(sprite);
             }
-
         }
-        #endregion
 
+        #endregion Animation preview
 
         #region About dialog
 
@@ -991,8 +957,7 @@ namespace BeebSpriter
             new About().ShowDialog(this);
         }
 
-        #endregion
-
+        #endregion About dialog
 
         #region Export related methods
 
@@ -1014,15 +979,16 @@ namespace BeebSpriter
             new Export().ShowDialog(this);
         }
 
-
-        struct Symbol
+        private struct Symbol
         {
-            public Symbol(string name, int value) { this.name = name; this.value = value; }
+            public Symbol(string name, int value)
+            { this.name = name; this.value = value; }
+
             public string name;
             public int value;
         };
 
-        void Export()
+        private void Export()
         {
             List<Symbol> symbols = new List<Symbol>();
 
@@ -1074,7 +1040,7 @@ namespace BeebSpriter
             }
         }
 
-        void ExportSprite(FileStream fs, Sprite sprite, bool generateMask, out int size)
+        private void ExportSprite(FileStream fs, Sprite sprite, bool generateMask, out int size)
         {
             // Read constants from sprite sheet
             int pixelsPerByte = spriteSheet.PixelsPerByte;
@@ -1174,13 +1140,11 @@ namespace BeebSpriter
 
                             break;
                     }
-
                 }
             }
         }
 
-
-        byte GetPixel(Sprite sprite, int x, int y, bool generateMask)
+        private byte GetPixel(Sprite sprite, int x, int y, bool generateMask)
         {
             byte pixel = 255;
 
@@ -1199,8 +1163,7 @@ namespace BeebSpriter
             }
         }
 
-
-        byte GetBeebColour(byte colour)
+        private byte GetBeebColour(byte colour)
         {
             byte beebByte = 0;
             for (int i = 0; i < spriteSheet.BitsPerPixel; i++)
@@ -1214,8 +1177,7 @@ namespace BeebSpriter
             return beebByte;
         }
 
-        #endregion
-
+        #endregion Export related methods
 
         private void editDefaultPaletteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1257,6 +1219,34 @@ namespace BeebSpriter
             }
 
             lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
+        }
+
+        /// <summary>
+        /// Change Gfx Mode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChangeGfxModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewGfxMode gfxMode = new((GfxModeType)spriteSheet.Mode);
+
+            if (gfxMode.ShowDialog() == DialogResult.OK)
+            {
+                if (SpriteSheet.Mode != gfxMode.SelectedMode)
+                {
+                    spriteSheet.ChangeMode(gfxMode.SelectedMode);
+
+                    // Refresh each sprite in the panel
+                    foreach (SpritePanel sp in flowLayoutPanel1.Controls)
+                    {
+                        sp.Panel.Invalidate();
+                    }
+
+                    IsUnsaved = true;
+
+                    SetFormTitle();
+                }
+            }
         }
     }
 }

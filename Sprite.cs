@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BeebSpriter
 {
@@ -99,7 +95,7 @@ namespace BeebSpriter
 
         /// <summary>
         /// Rotate Image Clockwise 90
-        /// </summary>        
+        /// </summary>
         public void rotateClockWise()
         {
             byte[] clonedImage = (byte[])this.Bitmap.Clone();
@@ -120,13 +116,13 @@ namespace BeebSpriter
 
         /// <summary>
         /// Rotate Image Anti Clockwise 90
-        /// </summary>        
+        /// </summary>
         public void rotateAntiClockWise()
         {
             byte[] clonedImage = (byte[])this.Bitmap.Clone();
 
             int index = 0;
-            for (int x = this.Width - 1; x >=0; x--)
+            for (int x = this.Width - 1; x >= 0; x--)
             {
                 for (int y = 0; y < this.Height; y++)
                 {
@@ -162,8 +158,23 @@ namespace BeebSpriter
 
             for (int index = 0; index < Bitmap.Length; index++)
             {
-                if (Bitmap[index] != 255) 
+                if (Bitmap[index] != 255)
                     Bitmap[index] ^= (byte)(colourDepth - 1);
+            }
+        }
+
+        /// <summary>
+        /// Reduce colours down to lower depth
+        /// </summary>
+        /// <param name="colourDepth"></param>
+        public void ReduceColours(int colourDepth)
+        {
+            // 255 = Transparent Colour
+
+            for (int index = 0; index < Bitmap.Length; index++)
+            {
+                if (Bitmap[index] != 255)
+                    Bitmap[index] = (byte)(Bitmap[index] % colourDepth);
             }
         }
     }

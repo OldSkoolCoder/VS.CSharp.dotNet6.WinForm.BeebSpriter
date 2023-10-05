@@ -224,43 +224,81 @@ namespace BeebSpriter
 
         public SpriteSheet(int mode)
         {
-            this.Mode = mode;
-            this.DefaultPalette = new BeebPalette.Colour[this.NumColours];
+            Mode = mode;
 
-            switch (this.NumColours)
+            SetDefaultPalette();
+        }
+
+        /// <summary>
+        /// Set Default Palette base on the mode
+        /// </summary>        
+        public void SetDefaultPalette()
+        {
+            DefaultPalette = new BeebPalette.Colour[NumColours];
+
+            switch (NumColours)
             {
                 case 2:
-                    this.DefaultPalette[0] = BeebPalette.Colour.Black;
-                    this.DefaultPalette[1] = BeebPalette.Colour.White;
+                    DefaultPalette[0] = BeebPalette.Colour.Black;
+                    DefaultPalette[1] = BeebPalette.Colour.White;
                     break;
 
                 case 4:
-                    this.DefaultPalette[0] = BeebPalette.Colour.Black;
-                    this.DefaultPalette[1] = BeebPalette.Colour.Red;
-                    this.DefaultPalette[2] = BeebPalette.Colour.Yellow;
-                    this.DefaultPalette[3] = BeebPalette.Colour.White;
+                    DefaultPalette[0] = BeebPalette.Colour.Black;
+                    DefaultPalette[1] = BeebPalette.Colour.Red;
+                    DefaultPalette[2] = BeebPalette.Colour.Yellow;
+                    DefaultPalette[3] = BeebPalette.Colour.White;
                     break;
 
                 case 16:
-                    this.DefaultPalette[0] = BeebPalette.Colour.Black;
-                    this.DefaultPalette[1] = BeebPalette.Colour.Red;
-                    this.DefaultPalette[2] = BeebPalette.Colour.Green;
-                    this.DefaultPalette[3] = BeebPalette.Colour.Yellow;
-                    this.DefaultPalette[4] = BeebPalette.Colour.Blue;
-                    this.DefaultPalette[5] = BeebPalette.Colour.Magenta;
-                    this.DefaultPalette[6] = BeebPalette.Colour.Cyan;
-                    this.DefaultPalette[7] = BeebPalette.Colour.White;
-                    this.DefaultPalette[8] = BeebPalette.Colour.Black;
-                    this.DefaultPalette[9] = BeebPalette.Colour.Red;
-                    this.DefaultPalette[10] = BeebPalette.Colour.Green;
-                    this.DefaultPalette[11] = BeebPalette.Colour.Yellow;
-                    this.DefaultPalette[12] = BeebPalette.Colour.Blue;
-                    this.DefaultPalette[13] = BeebPalette.Colour.Magenta;
-                    this.DefaultPalette[14] = BeebPalette.Colour.Cyan;
-                    this.DefaultPalette[15] = BeebPalette.Colour.White;
+                    DefaultPalette[0] = BeebPalette.Colour.Black;
+                    DefaultPalette[1] = BeebPalette.Colour.Red;
+                    DefaultPalette[2] = BeebPalette.Colour.Green;
+                    DefaultPalette[3] = BeebPalette.Colour.Yellow;
+                    DefaultPalette[4] = BeebPalette.Colour.Blue;
+                    DefaultPalette[5] = BeebPalette.Colour.Magenta;
+                    DefaultPalette[6] = BeebPalette.Colour.Cyan;
+                    DefaultPalette[7] = BeebPalette.Colour.White;
+                    DefaultPalette[8] = BeebPalette.Colour.Black;
+                    DefaultPalette[9] = BeebPalette.Colour.Red;
+                    DefaultPalette[10] = BeebPalette.Colour.Green;
+                    DefaultPalette[11] = BeebPalette.Colour.Yellow;
+                    DefaultPalette[12] = BeebPalette.Colour.Blue;
+                    DefaultPalette[13] = BeebPalette.Colour.Magenta;
+                    DefaultPalette[14] = BeebPalette.Colour.Cyan;
+                    DefaultPalette[15] = BeebPalette.Colour.White;
                     break;
             }
         }
 
+        /// <summary>
+        /// Change sprite sheet to a different mode
+        /// </summary>
+        /// <param name="mode"></param>
+        public void ChangeMode(int mode)
+        {
+            Mode = mode;
+            SetDefaultPalette();
+
+            foreach (Sprite sprite in SpriteList)
+            {
+                if (sprite.NumColours > NumColours)
+                {
+                    sprite.ReduceColours(NumColours);
+                }
+
+                // clone the active palette
+                BeebPalette.Colour[] clonedPalette = (BeebPalette.Colour[])sprite.Palette.Clone();
+
+                // Create a default palette for the new mode
+                sprite.Palette = (BeebPalette.Colour[])DefaultPalette.Clone();
+
+                // copy the cloned active palette to new palette
+                for(int i = 0; i < sprite.Palette.Length && i < clonedPalette.Length; i++)
+                {
+                    sprite.Palette[i] = clonedPalette[i];   
+                }
+            }
+        }
     }
 }
