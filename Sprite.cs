@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BeebSpriter
 {
@@ -99,7 +95,7 @@ namespace BeebSpriter
 
         /// <summary>
         /// Rotate Image Clockwise 90
-        /// </summary>        
+        /// </summary>
         public void rotateClockWise()
         {
             byte[] clonedImage = (byte[])this.Bitmap.Clone();
@@ -120,13 +116,13 @@ namespace BeebSpriter
 
         /// <summary>
         /// Rotate Image Anti Clockwise 90
-        /// </summary>        
+        /// </summary>
         public void rotateAntiClockWise()
         {
             byte[] clonedImage = (byte[])this.Bitmap.Clone();
 
             int index = 0;
-            for (int x = this.Width - 1; x >=0; x--)
+            for (int x = this.Width - 1; x >= 0; x--)
             {
                 for (int y = 0; y < this.Height; y++)
                 {
@@ -162,8 +158,76 @@ namespace BeebSpriter
 
             for (int index = 0; index < Bitmap.Length; index++)
             {
-                if (Bitmap[index] != 255) 
+                if (Bitmap[index] != 255)
                     Bitmap[index] ^= (byte)(colourDepth - 1);
+            }
+        }
+
+        /// <summary>
+        /// Shift Image Left
+        /// </summary>
+        public void ShiftLeft()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 1; x <= Width; x++)
+                {
+                    Bitmap[index++] = clonedImage[y * Width + (x % Width)];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Shift Image Down
+        /// </summary>
+        public void ShiftDown()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Bitmap[index++] = clonedImage[((Height - 1 + y) % Height) * Width + x];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Shift Image Right
+        /// </summary>
+        public void ShiftRight()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Bitmap[index++] = clonedImage[y * Width + ((Width - 1 + x) % Width)];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Shift Image Up
+        /// </summary>
+        public void ShiftUp()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 1; y <= Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Bitmap[index++] = clonedImage[(y % Height) * Width + x];
+                }
             }
         }
     }

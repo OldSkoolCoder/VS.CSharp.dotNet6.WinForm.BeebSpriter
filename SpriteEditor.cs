@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeebSpriter.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -1813,139 +1814,79 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        /// Shift sprite left
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShiftLeftToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShiftLeft();
+            Shift(ShiftType.ShiftLeft);
         }
 
         /// <summary>
-        /// 
+        /// Shift sprite right
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShiftRightToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShiftRight();
+            Shift(ShiftType.ShiftRight);
         }
 
         /// <summary>
-        /// 
+        /// Shift sprite up
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShiftUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShiftUp();
+            Shift(ShiftType.ShiftUp);
         }
 
         /// <summary>
-        /// 
+        /// Shift sprite down
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShiftDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShiftDown();
+            Shift(ShiftType.ShiftDown);
         }
 
         /// <summary>
-        /// Shift Image Left
+        /// Shift sprite in a particular direction
         /// </summary>
-        public void ShiftLeft()
+        /// <param name="shift"></param>
+        public void Shift(ShiftType shift)
         {
             AddHistory();
 
-            byte[] clonedImage = (byte[])sprite.Bitmap.Clone();
-
-            int index = 0;
-            for (int y = 0; y < sprite.Height; y++)
+            switch (shift)
             {
-                for (int x = 1; x <= sprite.Width; x++)
-                {
-                    sprite.Bitmap[index++] = clonedImage[y * sprite.Width + (x % sprite.Width)];
-                }
+                case ShiftType.ShiftLeft:
+                    sprite.ShiftLeft();
+                    break;
+
+                case ShiftType.ShiftRight:
+                    sprite.ShiftRight();
+                    break;
+
+                case ShiftType.ShiftUp:
+                    sprite.ShiftUp();
+                    break;
+
+                case ShiftType.ShiftDown:
+                    sprite.ShiftDown();
+                    break;
+
+                default: throw new Exception("Unknown shift.");
             }
 
             SpriteSheetForm.Instance.IsUnsaved = true;
 
             editorPanel.Invalidate();
             spritePanel.Panel.Invalidate();
-        }
 
-        /// <summary>
-        /// Shift Image Right
-        /// </summary>
-        public void ShiftRight()
-        {
-            AddHistory();
-
-            byte[] clonedImage = (byte[])sprite.Bitmap.Clone();
-
-            int index = 0;
-            for (int y = 0; y < sprite.Height; y++)
-            {
-                for (int x = 0; x < sprite.Width; x++)
-                {
-                    sprite.Bitmap[index++] = clonedImage[y * sprite.Width + ((sprite.Width - 1 + x) % sprite.Width)];
-                }
-            }
-
-            SpriteSheetForm.Instance.IsUnsaved = true;
-
-            editorPanel.Invalidate();
-            spritePanel.Panel.Invalidate();
-        }
-
-        /// <summary>
-        /// Shift Image Up
-        /// </summary>
-        public void ShiftUp()
-        {
-            AddHistory();
-
-            byte[] clonedImage = (byte[])sprite.Bitmap.Clone();
-
-            int index = 0;
-            for (int y = 1; y <= sprite.Height; y++)
-            {
-                for (int x = 0; x < sprite.Width; x++)
-                {
-                    sprite.Bitmap[index++] = clonedImage[(y % sprite.Height) * sprite.Width + x];
-                }
-            }
-
-            SpriteSheetForm.Instance.IsUnsaved = true;
-
-            editorPanel.Invalidate();
-            spritePanel.Panel.Invalidate();
-        }
-
-        /// <summary>
-        /// Shift Image Down
-        /// </summary>
-        public void ShiftDown()
-        {
-            AddHistory();
-
-            byte[] clonedImage = (byte[])sprite.Bitmap.Clone();
-
-            int index = 0;
-            for (int y = 0; y < sprite.Height; y++)
-            {
-                for (int x = 0; x < sprite.Width; x++)
-                {
-                    sprite.Bitmap[index++] = clonedImage[((sprite.Height - 1 + y) % sprite.Height) * sprite.Width + x];
-                }
-            }
-
-            SpriteSheetForm.Instance.IsUnsaved = true;
-
-            editorPanel.Invalidate();
-            spritePanel.Panel.Invalidate();
         }
 
         /// <summary>
