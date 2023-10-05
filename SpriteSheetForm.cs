@@ -138,6 +138,19 @@ namespace BeebSpriter
             set { clipboardHeight = value; }
         }
 
+        public string ProjectFilename
+        {
+            get 
+            {
+                if (saveFileDialog1.FileName != "")
+                {
+                    return Path.GetFileNameWithoutExtension(saveFileDialog1.FileName);
+                }
+                else {
+                    return "NewProject";
+                };
+            }
+        }
         #endregion Properties
 
         #region Constructor
@@ -970,211 +983,14 @@ namespace BeebSpriter
 
             if (exportFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                Export();
+                //Export();
+                SpriteSheet.Export(exportFileDialog1.FileName);
             }
         }
 
         private void exportSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new Export().ShowDialog(this);
-        }
-
-        private struct Symbol
-        {
-            public Symbol(string name, int value)
-            { this.name = name; this.value = value; }
-
-            public string name;
-            public int value;
-        };
-
-        private void Export()
-        {
-            List<Symbol> symbols = new List<Symbol>();
-
-            try
-            {
-                using (FileStream fs = new FileStream(exportFileDialog1.FileName, FileMode.Create, FileAccess.Write))
-                {
-                    int offset = 0;
-
-                    for (int pass = 0; pass < (spriteSheet.ShouldExportSeparateMask ? 2 : 1); pass++)
-                    {
-                        foreach (Sprite s in spriteSheet.SpriteList)
-                        {
-                            int size;
-                            ExportSprite(fs, s, pass == 1, out size);
-
-                            if (s.Name != "")
-                            {
-                                string mangledName = s.Name.Replace(' ', '_');
-                                if (pass == 1)
-                                {
-                                    mangledName += "_mask";
-                                }
-                                symbols.Add(new Symbol(mangledName + "_offset", offset));
-                                symbols.Add(new Symbol(mangledName + "_size", size));
-                                symbols.Add(new Symbol(mangledName + "_width", s.Width / SpriteSheet.PixelsPerByte));
-                                symbols.Add(new Symbol(mangledName + "_height", s.Height));
-                            }
-                            offset += size;
-                        }
-                    }
-                }
-
-                if (spriteSheet.ShouldGenerateHeader)
-                {
-                    using (StreamWriter sw = new StreamWriter(exportFileDialog1.FileName + ".info"))
-                    {
-                        foreach (Symbol sym in symbols)
-                        {
-                            string command = spriteSheet.AssemblerSyntax.Replace("{n}", sym.name).Replace("{v}", sym.value.ToString("X"));
-                            sw.WriteLine(command);
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error");
-            }
-        }
-
-        private void ExportSprite(FileStream fs, Sprite sprite, bool generateMask, out int size)
-        {
-            // Read constants from sprite sheet
-            int pixelsPerByte = spriteSheet.PixelsPerByte;
-            int subSpriteWidth = spriteSheet.SubSpriteWidth;
-            int subSpriteHeight = spriteSheet.SubSpriteHeight;
-
-            int numPiecesAcross = 1;
-            int numPiecesDown = 1;
-            int pieceBlocksAcross = (sprite.Width + pixelsPerByte - 1) / pixelsPerByte;
-            int pieceHeight = sprite.Height;
-
-            if (spriteSheet.ShouldBreakSprites)
-            {
-                numPiecesAcross = (pieceBlocksAcross + subSpriteWidth - 1) / subSpriteWidth;
-                numPiecesDown = (sprite.Height + subSpriteHeight * 8 - 1) / (subSpriteHeight * 8);
-                pieceBlocksAcross = subSpriteWidth;
-                pieceHeight = subSpriteHeight * 8;
-            }
-
-            size = 0;
-
-            for (int piecey = 0; piecey < numPiecesDown; piecey++)
-            {
-                for (int piecex = 0; piecex < numPiecesAcross; piecex++)
-                {
-                    switch (spriteSheet.SpriteLayout)
-                    {
-                        case SpriteSheet.SpriteDataLayout.RowMajor:
-
-                            for (int y = 0; y < pieceHeight; y += 8)
-                            {
-                                for (int x = 0; x < pieceBlocksAcross; x++)
-                                {
-                                    for (int l = 0; l < 8; l++)
-                                    {
-                                        byte beeb = 0;
-
-                                        for (int p = 0; p < pixelsPerByte; p++)
-                                        {
-                                            int xx = (piecex * pieceBlocksAcross + x) * pixelsPerByte + p;
-                                            int yy = piecey * pieceHeight + y + l;
-                                            byte pixel = GetPixel(sprite, xx, yy, generateMask);
-                                            beeb |= (byte)(GetBeebColour(pixel) << (pixelsPerByte - 1 - p));
-                                        }
-
-                                        fs.WriteByte(beeb);
-                                        size++;
-                                    }
-                                }
-                            }
-
-                            break;
-
-                        case SpriteSheet.SpriteDataLayout.ColumnMajor:
-
-                            for (int x = 0; x < pieceBlocksAcross; x++)
-                            {
-                                for (int y = 0; y < pieceHeight; y++)
-                                {
-                                    byte beeb = 0;
-
-                                    for (int p = 0; p < pixelsPerByte; p++)
-                                    {
-                                        int xx = (piecex * pieceBlocksAcross + x) * pixelsPerByte + p;
-                                        int yy = piecey * pieceHeight + y;
-                                        byte pixel = GetPixel(sprite, xx, yy, generateMask);
-                                        beeb |= (byte)(GetBeebColour(pixel) << (pixelsPerByte - 1 - p));
-                                    }
-
-                                    fs.WriteByte(beeb);
-                                    size++;
-                                }
-                            }
-
-                            break;
-
-                        case SpriteSheet.SpriteDataLayout.Linear:
-
-                            for (int y = 0; y < pieceHeight; y++)
-                            {
-                                for (int x = 0; x < pieceBlocksAcross; x++)
-                                {
-                                    byte beeb = 0;
-
-                                    for (int p = 0; p < pixelsPerByte; p++)
-                                    {
-                                        int xx = (piecex * pieceBlocksAcross + x) * pixelsPerByte + p;
-                                        int yy = piecey * pieceHeight + y;
-                                        byte pixel = GetPixel(sprite, xx, yy, generateMask);
-                                        beeb |= (byte)(GetBeebColour(pixel) << (pixelsPerByte - 1 - p));
-                                    }
-
-                                    fs.WriteByte(beeb);
-                                    size++;
-                                }
-                            }
-
-                            break;
-                    }
-                }
-            }
-        }
-
-        private byte GetPixel(Sprite sprite, int x, int y, bool generateMask)
-        {
-            byte pixel = 255;
-
-            if (x >= 0 && x < sprite.Width && y >= 0 && y < sprite.Height)
-            {
-                pixel = sprite.Bitmap[x + y * sprite.Width];
-            }
-
-            if (generateMask)
-            {
-                return (byte)((pixel == 255) ? spriteSheet.NumColours - 1 : 0);
-            }
-            else
-            {
-                return (byte)((pixel == 255) ? 0 : pixel);
-            }
-        }
-
-        private byte GetBeebColour(byte colour)
-        {
-            byte beebByte = 0;
-            for (int i = 0; i < spriteSheet.BitsPerPixel; i++)
-            {
-                if ((colour & (1 << i)) != 0)
-                {
-                    beebByte |= (byte)(1 << (i * spriteSheet.PixelsPerByte));
-                }
-            }
-
-            return beebByte;
         }
 
         #endregion Export related methods
