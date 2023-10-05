@@ -229,6 +229,8 @@ namespace BeebSpriter
                     Bitmap[index++] = clonedImage[(y % Height) * Width + x];
                 }
 
+            }
+        }
         /// Reduce colours down to lower depth
         /// </summary>
         /// <param name="colourDepth"></param>

@@ -1799,6 +1799,8 @@ namespace BeebSpriter
 
         private void tsmiRotateClockwise_Click(object sender, EventArgs e)
         {
+            AddHistory();
+
             sprite.rotateClockWise();
             ApplyZoomToForm();
             editorPanel.Invalidate();
@@ -1807,6 +1809,8 @@ namespace BeebSpriter
 
         private void tsmiRotateAntiClockwise_Click(object sender, EventArgs e)
         {
+            AddHistory();
+
             sprite.rotateAntiClockWise();
             ApplyZoomToForm();
             editorPanel.Invalidate();
