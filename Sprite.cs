@@ -164,6 +164,71 @@ namespace BeebSpriter
         }
 
         /// <summary>
+        /// Shift Image Left
+        /// </summary>
+        public void ShiftLeft()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 1; x <= Width; x++)
+                {
+                    Bitmap[index++] = clonedImage[y * Width + (x % Width)];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Shift Image Down
+        /// </summary>
+        public void ShiftDown()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Bitmap[index++] = clonedImage[((Height - 1 + y) % Height) * Width + x];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Shift Image Right
+        /// </summary>
+        public void ShiftRight()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Bitmap[index++] = clonedImage[y * Width + ((Width - 1 + x) % Width)];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Shift Image Up
+        /// </summary>
+        public void ShiftUp()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 1; y <= Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Bitmap[index++] = clonedImage[(y % Height) * Width + x];
+                }
+
         /// Reduce colours down to lower depth
         /// </summary>
         /// <param name="colourDepth"></param>
