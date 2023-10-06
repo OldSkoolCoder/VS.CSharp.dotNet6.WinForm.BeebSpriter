@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeebSpriter.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,10 +28,10 @@ namespace BeebSpriter
 
             switch (spriteSheet.SelectedAssembler)
             {
-                case "BeebASM":
+                case Constants.AssemblerVersions.BeebAssembler:
                     rbBeebASM.Checked = true;
                     break;
-                case "KickASM":
+                case Constants.AssemblerVersions.KickAssembler:
                     rbKickASM.Checked = true;
                     break;
             }
@@ -142,14 +143,26 @@ namespace BeebSpriter
         private void rbBeebASM_CheckedChanged(object sender, EventArgs e)
         {
             SpriteSheetForm.Instance.SpriteSheet.AssemblerSyntax = txtHeader.Text;
-            SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler = "BeebASM";
+            SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler = Constants.AssemblerVersions.BeebAssembler;
             txtPreview.Text = SpriteSheetForm.Instance.SpriteSheet.PreviewExport(SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler, SpriteSheetForm.Instance.ProjectFilename);
         }
 
         private void rbKickASM_CheckedChanged(object sender, EventArgs e)
         {
             SpriteSheetForm.Instance.SpriteSheet.AssemblerSyntax = txtHeader.Text;
-            SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler = "KickASM";
+            SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler = Constants.AssemblerVersions.KickAssembler;
+            txtPreview.Text = SpriteSheetForm.Instance.SpriteSheet.PreviewExport(SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler, SpriteSheetForm.Instance.ProjectFilename);
+        }
+
+        private void masking1_CheckedChanged(object sender, EventArgs e)
+        {
+            SpriteSheetForm.Instance.SpriteSheet.ShouldExportSeparateMask = masking2.Checked;
+            txtPreview.Text = SpriteSheetForm.Instance.SpriteSheet.PreviewExport(SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler, SpriteSheetForm.Instance.ProjectFilename);
+        }
+
+        private void masking2_CheckedChanged(object sender, EventArgs e)
+        {
+            SpriteSheetForm.Instance.SpriteSheet.ShouldExportSeparateMask = masking2.Checked;
             txtPreview.Text = SpriteSheetForm.Instance.SpriteSheet.PreviewExport(SpriteSheetForm.Instance.SpriteSheet.SelectedAssembler, SpriteSheetForm.Instance.ProjectFilename);
         }
     }
