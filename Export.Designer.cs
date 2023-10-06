@@ -269,6 +269,7 @@
             masking2.TabIndex = 1;
             masking2.Text = "Export separate sprite mask";
             masking2.UseVisualStyleBackColor = true;
+            masking2.CheckedChanged += masking2_CheckedChanged;
             // 
             // masking1
             // 
@@ -282,6 +283,7 @@
             masking1.TabStop = true;
             masking1.Text = "Export transparent pixels as colour 0";
             masking1.UseVisualStyleBackColor = true;
+            masking1.CheckedChanged += masking1_CheckedChanged;
             // 
             // btnOK
             // 
