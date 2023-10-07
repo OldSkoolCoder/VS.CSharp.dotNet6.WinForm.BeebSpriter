@@ -254,15 +254,17 @@ namespace BeebSpriter
         private void timer_Tick(object sender, EventArgs e)
         {
 
-            for (int index = 8; index < 16; index++)
+            if (sprite.Palette.Length > 7)
             {
-                sprite.Palette[index] = BeebPalette.GetFlashingColour(sprite.Palette[index]);
-                colourPanels[index].BackColor = BeebPalette.GetWindowsColour(sprite.Palette[index]); ;
+                for (int index = 8; index < 16; index++)
+                {
+                    sprite.Palette[index] = BeebPalette.GetFlashingColour(sprite.Palette[index]);
+                    colourPanels[index].BackColor = BeebPalette.GetWindowsColour(sprite.Palette[index]); ;
+                }
+                currentColour.Invalidate();
+                editorPanel.Invalidate();
+                spritePanel.Panel.Invalidate();
             }
-
-            currentColour.Invalidate();
-            editorPanel.Invalidate();
-            spritePanel.Panel.Invalidate();
         }
 
 
