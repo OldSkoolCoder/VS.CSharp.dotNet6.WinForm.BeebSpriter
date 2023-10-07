@@ -799,6 +799,7 @@
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             Name = "SpriteEditor";
             Text = "SpriteEditor";
+            FormClosing += SpriteEditor_FormClosing;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             toolStrip1.ResumeLayout(false);
