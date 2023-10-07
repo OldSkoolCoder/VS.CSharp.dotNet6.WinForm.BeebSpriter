@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using static BeebSpriter.BeebPalette;
 
 namespace BeebSpriter
 {
@@ -149,6 +151,8 @@ namespace BeebSpriter
 
         private ResizeDialog resizeDialog = new ResizeDialog();
 
+        private Timer timer = new Timer();
+
         /// <summary>
         ///  Constructor for the SpriteEditor form
         /// </summary>
@@ -165,8 +169,15 @@ namespace BeebSpriter
             this.horizontalBlockDividers = spriteSheet.HorizontalBlockDividers;
             this.verticalBlockDividers = spriteSheet.VerticalBlockDividers;
 
+            this.timer.Interval = 465;
+            // Binding the Timer Tick event to the Function
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+
             // Configure form + controls
             InitializeComponent();
+
+            this.nudZoom.Value = 4;
             ApplyZoomToForm();
             ApplyHorizontalBlockDividersToForm();
             ApplyVerticalBlockDividersToForm();
@@ -240,6 +251,20 @@ namespace BeebSpriter
             currentColour.Invalidate();
         }
 
+        private void timer_Tick(object sender, EventArgs e)
+        {
+
+            for (int index = 8; index < 16; index++)
+            {
+                sprite.Palette[index] = BeebPalette.GetFlashingColour(sprite.Palette[index]);
+                colourPanels[index].BackColor = BeebPalette.GetWindowsColour(sprite.Palette[index]); ;
+            }
+
+            currentColour.Invalidate();
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
 
         /// <summary>
         ///  Just before the form is closed, NULL its reference in the SpritePanel that spawned it,
@@ -296,26 +321,26 @@ namespace BeebSpriter
             toolStripMenuItem4.Checked = false;
             toolStripMenuItem5.Checked = false;
 
-            if (zoom == 4)
-            {
-                toolStripMenuItem2.Checked = true;
-            }
-            else if (zoom == 6)
-            {
-                toolStripMenuItem3.Checked = true;
-            }
-            else if (zoom == 8)
-            {
-                toolStripMenuItem4.Checked = true;
-            }
-            else if (zoom == 10)
-            {
-                toolStripMenuItem5.Checked = true;
-            }
-            else
-            {
-                throw new Exception("Bad zoom level");
-            }
+            //if (zoom == 4)
+            //{
+            //    toolStripMenuItem2.Checked = true;
+            //}
+            //else if (zoom == 6)
+            //{
+            //    toolStripMenuItem3.Checked = true;
+            //}
+            //else if (zoom == 8)
+            //{
+            //    toolStripMenuItem4.Checked = true;
+            //}
+            //else if (zoom == 10)
+            //{
+            //    toolStripMenuItem5.Checked = true;
+            //}
+            //else
+            //{
+            //    throw new Exception("Bad zoom level");
+            //}
 
             SpriteSheet spriteSheet = SpriteSheetForm.Instance.SpriteSheet;
             this.xzoom = spriteSheet.XScale * zoom;
@@ -1930,6 +1955,16 @@ namespace BeebSpriter
 
             editorPanel.Invalidate();
             spritePanel.Panel.Invalidate();
+        }
+
+        private void nudZoom_ValueChanged(object sender, EventArgs e)
+        {
+            SetZoom((int)nudZoom.Value * 2);
+        }
+
+        private void SpriteEditor_ResizeEnd(object sender, EventArgs e)
+        {
+            ApplyZoomToForm();
         }
     }
 }

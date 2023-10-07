@@ -43,5 +43,10 @@ namespace BeebSpriter
         {
             return (Colour)(((int)colour - 1) & 7);
         }
+
+        public static Colour GetFlashingColour(Colour colour)
+        {
+            return (Colour)(((int)colour) ^ 7);
+        }
     }
 }
