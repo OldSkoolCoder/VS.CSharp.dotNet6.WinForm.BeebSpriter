@@ -105,9 +105,12 @@
             button_colour9 = new System.Windows.Forms.Panel();
             button_colour12 = new System.Windows.Forms.Panel();
             button_colour8 = new System.Windows.Forms.Panel();
+            nudZoom = new System.Windows.Forms.NumericUpDown();
+            lblZoom = new System.Windows.Forms.Label();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             editorContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudZoom).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -131,60 +134,67 @@
             // 
             selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
             selectAllToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A;
-            selectAllToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            selectAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             selectAllToolStripMenuItem.Text = "Select all";
+            selectAllToolStripMenuItem.Click += selectAllToolStripMenuItem_Click;
             // 
             // clearSelectionToolStripMenuItem
             // 
             clearSelectionToolStripMenuItem.Name = "clearSelectionToolStripMenuItem";
-            clearSelectionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            clearSelectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             clearSelectionToolStripMenuItem.Text = "Clear selection";
+            clearSelectionToolStripMenuItem.Click += clearSelectionToolStripMenuItem_Click;
             // 
             // cutToolStripMenuItem
             // 
             cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             cutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X;
-            cutToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            cutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             cutToolStripMenuItem.Text = "Cut";
+            cutToolStripMenuItem.Click += cutToolStripMenuItem_Click;
             // 
             // copyToolStripMenuItem
             // 
             copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             copyToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C;
-            copyToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             copyToolStripMenuItem.Text = "Copy";
+            copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             // 
             // pasteToolStripMenuItem
             // 
             pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             pasteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V;
-            pasteToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             pasteToolStripMenuItem.Text = "Paste";
+            pasteToolStripMenuItem.Click += pasteToolStripMenuItem_Click;
             // 
             // selectionToolStripMenuItem
             // 
             selectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { flipLeftrightToolStripMenuItem, flipUpdownToolStripMenuItem });
             selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
-            selectionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            selectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             selectionToolStripMenuItem.Text = "Selection";
             // 
             // flipLeftrightToolStripMenuItem
             // 
             flipLeftrightToolStripMenuItem.Name = "flipLeftrightToolStripMenuItem";
-            flipLeftrightToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            flipLeftrightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             flipLeftrightToolStripMenuItem.Text = "Flip left-right";
+            flipLeftrightToolStripMenuItem.Click += flipLeftrightToolStripMenuItem_Click;
             // 
             // flipUpdownToolStripMenuItem
             // 
             flipUpdownToolStripMenuItem.Name = "flipUpdownToolStripMenuItem";
-            flipUpdownToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            flipUpdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             flipUpdownToolStripMenuItem.Text = "Flip up-down";
+            flipUpdownToolStripMenuItem.Click += flipUpdownToolStripMenuItem_Click;
             // 
             // transformToolStripMenuItem
             // 
             transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { tsmiRotateClockwise, tsmiRotateAntiClockwise, toolStripMenuItem6, ShiftLeftToolStripMenuItem, ShiftRightToolStripMenuItem, ShiftUpToolStripMenuItem, ShiftDownToolStripMenuItem });
             transformToolStripMenuItem.Name = "transformToolStripMenuItem";
-            transformToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            transformToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             transformToolStripMenuItem.Text = "Transform";
             // 
             // tsmiRotateClockwise
@@ -248,7 +258,7 @@
             // 
             colourToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { ReplaceColourToolStripMenuItem, NegativeToolStripMenuItem });
             colourToolStripMenuItem.Name = "colourToolStripMenuItem";
-            colourToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            colourToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             colourToolStripMenuItem.Text = "Colour";
             // 
             // ReplaceColourToolStripMenuItem
@@ -271,21 +281,23 @@
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new System.Drawing.Size(159, 6);
+            toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // undoToolStripMenuItem
             // 
             undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             undoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z;
-            undoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            undoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             undoToolStripMenuItem.Text = "Undo";
+            undoToolStripMenuItem.Click += undoToolStripMenuItem_Click;
             // 
             // redoToolStripMenuItem
             // 
             redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             redoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y;
-            redoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            redoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             redoToolStripMenuItem.Text = "Redo";
+            redoToolStripMenuItem.Click += redoToolStripMenuItem_Click;
             // 
             // viewToolStripMenuItem
             // 
@@ -300,6 +312,7 @@
             showGridLinesToolStripMenuItem.Name = "showGridLinesToolStripMenuItem";
             showGridLinesToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             showGridLinesToolStripMenuItem.Text = "Show grid lines";
+            showGridLinesToolStripMenuItem.Click += showGridLinesToolStripMenuItem_Click;
             // 
             // horizontalBlockDividersToolStripMenuItem
             // 
@@ -395,6 +408,7 @@
             zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
             zoomToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             zoomToolStripMenuItem.Text = "Zoom";
+            zoomToolStripMenuItem.Visible = false;
             // 
             // toolStripMenuItem2
             // 
@@ -590,7 +604,6 @@
             button_colourTransparent.Size = new System.Drawing.Size(26, 27);
             button_colourTransparent.TabIndex = 4;
             button_colourTransparent.MouseClick += button_colourTransparent_MouseClick;
-            button_colourTransparent.MouseDoubleClick += button_colourTransparent_MouseClick;
             // 
             // button_colour0
             // 
@@ -601,7 +614,7 @@
             button_colour0.Size = new System.Drawing.Size(26, 27);
             button_colour0.TabIndex = 5;
             button_colour0.MouseClick += button_colour0_MouseClick;
-            button_colour0.MouseDoubleClick += button_colour0_MouseClick;
+            button_colour0.MouseDoubleClick += button_colour0_MouseDoubleClick;
             // 
             // button_colour1
             // 
@@ -612,7 +625,7 @@
             button_colour1.Size = new System.Drawing.Size(26, 27);
             button_colour1.TabIndex = 6;
             button_colour1.MouseClick += button_colour1_MouseClick;
-            button_colour1.MouseDoubleClick += button_colour1_MouseClick;
+            button_colour1.MouseDoubleClick += button_colour1_MouseDoubleClick;
             // 
             // button_colour3
             // 
@@ -623,7 +636,7 @@
             button_colour3.Size = new System.Drawing.Size(26, 27);
             button_colour3.TabIndex = 8;
             button_colour3.MouseClick += button_colour3_MouseClick;
-            button_colour3.MouseDoubleClick += button_colour3_MouseClick;
+            button_colour3.MouseDoubleClick += button_colour3_MouseDoubleClick;
             // 
             // button_colour2
             // 
@@ -634,7 +647,7 @@
             button_colour2.Size = new System.Drawing.Size(26, 27);
             button_colour2.TabIndex = 7;
             button_colour2.MouseClick += button_colour2_MouseClick;
-            button_colour2.MouseDoubleClick += button_colour2_MouseClick;
+            button_colour2.MouseDoubleClick += button_colour2_MouseDoubleClick;
             // 
             // button_colour7
             // 
@@ -645,7 +658,7 @@
             button_colour7.Size = new System.Drawing.Size(26, 27);
             button_colour7.TabIndex = 12;
             button_colour7.MouseClick += button_colour7_MouseClick;
-            button_colour7.MouseDoubleClick += button_colour7_MouseClick;
+            button_colour7.MouseDoubleClick += button_colour7_MouseDoubleClick;
             // 
             // button_colour6
             // 
@@ -656,7 +669,7 @@
             button_colour6.Size = new System.Drawing.Size(26, 27);
             button_colour6.TabIndex = 11;
             button_colour6.MouseClick += button_colour6_MouseClick;
-            button_colour6.MouseDoubleClick += button_colour6_MouseClick;
+            button_colour6.MouseDoubleClick += button_colour6_MouseDoubleClick;
             // 
             // button_colour5
             // 
@@ -667,7 +680,7 @@
             button_colour5.Size = new System.Drawing.Size(26, 27);
             button_colour5.TabIndex = 10;
             button_colour5.MouseClick += button_colour5_MouseClick;
-            button_colour5.MouseDoubleClick += button_colour5_MouseClick;
+            button_colour5.MouseDoubleClick += button_colour5_MouseDoubleClick;
             // 
             // button_colour4
             // 
@@ -678,7 +691,7 @@
             button_colour4.Size = new System.Drawing.Size(26, 27);
             button_colour4.TabIndex = 9;
             button_colour4.MouseClick += button_colour4_MouseClick;
-            button_colour4.MouseDoubleClick += button_colour4_MouseClick;
+            button_colour4.MouseDoubleClick += button_colour4_MouseDoubleClick;
             // 
             // button_colour15
             // 
@@ -689,7 +702,7 @@
             button_colour15.Size = new System.Drawing.Size(26, 27);
             button_colour15.TabIndex = 20;
             button_colour15.MouseClick += button_colour15_MouseClick;
-            button_colour15.MouseDoubleClick += button_colour15_MouseClick;
+            button_colour15.MouseDoubleClick += button_colour15_MouseDoubleClick;
             // 
             // button_colour11
             // 
@@ -700,7 +713,7 @@
             button_colour11.Size = new System.Drawing.Size(26, 27);
             button_colour11.TabIndex = 16;
             button_colour11.MouseClick += button_colour11_MouseClick;
-            button_colour11.MouseDoubleClick += button_colour11_MouseClick;
+            button_colour11.MouseDoubleClick += button_colour11_MouseDoubleClick;
             // 
             // button_colour14
             // 
@@ -711,7 +724,7 @@
             button_colour14.Size = new System.Drawing.Size(26, 27);
             button_colour14.TabIndex = 19;
             button_colour14.MouseClick += button_colour14_MouseClick;
-            button_colour14.MouseDoubleClick += button_colour14_MouseClick;
+            button_colour14.MouseDoubleClick += button_colour14_MouseDoubleClick;
             // 
             // button_colour10
             // 
@@ -722,7 +735,7 @@
             button_colour10.Size = new System.Drawing.Size(26, 27);
             button_colour10.TabIndex = 15;
             button_colour10.MouseClick += button_colour10_MouseClick;
-            button_colour10.MouseDoubleClick += button_colour10_MouseClick;
+            button_colour10.MouseDoubleClick += button_colour10_MouseDoubleClick;
             // 
             // button_colour13
             // 
@@ -733,7 +746,7 @@
             button_colour13.Size = new System.Drawing.Size(26, 27);
             button_colour13.TabIndex = 18;
             button_colour13.MouseClick += button_colour13_MouseClick;
-            button_colour13.MouseDoubleClick += button_colour13_MouseClick;
+            button_colour13.MouseDoubleClick += button_colour13_MouseDoubleClick;
             // 
             // button_colour9
             // 
@@ -744,7 +757,7 @@
             button_colour9.Size = new System.Drawing.Size(26, 27);
             button_colour9.TabIndex = 14;
             button_colour9.MouseClick += button_colour9_MouseClick;
-            button_colour9.MouseDoubleClick += button_colour9_MouseClick;
+            button_colour9.MouseDoubleClick += button_colour9_MouseDoubleClick;
             // 
             // button_colour12
             // 
@@ -755,7 +768,7 @@
             button_colour12.Size = new System.Drawing.Size(26, 27);
             button_colour12.TabIndex = 17;
             button_colour12.MouseClick += button_colour12_MouseClick;
-            button_colour12.MouseDoubleClick += button_colour12_MouseClick;
+            button_colour12.MouseDoubleClick += button_colour12_MouseDoubleClick;
             // 
             // button_colour8
             // 
@@ -766,13 +779,37 @@
             button_colour8.Size = new System.Drawing.Size(26, 27);
             button_colour8.TabIndex = 13;
             button_colour8.MouseClick += button_colour8_MouseClick;
-            button_colour8.MouseDoubleClick += button_colour8_MouseClick;
+            button_colour8.MouseDoubleClick += button_colour8_MouseDoubleClick;
+            // 
+            // nudZoom
+            // 
+            nudZoom.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            nudZoom.Location = new System.Drawing.Point(20, 485);
+            nudZoom.Maximum = new decimal(new int[] { 15, 0, 0, 0 });
+            nudZoom.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudZoom.Name = "nudZoom";
+            nudZoom.Size = new System.Drawing.Size(38, 23);
+            nudZoom.TabIndex = 21;
+            nudZoom.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudZoom.ValueChanged += nudZoom_ValueChanged;
+            // 
+            // lblZoom
+            // 
+            lblZoom.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            lblZoom.AutoSize = true;
+            lblZoom.Location = new System.Drawing.Point(20, 467);
+            lblZoom.Name = "lblZoom";
+            lblZoom.Size = new System.Drawing.Size(39, 15);
+            lblZoom.TabIndex = 22;
+            lblZoom.Text = "Zoom";
             // 
             // SpriteEditor
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(540, 531);
+            Controls.Add(lblZoom);
+            Controls.Add(nudZoom);
             Controls.Add(button_colour15);
             Controls.Add(button_colour11);
             Controls.Add(button_colour14);
@@ -800,11 +837,13 @@
             Name = "SpriteEditor";
             Text = "SpriteEditor";
             FormClosing += SpriteEditor_FormClosing;
+            ResizeEnd += SpriteEditor_ResizeEnd;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             editorContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)nudZoom).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -887,5 +926,7 @@
         private System.Windows.Forms.ToolStripMenuItem colourToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReplaceColourToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NegativeToolStripMenuItem;
+        private System.Windows.Forms.NumericUpDown nudZoom;
+        private System.Windows.Forms.Label lblZoom;
     }
 }

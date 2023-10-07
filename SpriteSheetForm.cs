@@ -631,7 +631,8 @@ namespace BeebSpriter
             spritePanel.ContextMenuStrip = spriteContextMenu;
 
             flowLayoutPanel1.Controls.Add(spritePanel);
-
+            spritePanel.ResizePanel(tbZoomLevel.Value);
+            spritePanel.Panel.Invalidate();
             return spritePanel;
         }
 
