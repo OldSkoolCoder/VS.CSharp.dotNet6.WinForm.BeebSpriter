@@ -11,6 +11,21 @@ namespace BeebSpriter
 {
     public partial class SpriteSheetForm : Form
     {
+        /// <summary>
+        /// Amount to increment / decrement the zoom level
+        /// </summary>
+        private const int ZOOM_INCREMENT = 1;
+
+        /// <summary>
+        /// Minimum Zoom manification
+        /// </summary>
+        private const int ZOOM_MIN_FACTOR = 1;
+
+        /// <summary>
+        /// Maximum Zoom manification
+        /// </summary>
+        private const int ZOOM_MAX_FACTOR = 10;
+
         #region Members
 
         /// <summary>
@@ -72,6 +87,11 @@ namespace BeebSpriter
         ///  Reference to the animation preview form, if active
         /// </summary>
         private AnimationPreview animationPreview;
+
+        /// <summary>
+        /// Zoom Level property
+        /// </summary>
+        public int ZoomLevel { get; set; }
 
         #endregion Members
 
@@ -140,17 +160,19 @@ namespace BeebSpriter
 
         public string ProjectFilename
         {
-            get 
+            get
             {
                 if (saveFileDialog1.FileName != "")
                 {
                     return Path.GetFileNameWithoutExtension(saveFileDialog1.FileName);
                 }
-                else {
+                else
+                {
                     return "NewProject";
                 };
             }
         }
+
         #endregion Properties
 
         #region Constructor
@@ -187,7 +209,9 @@ namespace BeebSpriter
         private void SpriteSheetForm_Load(object sender, EventArgs e)
         {
             RecentFiles = new RecentFilesList(RecentFilesToolStripMenuItem, OpenSprites);
-            lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
+
+            ZoomLevel = 1;
+            ZoomToolStripStatusLabel.Text = String.Format("Zoom x {0}", ZoomLevel.ToString());
 
             MyJSON myJSON = new();
             myJSON.LoadJson(RecentFiles);
@@ -217,12 +241,8 @@ namespace BeebSpriter
 
             // Hide/disable controls
             flowLayoutPanel1.Hide();
-            saveToolStripMenuItem.Enabled = false;
-            saveasToolStripMenuItem.Enabled = false;
-            exportSettingsToolStripMenuItem.Enabled = false;
-            exportToBeebToolStripMenuItem.Enabled = false;
-            viewToolStripMenuItem.Enabled = false;
-            toolsToolStripMenuItem.Enabled = false;
+
+            SetMenusToolbars(false);
         }
 
         /// <summary>
@@ -231,12 +251,7 @@ namespace BeebSpriter
         private void SetAsOpened()
         {
             flowLayoutPanel1.Show();
-            saveToolStripMenuItem.Enabled = true;
-            saveasToolStripMenuItem.Enabled = true;
-            exportSettingsToolStripMenuItem.Enabled = true;
-            exportToBeebToolStripMenuItem.Enabled = true;
-            viewToolStripMenuItem.Enabled = true;
-            toolsToolStripMenuItem.Enabled = true;
+            SetMenusToolbars(true);
 
             newSpriteDialog.MinSpriteWidth = spriteSheet.PixelsPerByte;
             newSpriteDialog.MaxSpriteWidth = 80 * spriteSheet.PixelsPerByte;
@@ -247,6 +262,27 @@ namespace BeebSpriter
 
             SetFormTitle();
             ApplyBackgroundColour();
+        }
+
+        /// <summary>
+        /// Toggle menu items and toolbar icons
+        /// </summary>
+        /// <param name="value"></param>
+        private void SetMenusToolbars(bool value)
+        {
+            saveToolStripMenuItem.Enabled = value;
+            saveasToolStripMenuItem.Enabled = value;
+            exportSettingsToolStripMenuItem.Enabled = value;
+            exportToBeebToolStripMenuItem.Enabled = value;
+            viewToolStripMenuItem.Enabled = value;
+            toolsToolStripMenuItem.Enabled = value;
+
+            SaveToolStripButton.Enabled = value;
+            SaveAsToolStripButton.Enabled = value;
+            AnimationToolStripButton.Enabled = value;
+            DefaultColourToolStripButton.Enabled = value;
+            ZoomInToolStripButton.Enabled = value;
+            ZoomOutoolStripButton.Enabled = value;
         }
 
         /// <summary>
@@ -700,7 +736,7 @@ namespace BeebSpriter
             {
                 spritePanel.Sprite.Name = renameSpriteDialog.SpriteName;
                 spritePanel.Label.Text = renameSpriteDialog.SpriteName;
-                spritePanel.ResizePanel(tbZoomLevel.Value);
+                //spritePanel.ResizePanel(tbZoomLevel.Value);
 
                 IsUnsaved = true;
             }
@@ -1027,15 +1063,46 @@ namespace BeebSpriter
             }
         }
 
-        private void tbZoomLevel_ValueChanged(object sender, EventArgs e)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ZoomOutoolStripButton_Click(object sender, EventArgs e)
         {
+            if (ZoomLevel > ZOOM_MIN_FACTOR)
+            {
+                Zoom(-ZOOM_INCREMENT);
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ZoomInToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (ZoomLevel < ZOOM_MAX_FACTOR)
+            {
+                Zoom(+ZOOM_INCREMENT);
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="value"></param>
+        private void Zoom(int value)
+        {
+            ZoomLevel += value;
+            ZoomToolStripStatusLabel.Text = String.Format("Zoom x {0}", ZoomLevel.ToString());
+
             foreach (SpritePanel sp in flowLayoutPanel1.Controls)
             {
-                sp.ResizePanel(tbZoomLevel.Value);
+                sp.ResizePanel(ZoomLevel);
                 sp.Panel.Invalidate();
             }
-
-            lblZoomLevel.Text = "x " + tbZoomLevel.Value.ToString();
         }
 
         /// <summary>

@@ -77,22 +77,34 @@
             openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             exportFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            tbZoomLevel = new System.Windows.Forms.TrackBar();
-            lblZoomLevel = new System.Windows.Forms.Label();
+            statusStrip1 = new System.Windows.Forms.StatusStrip();
+            MessageToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            ZoomToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            toolStrip1 = new System.Windows.Forms.ToolStrip();
+            OpenToolStripButton = new System.Windows.Forms.ToolStripButton();
+            SaveToolStripButton = new System.Windows.Forms.ToolStripButton();
+            SaveAsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            AnimationToolStripButton = new System.Windows.Forms.ToolStripButton();
+            DefaultColourToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            ZoomOutoolStripButton = new System.Windows.Forms.ToolStripButton();
+            ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
             ChangeGfxModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            ChangeGfxModeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             contextMenu.SuspendLayout();
             spriteContextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)tbZoomLevel).BeginInit();
+            statusStrip1.SuspendLayout();
+            toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, viewToolStripMenuItem, toolsToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
             menuStrip1.Size = new System.Drawing.Size(405, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
@@ -293,7 +305,7 @@
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem, toolStripSeparator3, ChangeGfxModeToolStripMenuItem1 });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             toolsToolStripMenuItem.Text = "Tools";
@@ -329,15 +341,15 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AllowDrop = true;
-            flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
             flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             flowLayoutPanel1.ContextMenuStrip = contextMenu;
-            flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            flowLayoutPanel1.Location = new System.Drawing.Point(0, 49);
+            flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10, 8, 10, 8);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new System.Drawing.Size(405, 413);
+            flowLayoutPanel1.Size = new System.Drawing.Size(405, 408);
             flowLayoutPanel1.TabIndex = 1;
             flowLayoutPanel1.DragEnter += flowLayoutPanel1_DragEnter;
             flowLayoutPanel1.DragOver += flowLayoutPanel1_DragOver;
@@ -347,12 +359,12 @@
             contextMenu.ImageScalingSize = new System.Drawing.Size(32, 32);
             contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { newSpriteToolStripMenuItem, ChangeGfxModeToolStripMenuItem });
             contextMenu.Name = "contextMenu";
-            contextMenu.Size = new System.Drawing.Size(181, 70);
+            contextMenu.Size = new System.Drawing.Size(171, 48);
             // 
             // newSpriteToolStripMenuItem
             // 
             newSpriteToolStripMenuItem.Name = "newSpriteToolStripMenuItem";
-            newSpriteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            newSpriteToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             newSpriteToolStripMenuItem.Text = "New sprite...";
             newSpriteToolStripMenuItem.Click += newSpriteToolStripMenuItem_Click;
             // 
@@ -421,47 +433,152 @@
             exportFileDialog1.Filter = "BBC Micro Binary File|*.bin";
             exportFileDialog1.Title = "Export to Beeb format";
             // 
-            // tbZoomLevel
+            // statusStrip1
             // 
-            tbZoomLevel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            tbZoomLevel.Location = new System.Drawing.Point(0, 443);
-            tbZoomLevel.Minimum = 1;
-            tbZoomLevel.Name = "tbZoomLevel";
-            tbZoomLevel.Size = new System.Drawing.Size(211, 45);
-            tbZoomLevel.TabIndex = 2;
-            tbZoomLevel.Value = 1;
-            tbZoomLevel.ValueChanged += tbZoomLevel_ValueChanged;
+            statusStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { MessageToolStripStatusLabel, ZoomToolStripStatusLabel });
+            statusStrip1.Location = new System.Drawing.Point(0, 457);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 34, 0);
+            statusStrip1.Size = new System.Drawing.Size(405, 22);
+            statusStrip1.TabIndex = 4;
+            statusStrip1.Text = "statusStrip1";
             // 
-            // lblZoomLevel
+            // MessageToolStripStatusLabel
             // 
-            lblZoomLevel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            lblZoomLevel.AutoSize = true;
-            lblZoomLevel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            lblZoomLevel.Location = new System.Drawing.Point(217, 443);
-            lblZoomLevel.Name = "lblZoomLevel";
-            lblZoomLevel.Size = new System.Drawing.Size(68, 30);
-            lblZoomLevel.TabIndex = 3;
-            lblZoomLevel.Text = "label1";
+            MessageToolStripStatusLabel.Name = "MessageToolStripStatusLabel";
+            MessageToolStripStatusLabel.Size = new System.Drawing.Size(330, 17);
+            MessageToolStripStatusLabel.Spring = true;
+            MessageToolStripStatusLabel.Text = "Ready";
+            MessageToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ZoomToolStripStatusLabel
+            // 
+            ZoomToolStripStatusLabel.Name = "ZoomToolStripStatusLabel";
+            ZoomToolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
+            ZoomToolStripStatusLabel.Text = "Zoom";
+            // 
+            // toolStrip1
+            // 
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { OpenToolStripButton, SaveToolStripButton, SaveAsToolStripButton, toolStripSeparator1, AnimationToolStripButton, DefaultColourToolStripButton, toolStripSeparator2, ZoomOutoolStripButton, ZoomInToolStripButton });
+            toolStrip1.Location = new System.Drawing.Point(0, 24);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            toolStrip1.Size = new System.Drawing.Size(405, 25);
+            toolStrip1.TabIndex = 5;
+            toolStrip1.Text = "toolStrip1";
+            // 
+            // OpenToolStripButton
+            // 
+            OpenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            OpenToolStripButton.Image = (System.Drawing.Image)resources.GetObject("OpenToolStripButton.Image");
+            OpenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            OpenToolStripButton.Name = "OpenToolStripButton";
+            OpenToolStripButton.Size = new System.Drawing.Size(23, 22);
+            OpenToolStripButton.Text = "&Open";
+            OpenToolStripButton.Click += openToolStripMenuItem_Click;
+            // 
+            // SaveToolStripButton
+            // 
+            SaveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            SaveToolStripButton.Image = (System.Drawing.Image)resources.GetObject("SaveToolStripButton.Image");
+            SaveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            SaveToolStripButton.Name = "SaveToolStripButton";
+            SaveToolStripButton.Size = new System.Drawing.Size(23, 22);
+            SaveToolStripButton.Text = "&Save";
+            SaveToolStripButton.Click += saveToolStripMenuItem_Click;
+            // 
+            // SaveAsToolStripButton
+            // 
+            SaveAsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            SaveAsToolStripButton.Image = (System.Drawing.Image)resources.GetObject("SaveAsToolStripButton.Image");
+            SaveAsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            SaveAsToolStripButton.Name = "SaveAsToolStripButton";
+            SaveAsToolStripButton.Size = new System.Drawing.Size(23, 22);
+            SaveAsToolStripButton.Text = "Save &as...";
+            SaveAsToolStripButton.Click += saveasToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // AnimationToolStripButton
+            // 
+            AnimationToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            AnimationToolStripButton.Image = (System.Drawing.Image)resources.GetObject("AnimationToolStripButton.Image");
+            AnimationToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            AnimationToolStripButton.Name = "AnimationToolStripButton";
+            AnimationToolStripButton.Size = new System.Drawing.Size(23, 22);
+            AnimationToolStripButton.Text = "Animation Previewer";
+            AnimationToolStripButton.Click += animationPreviewerToolStripMenuItem_Click;
+            // 
+            // DefaultColourToolStripButton
+            // 
+            DefaultColourToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            DefaultColourToolStripButton.Image = (System.Drawing.Image)resources.GetObject("DefaultColourToolStripButton.Image");
+            DefaultColourToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            DefaultColourToolStripButton.Name = "DefaultColourToolStripButton";
+            DefaultColourToolStripButton.Size = new System.Drawing.Size(23, 22);
+            DefaultColourToolStripButton.Text = "Default Palette";
+            DefaultColourToolStripButton.Click += editDefaultPaletteToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // ZoomOutoolStripButton
+            // 
+            ZoomOutoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            ZoomOutoolStripButton.Image = (System.Drawing.Image)resources.GetObject("ZoomOutoolStripButton.Image");
+            ZoomOutoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            ZoomOutoolStripButton.Name = "ZoomOutoolStripButton";
+            ZoomOutoolStripButton.Size = new System.Drawing.Size(23, 22);
+            ZoomOutoolStripButton.Text = "Zoom Out";
+            ZoomOutoolStripButton.Click += ZoomOutoolStripButton_Click;
+            // 
+            // ZoomInToolStripButton
+            // 
+            ZoomInToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            ZoomInToolStripButton.Image = (System.Drawing.Image)resources.GetObject("ZoomInToolStripButton.Image");
+            ZoomInToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            ZoomInToolStripButton.Name = "ZoomInToolStripButton";
+            ZoomInToolStripButton.Size = new System.Drawing.Size(23, 22);
+            ZoomInToolStripButton.Text = "Zoom In";
+            ZoomInToolStripButton.Click += ZoomInToolStripButton_Click;
             // 
             // ChangeGfxModeToolStripMenuItem
             // 
             ChangeGfxModeToolStripMenuItem.Name = "ChangeGfxModeToolStripMenuItem";
-            ChangeGfxModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            ChangeGfxModeToolStripMenuItem.Text = "Change Mode";
+            ChangeGfxModeToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            ChangeGfxModeToolStripMenuItem.Text = "Change Gfx Mode";
             ChangeGfxModeToolStripMenuItem.Click += ChangeGfxModeToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new System.Drawing.Size(190, 6);
+            // 
+            // ChangeGfxModeToolStripMenuItem1
+            // 
+            ChangeGfxModeToolStripMenuItem1.Name = "ChangeGfxModeToolStripMenuItem1";
+            ChangeGfxModeToolStripMenuItem1.Size = new System.Drawing.Size(193, 22);
+            ChangeGfxModeToolStripMenuItem1.Text = "Change Gfx Mode";
+            ChangeGfxModeToolStripMenuItem1.Click += ChangeGfxModeToolStripMenuItem_Click;
             // 
             // SpriteSheetForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(405, 479);
-            Controls.Add(lblZoomLevel);
-            Controls.Add(tbZoomLevel);
             Controls.Add(flowLayoutPanel1);
+            Controls.Add(toolStrip1);
+            Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
-            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Margin = new System.Windows.Forms.Padding(10, 8, 10, 8);
             Name = "SpriteSheetForm";
             Text = "Form1";
             FormClosing += SpriteSheetForm_FormClosing;
@@ -470,7 +587,10 @@
             menuStrip1.PerformLayout();
             contextMenu.ResumeLayout(false);
             spriteContextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)tbZoomLevel).EndInit();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -521,12 +641,26 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem exportSettingsToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog exportFileDialog1;
-        private System.Windows.Forms.TrackBar tbZoomLevel;
-        private System.Windows.Forms.Label lblZoomLevel;
         private System.Windows.Forms.ToolStripMenuItem RecentFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem addAllSpritesToAnimationPreviewWindowToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton OpenToolStripButton;
+        private System.Windows.Forms.ToolStripButton SaveToolStripButton;
+        private System.Windows.Forms.ToolStripButton printToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton ZoomOutoolStripButton;
+        private System.Windows.Forms.ToolStripButton ZoomInToolStripButton;
+        private System.Windows.Forms.ToolStripStatusLabel MessageToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel ZoomToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripButton SaveAsToolStripButton;
+        private System.Windows.Forms.ToolStripButton AnimationToolStripButton;
+        private System.Windows.Forms.ToolStripButton DefaultColourToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem ChangeGfxModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem ChangeGfxModeToolStripMenuItem1;
     }
 }
 
