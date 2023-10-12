@@ -62,11 +62,14 @@
             toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             animationPreviewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             editDefaultPaletteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            ChangeGfxModeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             contextMenu = new System.Windows.Forms.ContextMenuStrip(components);
             newSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ChangeGfxModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             spriteContextMenu = new System.Windows.Forms.ContextMenuStrip(components);
             addCopyOfThisSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,9 +93,7 @@
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ZoomOutoolStripButton = new System.Windows.Forms.ToolStripButton();
             ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
-            ChangeGfxModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            ChangeGfxModeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            ImportImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             contextMenu.SuspendLayout();
             spriteContextMenu.SuspendLayout();
@@ -305,7 +306,7 @@
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem, toolStripSeparator3, ChangeGfxModeToolStripMenuItem1 });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem, toolStripSeparator3, ChangeGfxModeToolStripMenuItem1, ImportImageToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             toolsToolStripMenuItem.Text = "Tools";
@@ -323,6 +324,18 @@
             editDefaultPaletteToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             editDefaultPaletteToolStripMenuItem.Text = "Edit default palette...";
             editDefaultPaletteToolStripMenuItem.Click += editDefaultPaletteToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new System.Drawing.Size(190, 6);
+            // 
+            // ChangeGfxModeToolStripMenuItem1
+            // 
+            ChangeGfxModeToolStripMenuItem1.Name = "ChangeGfxModeToolStripMenuItem1";
+            ChangeGfxModeToolStripMenuItem1.Size = new System.Drawing.Size(193, 22);
+            ChangeGfxModeToolStripMenuItem1.Text = "Change Gfx Mode";
+            ChangeGfxModeToolStripMenuItem1.Click += ChangeGfxModeToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -367,6 +380,13 @@
             newSpriteToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             newSpriteToolStripMenuItem.Text = "New sprite...";
             newSpriteToolStripMenuItem.Click += newSpriteToolStripMenuItem_Click;
+            // 
+            // ChangeGfxModeToolStripMenuItem
+            // 
+            ChangeGfxModeToolStripMenuItem.Name = "ChangeGfxModeToolStripMenuItem";
+            ChangeGfxModeToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            ChangeGfxModeToolStripMenuItem.Text = "Change Gfx Mode";
+            ChangeGfxModeToolStripMenuItem.Click += ChangeGfxModeToolStripMenuItem_Click;
             // 
             // spriteContextMenu
             // 
@@ -548,24 +568,12 @@
             ZoomInToolStripButton.Text = "Zoom In";
             ZoomInToolStripButton.Click += ZoomInToolStripButton_Click;
             // 
-            // ChangeGfxModeToolStripMenuItem
+            // ImportImageToolStripMenuItem
             // 
-            ChangeGfxModeToolStripMenuItem.Name = "ChangeGfxModeToolStripMenuItem";
-            ChangeGfxModeToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            ChangeGfxModeToolStripMenuItem.Text = "Change Gfx Mode";
-            ChangeGfxModeToolStripMenuItem.Click += ChangeGfxModeToolStripMenuItem_Click;
-            // 
-            // toolStripSeparator3
-            // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new System.Drawing.Size(190, 6);
-            // 
-            // ChangeGfxModeToolStripMenuItem1
-            // 
-            ChangeGfxModeToolStripMenuItem1.Name = "ChangeGfxModeToolStripMenuItem1";
-            ChangeGfxModeToolStripMenuItem1.Size = new System.Drawing.Size(193, 22);
-            ChangeGfxModeToolStripMenuItem1.Text = "Change Gfx Mode";
-            ChangeGfxModeToolStripMenuItem1.Click += ChangeGfxModeToolStripMenuItem_Click;
+            ImportImageToolStripMenuItem.Name = "ImportImageToolStripMenuItem";
+            ImportImageToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            ImportImageToolStripMenuItem.Text = "Import from Image";
+            ImportImageToolStripMenuItem.Click += ImportImageToolStripMenuItem_Click;
             // 
             // SpriteSheetForm
             // 
@@ -661,6 +669,7 @@
         private System.Windows.Forms.ToolStripMenuItem ChangeGfxModeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem ChangeGfxModeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ImportImageToolStripMenuItem;
     }
 }
 
