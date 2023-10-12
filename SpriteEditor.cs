@@ -14,6 +14,26 @@ namespace BeebSpriter
     public partial class SpriteEditor : Form
     {
         /// <summary>
+        /// Amount to increment / decrement the zoom level
+        /// </summary>
+        private const int ZOOM_INCREMENT = 1;
+
+        /// <summary>
+        /// Minimum Zoom manification
+        /// </summary>
+        private const int ZOOM_MIN_FACTOR = 4;
+
+        /// <summary>
+        /// Maximum Zoom manification
+        /// </summary>
+        private const int ZOOM_MAX_FACTOR = 20;
+
+        /// <summary>
+        /// Zoom Level property
+        /// </summary>
+        public int ZoomLevel { get; set; }
+
+        /// <summary>
         ///  Reference to the sprite panel we correspond to
         /// </summary>
         private SpritePanel spritePanel;
@@ -177,13 +197,15 @@ namespace BeebSpriter
             // Configure form + controls
             InitializeComponent();
 
-            this.nudZoom.Value = 4;
+            ZoomLevel = 8;
+            ZoomToolStripStatusLabel.Text = String.Format("Zoom x {0}", ZoomLevel.ToString());
+
             ApplyZoomToForm();
             ApplyHorizontalBlockDividersToForm();
             ApplyVerticalBlockDividersToForm();
 
-            showGridLinesToolStripMenuItem.Checked = spriteSheet.DefaultShowGridLines;
-
+            ShowGrid.Checked = spriteSheet.DefaultShowGridLines;
+          
             if (sprite.Name != "")
             {
                 this.Text = sprite.Name;
@@ -287,14 +309,6 @@ namespace BeebSpriter
         }
 
 
-        /// <summary>
-        ///  Called when the user clicks on the "Show grid lines" option
-        /// </summary>
-        private void showGridLinesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Toggling is done automatically by the menu item, but take a copy of the state as the 'default'
-            SpriteSheetForm.Instance.SpriteSheet.DefaultShowGridLines = showGridLinesToolStripMenuItem.Checked;
-        }
 
 
         #region Zoom
@@ -318,35 +332,9 @@ namespace BeebSpriter
         /// </summary>
         private void ApplyZoomToForm()
         {
-            toolStripMenuItem2.Checked = false;
-            toolStripMenuItem3.Checked = false;
-            toolStripMenuItem4.Checked = false;
-            toolStripMenuItem5.Checked = false;
-
-            //if (zoom == 4)
-            //{
-            //    toolStripMenuItem2.Checked = true;
-            //}
-            //else if (zoom == 6)
-            //{
-            //    toolStripMenuItem3.Checked = true;
-            //}
-            //else if (zoom == 8)
-            //{
-            //    toolStripMenuItem4.Checked = true;
-            //}
-            //else if (zoom == 10)
-            //{
-            //    toolStripMenuItem5.Checked = true;
-            //}
-            //else
-            //{
-            //    throw new Exception("Bad zoom level");
-            //}
-
             SpriteSheet spriteSheet = SpriteSheetForm.Instance.SpriteSheet;
-            this.xzoom = spriteSheet.XScale * zoom;
-            this.yzoom = spriteSheet.YScale * zoom;
+            this.xzoom = spriteSheet.XScale * ZoomLevel;
+            this.yzoom = spriteSheet.YScale * ZoomLevel;
 
             editorPanel.Size = new Size(sprite.Width * xzoom + 1, sprite.Height * yzoom + 1);
             RepositionZoomedSprite();
@@ -354,32 +342,6 @@ namespace BeebSpriter
         }
 
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            SetZoom(4);
-        }
-
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
-        {
-            SetZoom(6);
-        }
-
-        private void toolStripMenuItem4_Click(object sender, EventArgs e)
-        {
-            SetZoom(8);
-        }
-
-        private void toolStripMenuItem5_Click(object sender, EventArgs e)
-        {
-            SetZoom(10);
-        }
-
-        private void SetZoom(int zoom)
-        {
-            this.zoom = zoom;
-            SpriteSheetForm.Instance.SpriteSheet.DefaultZoom = zoom;
-            ApplyZoomToForm();
-        }
 
         #endregion
 
@@ -593,7 +555,7 @@ namespace BeebSpriter
             }
 
             // Draw the grid
-            if (showGridLinesToolStripMenuItem.Checked)
+            if (ShowGrid.Checked)
             {
                 Pen gridPen = new Pen(Color.DarkSlateGray);
                 Pen dividerPen = new Pen(Color.DarkSlateGray, 3.0f);
@@ -1959,14 +1921,60 @@ namespace BeebSpriter
             spritePanel.Panel.Invalidate();
         }
 
-        private void nudZoom_ValueChanged(object sender, EventArgs e)
-        {
-            SetZoom((int)nudZoom.Value * 2);
-        }
-
         private void SpriteEditor_ResizeEnd(object sender, EventArgs e)
         {
             ApplyZoomToForm();
         }
+
+        /// <summary>
+        /// Show / Hide Grid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShowGrid_Click(object sender, EventArgs e)
+        {
+            SpriteSheetForm.Instance.SpriteSheet.DefaultShowGridLines = ShowGrid.Checked;
+            editorPanel.Invalidate();
+        }
+
+        /// <summary>
+        /// Zoom out
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ZoomOut_Click(object sender, EventArgs e)
+        {
+            if (ZoomLevel > ZOOM_MIN_FACTOR)
+            {
+                Zoom(-ZOOM_INCREMENT);
+            }
+        }
+
+        /// <summary>
+        /// Zoom in
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ZoomIn_Click(object sender, EventArgs e)
+        {
+            if (ZoomLevel < ZOOM_MAX_FACTOR)
+            {
+                Zoom(+ZOOM_INCREMENT);
+            }
+        }
+
+        /// <summary>
+        /// Zoom
+        /// </summary>
+        /// <param name="value"></param>
+        private void Zoom(int value)
+        {
+            ZoomLevel += value;
+            ZoomToolStripStatusLabel.Text = String.Format("Zoom x {0}", ZoomLevel.ToString());
+
+            SpriteSheetForm.Instance.SpriteSheet.DefaultZoom = ZoomLevel;
+            ApplyZoomToForm();
+        }
+
     }
 }
