@@ -9,6 +9,7 @@
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <_LastSelectedProfileId>D:\SourceCode\DALESOFT\dotNetCore\vsn 6.0\Win Forms\VS.CSharp.dotNet6.WinForm.BeebSpriter\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="About.cs">
