@@ -605,8 +605,8 @@ namespace BeebSpriter
                                         fs.WriteByte(beeb);
                                     }
                                     size++;
-                                    dataExportString += Environment.NewLine;
                                 }
+                                dataExportString += Environment.NewLine;
                             }
 
                             break;
@@ -634,8 +634,8 @@ namespace BeebSpriter
                                         fs.WriteByte(beeb);
                                     }
                                     size++;
-                                    dataExportString += Environment.NewLine;
                                 }
+                                dataExportString += Environment.NewLine;
                             }
 
                             break;
