@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace BeebSpriter
 {
@@ -16,6 +17,39 @@ namespace BeebSpriter
             Magenta = 5,
             Cyan = 6,
             White = 7
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Color[] WinColours { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Colour[] BeebColours { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int NumColours {  get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="numColour"></param>
+        public BeebPalette(int numColours)
+        {
+            NumColours = numColours;
+
+            BeebColours = new Colour[NumColours];
+            WinColours = new Color[NumColours];
+
+            for (int i = 0; i < NumColours; i++)
+            {
+                BeebColours[i] = (Colour)(i & 7);
+                WinColours[i] = GetWindowsColour((Colour)(i & 7));
+            }
         }
 
         public static Color GetWindowsColour(Colour beebColour)
@@ -48,5 +82,47 @@ namespace BeebSpriter
         {
             return (Colour)(((int)colour) ^ 7);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="col"></param>
+        /// <returns></returns>
+        public int GetAcornColour(Color col)
+        {
+            for (int i = 0; i < NumColours; i++)
+            {
+                if (col == WinColours[i]) return i;
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Closest match in RGB space
+        /// </summary>
+        /// <param name="origCol"></param>
+        /// <returns></returns>
+        public Color FindClosestRGBColour(Color origCol)
+        {
+            var colorDiffs = WinColours.ToList().Select(n => ColorDiff(n, origCol)).Min(n => n);
+            int col = WinColours.ToList().FindIndex(n => ColorDiff(n, origCol) == colorDiffs);
+
+            return WinColours[col];
+        }
+
+        /// <summary>
+        /// Weighed only by saturation and brightness
+        /// </summary>
+        /// <param name="c1"></param>
+        /// <param name="c2"></param>
+        /// <returns></returns>
+        private static int ColorDiff(Color c1, Color c2)
+        {
+            return (int)Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R)
+                                   + (c1.G - c2.G) * (c1.G - c2.G)
+                                   + (c1.B - c2.B) * (c1.B - c2.B));
+        }
+
     }
 }

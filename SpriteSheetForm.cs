@@ -275,7 +275,10 @@ namespace BeebSpriter
             exportSettingsToolStripMenuItem.Enabled = value;
             exportToBeebToolStripMenuItem.Enabled = value;
             viewToolStripMenuItem.Enabled = value;
-            toolsToolStripMenuItem.Enabled = value;
+
+            animationPreviewerToolStripMenuItem.Enabled = value;
+            editDefaultPaletteToolStripMenuItem.Enabled = value;
+            ChangeGfxModeToolStripMenuItem1.Enabled = value;
 
             SaveToolStripButton.Enabled = value;
             SaveAsToolStripButton.Enabled = value;
@@ -1130,6 +1133,52 @@ namespace BeebSpriter
 
                     SetFormTitle();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Import sprites from Image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImportImage importImage = new();
+
+            if (importImage.ShowDialog() == DialogResult.OK)
+            {
+                if (spriteSheet != null && spriteSheet.Mode == importImage.Mode)
+                {
+                    DialogResult result = MessageBox.Show("Do you want to merge the new sprites?",
+                                                      "Warning",
+                                                      MessageBoxButtons.YesNo);
+
+                    if (result == DialogResult.No)
+                    {
+                        NewSpriteSheet(importImage.Mode);
+                    }
+                }
+                else
+                {
+                    NewSpriteSheet(importImage.Mode);
+                }
+
+                int index = 1;
+                foreach (Rectangle rect in importImage.SpriteList)
+                {
+                    string spriteName = String.Format("Sprite_{0}", index);
+
+                    Sprite sprite = importImage.ExtractSprite(spriteName, rect);
+
+                    CreateSpritePanel(sprite);
+
+                    SpriteSheet.SpriteList.Add(sprite);
+
+                    index++;
+                }
+
+                IsUnsaved = true;
+                SetAsOpened();
             }
         }
     }

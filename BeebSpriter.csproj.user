@@ -20,6 +20,9 @@
     <Compile Update="Controls\ColourComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Controls\ImageBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="CopySpriteDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -27,6 +30,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Export.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ImportImage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="NewGfxMode.cs">
