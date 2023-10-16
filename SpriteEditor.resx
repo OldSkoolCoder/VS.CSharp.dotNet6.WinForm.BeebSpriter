@@ -124,6 +124,38 @@
     <value>132, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ShowGrid.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACySURBVDhP7ZM9CgIxFISjp/ACnkLt/LmJ4gkE0V6wsvRA
+        dnbaqrj3EJ1vM7sIQYi4pQMfzLzkPQi8hCY0EGfxEM9MuEtPX4SbmIoWIVNtMRNXAhO7GKsQnWjDUqyj
+        LWv3aEvRQ289YCQWzlv7g8FT4ww/FMmAidg47+2PBk+NM/xYJAMqveedQXWDlQz4P6HBJ7As1SKtDPq4
+        SKwja8l65oq7c3Eh8CFO4tvPRE9P/KIQXvb7cBv+v5CZAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="ZoomOut.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADfSURBVDhP3VG7CsJAEPQfhERT5PLqVFDQQr/ExtpgF/0q
+        TSEEq+TjdAYmxcUcUbByYNjc7ezOZm/0U4RhOI3j+GKMKcGGUeeJJG5AuImi6A4e0zSdJUniMfLMe5zX
+        kr6DzhTBaRsEwbhL3quJpxIbHJNOfcUt0SQHC5XYQKLkuH2FLZmH0VUlNtCg4XgUjg71s0veo9iHrlaJ
+        DSRvQxPAYO6c4MMdnJw7GHoF5HfIVc5XIPjOapJrYT6jnCvkHohLyfvBIvDMf4W4USzojO8FDbIsW0n+
+        Pf6sCRdqjNm/APYwVcnowYbTAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="ZoomIn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADgSURBVDhP3VG7CsJAEMw/CImmyOXVqaCghX6JjbViF/0q
+        TSEEq+TjdAZGyEWPKFg5sGz2dmZnc+f9FFEUjZIkORljSkTDrHooihsgLuM4viJ2WZaN0zT1mVnzHPVC
+        1FfQmSQ4rcIwHHSD5xriS2KDa9KpLfK29b1dY8geUUhiA42S67YF3QHsw+gsiQ0MaLjeU9gNnkMcgFdL
+        YgPNS98GMJg4N/jwDg7OO+h7BfTX6FXOVyD4zhqy14UFzHKu0Lshz0R/D4oQR/4ryI1yQWd8T2mQ5/lc
+        9O/xZ0N4ocaYzQORp1ydaQ34PAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>163, 56</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAEBAAAAAAIABoBAAAJgAAACAgAAAAACAAqBAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAAAI

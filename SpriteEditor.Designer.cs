@@ -54,7 +54,6 @@
             undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            showGridLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             horizontalBlockDividersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             horizNever = new System.Windows.Forms.ToolStripMenuItem();
             horizEvery1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,12 +66,11 @@
             vertEvery2 = new System.Windows.Forms.ToolStripMenuItem();
             vertEvery3 = new System.Windows.Forms.ToolStripMenuItem();
             vertEvery4 = new System.Windows.Forms.ToolStripMenuItem();
-            zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
+            ShowGrid = new System.Windows.Forms.ToolStripButton();
+            ZoomOut = new System.Windows.Forms.ToolStripButton();
+            ZoomIn = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             button_modeDraw = new System.Windows.Forms.ToolStripButton();
             button_modeFill = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -105,12 +103,13 @@
             button_colour9 = new System.Windows.Forms.Panel();
             button_colour12 = new System.Windows.Forms.Panel();
             button_colour8 = new System.Windows.Forms.Panel();
-            nudZoom = new System.Windows.Forms.NumericUpDown();
-            lblZoom = new System.Windows.Forms.Label();
+            statusStrip1 = new System.Windows.Forms.StatusStrip();
+            MessageToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            ZoomToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             editorContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudZoom).BeginInit();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -134,14 +133,14 @@
             // 
             selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
             selectAllToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A;
-            selectAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            selectAllToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             selectAllToolStripMenuItem.Text = "Select all";
             selectAllToolStripMenuItem.Click += selectAllToolStripMenuItem_Click;
             // 
             // clearSelectionToolStripMenuItem
             // 
             clearSelectionToolStripMenuItem.Name = "clearSelectionToolStripMenuItem";
-            clearSelectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            clearSelectionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             clearSelectionToolStripMenuItem.Text = "Clear selection";
             clearSelectionToolStripMenuItem.Click += clearSelectionToolStripMenuItem_Click;
             // 
@@ -149,7 +148,7 @@
             // 
             cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             cutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X;
-            cutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            cutToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             cutToolStripMenuItem.Text = "Cut";
             cutToolStripMenuItem.Click += cutToolStripMenuItem_Click;
             // 
@@ -157,7 +156,7 @@
             // 
             copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             copyToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C;
-            copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            copyToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             copyToolStripMenuItem.Text = "Copy";
             copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             // 
@@ -165,7 +164,7 @@
             // 
             pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             pasteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V;
-            pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            pasteToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             pasteToolStripMenuItem.Text = "Paste";
             pasteToolStripMenuItem.Click += pasteToolStripMenuItem_Click;
             // 
@@ -173,20 +172,20 @@
             // 
             selectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { flipLeftrightToolStripMenuItem, flipUpdownToolStripMenuItem });
             selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
-            selectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            selectionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             selectionToolStripMenuItem.Text = "Selection";
             // 
             // flipLeftrightToolStripMenuItem
             // 
             flipLeftrightToolStripMenuItem.Name = "flipLeftrightToolStripMenuItem";
-            flipLeftrightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            flipLeftrightToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             flipLeftrightToolStripMenuItem.Text = "Flip left-right";
             flipLeftrightToolStripMenuItem.Click += flipLeftrightToolStripMenuItem_Click;
             // 
             // flipUpdownToolStripMenuItem
             // 
             flipUpdownToolStripMenuItem.Name = "flipUpdownToolStripMenuItem";
-            flipUpdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            flipUpdownToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             flipUpdownToolStripMenuItem.Text = "Flip up-down";
             flipUpdownToolStripMenuItem.Click += flipUpdownToolStripMenuItem_Click;
             // 
@@ -194,7 +193,7 @@
             // 
             transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { tsmiRotateClockwise, tsmiRotateAntiClockwise, toolStripMenuItem6, ShiftLeftToolStripMenuItem, ShiftRightToolStripMenuItem, ShiftUpToolStripMenuItem, ShiftDownToolStripMenuItem });
             transformToolStripMenuItem.Name = "transformToolStripMenuItem";
-            transformToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            transformToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             transformToolStripMenuItem.Text = "Transform";
             // 
             // tsmiRotateClockwise
@@ -258,7 +257,7 @@
             // 
             colourToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { ReplaceColourToolStripMenuItem, NegativeToolStripMenuItem });
             colourToolStripMenuItem.Name = "colourToolStripMenuItem";
-            colourToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            colourToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             colourToolStripMenuItem.Text = "Colour";
             // 
             // ReplaceColourToolStripMenuItem
@@ -281,13 +280,13 @@
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            toolStripMenuItem1.Size = new System.Drawing.Size(159, 6);
             // 
             // undoToolStripMenuItem
             // 
             undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             undoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z;
-            undoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            undoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             undoToolStripMenuItem.Text = "Undo";
             undoToolStripMenuItem.Click += undoToolStripMenuItem_Click;
             // 
@@ -295,24 +294,16 @@
             // 
             redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             redoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y;
-            redoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            redoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             redoToolStripMenuItem.Text = "Redo";
             redoToolStripMenuItem.Click += redoToolStripMenuItem_Click;
             // 
             // viewToolStripMenuItem
             // 
-            viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { showGridLinesToolStripMenuItem, horizontalBlockDividersToolStripMenuItem, showVerticalBlockDividersToolStripMenuItem, zoomToolStripMenuItem });
+            viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { horizontalBlockDividersToolStripMenuItem, showVerticalBlockDividersToolStripMenuItem });
             viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             viewToolStripMenuItem.Text = "View";
-            // 
-            // showGridLinesToolStripMenuItem
-            // 
-            showGridLinesToolStripMenuItem.CheckOnClick = true;
-            showGridLinesToolStripMenuItem.Name = "showGridLinesToolStripMenuItem";
-            showGridLinesToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            showGridLinesToolStripMenuItem.Text = "Show grid lines";
-            showGridLinesToolStripMenuItem.Click += showGridLinesToolStripMenuItem_Click;
             // 
             // horizontalBlockDividersToolStripMenuItem
             // 
@@ -402,47 +393,51 @@
             vertEvery4.Text = "Every four character rows";
             vertEvery4.Click += vertEvery4_Click;
             // 
-            // zoomToolStripMenuItem
-            // 
-            zoomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItem2, toolStripMenuItem3, toolStripMenuItem4, toolStripMenuItem5 });
-            zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            zoomToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            zoomToolStripMenuItem.Text = "Zoom";
-            zoomToolStripMenuItem.Visible = false;
-            // 
-            // toolStripMenuItem2
-            // 
-            toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new System.Drawing.Size(92, 22);
-            toolStripMenuItem2.Text = "x4";
-            // 
-            // toolStripMenuItem3
-            // 
-            toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new System.Drawing.Size(92, 22);
-            toolStripMenuItem3.Text = "x6";
-            // 
-            // toolStripMenuItem4
-            // 
-            toolStripMenuItem4.Name = "toolStripMenuItem4";
-            toolStripMenuItem4.Size = new System.Drawing.Size(92, 22);
-            toolStripMenuItem4.Text = "x8";
-            // 
-            // toolStripMenuItem5
-            // 
-            toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new System.Drawing.Size(92, 22);
-            toolStripMenuItem5.Text = "x10";
-            // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { button_modeDraw, button_modeFill, toolStripSeparator1, button_modeInsertRow, button_modeDeleteRow, button_modeInsertColumn, button_modeDeleteColumn, toolStripSeparator2, button_modeSelect, button_modePaste, toolStripSeparator3, resizeIcon });
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { ShowGrid, ZoomOut, ZoomIn, toolStripSeparator4, button_modeDraw, button_modeFill, toolStripSeparator1, button_modeInsertRow, button_modeDeleteRow, button_modeInsertColumn, button_modeDeleteColumn, toolStripSeparator2, button_modeSelect, button_modePaste, toolStripSeparator3, resizeIcon });
             toolStrip1.Location = new System.Drawing.Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new System.Drawing.Size(540, 27);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
+            // 
+            // ShowGrid
+            // 
+            ShowGrid.CheckOnClick = true;
+            ShowGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            ShowGrid.Image = (System.Drawing.Image)resources.GetObject("ShowGrid.Image");
+            ShowGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            ShowGrid.Name = "ShowGrid";
+            ShowGrid.Size = new System.Drawing.Size(24, 24);
+            ShowGrid.Text = "Show Grid";
+            ShowGrid.Click += ShowGrid_Click;
+            // 
+            // ZoomOut
+            // 
+            ZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            ZoomOut.Image = (System.Drawing.Image)resources.GetObject("ZoomOut.Image");
+            ZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            ZoomOut.Name = "ZoomOut";
+            ZoomOut.Size = new System.Drawing.Size(24, 24);
+            ZoomOut.Text = "toolStripButton2";
+            ZoomOut.Click += ZoomOut_Click;
+            // 
+            // ZoomIn
+            // 
+            ZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            ZoomIn.Image = (System.Drawing.Image)resources.GetObject("ZoomIn.Image");
+            ZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            ZoomIn.Name = "ZoomIn";
+            ZoomIn.Size = new System.Drawing.Size(24, 24);
+            ZoomIn.Text = "Zoom In";
+            ZoomIn.Click += ZoomIn_Click;
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new System.Drawing.Size(6, 27);
             // 
             // button_modeDraw
             // 
@@ -573,17 +568,18 @@
             // 
             editorContainer.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             editorContainer.AutoScroll = true;
-            editorContainer.BackColor = System.Drawing.Color.Gray;
+            editorContainer.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             editorContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             editorContainer.Controls.Add(editorPanel);
             editorContainer.Location = new System.Drawing.Point(85, 60);
             editorContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             editorContainer.Name = "editorContainer";
-            editorContainer.Size = new System.Drawing.Size(440, 456);
+            editorContainer.Size = new System.Drawing.Size(440, 446);
             editorContainer.TabIndex = 3;
             // 
             // editorPanel
             // 
+            editorPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             editorPanel.Location = new System.Drawing.Point(0, 0);
             editorPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             editorPanel.Name = "editorPanel";
@@ -781,35 +777,37 @@
             button_colour8.MouseClick += button_colour8_MouseClick;
             button_colour8.MouseDoubleClick += button_colour8_MouseDoubleClick;
             // 
-            // nudZoom
+            // statusStrip1
             // 
-            nudZoom.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            nudZoom.Location = new System.Drawing.Point(20, 485);
-            nudZoom.Maximum = new decimal(new int[] { 15, 0, 0, 0 });
-            nudZoom.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudZoom.Name = "nudZoom";
-            nudZoom.Size = new System.Drawing.Size(38, 23);
-            nudZoom.TabIndex = 21;
-            nudZoom.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            nudZoom.ValueChanged += nudZoom_ValueChanged;
+            statusStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { MessageToolStripStatusLabel, ZoomToolStripStatusLabel });
+            statusStrip1.Location = new System.Drawing.Point(0, 509);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 34, 0);
+            statusStrip1.Size = new System.Drawing.Size(540, 22);
+            statusStrip1.TabIndex = 23;
+            statusStrip1.Text = "statusStrip1";
             // 
-            // lblZoom
+            // MessageToolStripStatusLabel
             // 
-            lblZoom.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            lblZoom.AutoSize = true;
-            lblZoom.Location = new System.Drawing.Point(20, 467);
-            lblZoom.Name = "lblZoom";
-            lblZoom.Size = new System.Drawing.Size(39, 15);
-            lblZoom.TabIndex = 22;
-            lblZoom.Text = "Zoom";
+            MessageToolStripStatusLabel.Name = "MessageToolStripStatusLabel";
+            MessageToolStripStatusLabel.Size = new System.Drawing.Size(465, 17);
+            MessageToolStripStatusLabel.Spring = true;
+            MessageToolStripStatusLabel.Text = "Ready";
+            MessageToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ZoomToolStripStatusLabel
+            // 
+            ZoomToolStripStatusLabel.Name = "ZoomToolStripStatusLabel";
+            ZoomToolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
+            ZoomToolStripStatusLabel.Text = "Zoom";
             // 
             // SpriteEditor
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(540, 531);
-            Controls.Add(lblZoom);
-            Controls.Add(nudZoom);
+            Controls.Add(editorContainer);
             Controls.Add(button_colour15);
             Controls.Add(button_colour11);
             Controls.Add(button_colour14);
@@ -827,10 +825,10 @@
             Controls.Add(button_colour4);
             Controls.Add(button_colour0);
             Controls.Add(button_colourTransparent);
-            Controls.Add(editorContainer);
             Controls.Add(currentColour);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
+            Controls.Add(statusStrip1);
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -843,7 +841,8 @@
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             editorContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)nudZoom).EndInit();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -884,11 +883,6 @@
         private System.Windows.Forms.ToolStripButton button_modePaste;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showGridLinesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearSelectionToolStripMenuItem;
@@ -926,7 +920,12 @@
         private System.Windows.Forms.ToolStripMenuItem colourToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReplaceColourToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NegativeToolStripMenuItem;
-        private System.Windows.Forms.NumericUpDown nudZoom;
-        private System.Windows.Forms.Label lblZoom;
+        private System.Windows.Forms.ToolStripButton ShowGrid;
+        private System.Windows.Forms.ToolStripButton ZoomOut;
+        private System.Windows.Forms.ToolStripButton ZoomIn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel MessageToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel ZoomToolStripStatusLabel;
     }
 }
