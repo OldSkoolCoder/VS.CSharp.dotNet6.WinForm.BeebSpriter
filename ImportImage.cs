@@ -18,8 +18,6 @@ namespace BeebSpriter
         private const int ZOOM_MIN_FACTOR = 1;
         private const int ZOOM_MAX_FACTOR = 20;
 
-        //private System.Threading.Thread Worker;
-
         /// <summary>
         /// Acorn Mode
         /// </summary>
@@ -93,6 +91,17 @@ namespace BeebSpriter
         }
 
         /// <summary>
+        /// Toggle pixel grid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonGrid_Click(object sender, EventArgs e)
+        {
+            ImageBox.ShowGrid = ButtonGrid.Checked;
+            ImageBox.Invalidate();
+        }
+
+        /// <summary>
         /// Zoom out
         /// </summary>
         /// <param name="sender"></param>
@@ -101,9 +110,7 @@ namespace BeebSpriter
         {
             if (ImageBox.ZoomFactor > ZOOM_MIN_FACTOR)
             {
-                ImageBox.ZoomFactor -= ZOOM_INCREMENT;
-                ImageBox.Invalidate();
-                ZoomToolStripStatusLabel.Text = string.Format("Zoom x{0}", ImageBox.ZoomFactor);
+                Zoom(-ZOOM_INCREMENT);
             }
         }
 
@@ -116,21 +123,19 @@ namespace BeebSpriter
         {
             if (ImageBox.ZoomFactor < ZOOM_MAX_FACTOR)
             {
-                ImageBox.ZoomFactor += ZOOM_INCREMENT;
-                ImageBox.Invalidate();
-                ZoomToolStripStatusLabel.Text = string.Format("Zoom x{0}", ImageBox.ZoomFactor);
+                Zoom(+ZOOM_INCREMENT);
             }
         }
 
         /// <summary>
-        /// Toggle pixel grid
+        /// Zoom
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonGrid_Click(object sender, EventArgs e)
+        /// <param name="value"></param>
+        private void Zoom(int value)
         {
-            ImageBox.ShowGrid = ButtonGrid.Checked;
+            ImageBox.ZoomFactor += value;
             ImageBox.Invalidate();
+            ZoomToolStripStatusLabel.Text = string.Format("Zoom x{0}", ImageBox.ZoomFactor);
         }
 
         /// <summary>
@@ -141,6 +146,8 @@ namespace BeebSpriter
         private void ComboBoxGfxMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             ButtonGenerate.Enabled = true;
+
+            int xs = 1, ys = 1;
 
             switch (ComboBoxGfxMode.SelectedIndex)
             {
@@ -156,6 +163,9 @@ namespace BeebSpriter
                 case 5: Mode = 5; ConvertMode(4); break;
                 default: throw new NotImplementedException();
             }
+
+            // Doesn't work properly yet so keep at 1:1
+            ImageBox.PixelAspectRatio = new Point(xs, ys);
 
             ImageBox.Invalidate();
         }

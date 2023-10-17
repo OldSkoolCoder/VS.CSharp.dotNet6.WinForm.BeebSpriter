@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BeebSpriter.Internal;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Reflection.Metadata;
 using System.Windows.Forms;
 
 namespace BeebSpriter.Controls
@@ -11,7 +13,7 @@ namespace BeebSpriter.Controls
         private bool IsSelected;
         private Point SelectionStart;
         private Point SelectionEnd;
-        private Size PixelGridSize;
+        //private Size PixelGridSize;
 
         public int ZoomFactor { get; set; }
         public Bitmap Image { get; set; }
@@ -21,6 +23,8 @@ namespace BeebSpriter.Controls
         public Pen PixelPenGrid { get; set; }
         public Pen SpritePenGrid { get; set; }
         public bool ShowGrid { get; set; }
+        public bool CenterImage { get; set; }
+        public Point PixelAspectRatio { get; set; }
 
         public readonly List<Rectangle> SpriteList;
 
@@ -33,7 +37,9 @@ namespace BeebSpriter.Controls
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
-            PixelGridSize = new Size(1, 1);
+            CenterImage = false;
+
+            PixelAspectRatio = new Point(1, 1);
 
             PixelPenGrid = new Pen(SystemColors.ControlDarkDark)
             {
@@ -72,12 +78,20 @@ namespace BeebSpriter.Controls
         {
             if (Image != null)
             {
-                int width = ImageSize.Width * ZoomFactor;
-                int height = ImageSize.Height * ZoomFactor;
+                int x = 0;
+                int y = 0;
+                int width = ImageSize.Width * PixelAspectRatio.X * ZoomFactor;
+                int height = ImageSize.Height * PixelAspectRatio.Y * ZoomFactor;
 
                 AutoScrollMinSize = new Size(width, height);
 
-                ImageRect = new Rectangle(0, 0, width, height);
+                if (CenterImage)
+                {
+                    x = (ClientRectangle.Width / 2) - (width / 2);
+                    y = (ClientRectangle.Height / 2) - (height / 2);
+                }
+
+                ImageRect = new Rectangle(x, y, width, height);
             }
 
             base.Invalidate();
@@ -193,7 +207,7 @@ namespace BeebSpriter.Controls
 
             if (ShowGrid)
             {
-                PaintGrid(e.Graphics, ImageRect, PixelGridSize, PixelPenGrid);
+                PaintGrid(e.Graphics, ImageRect, (Size)PixelAspectRatio, PixelPenGrid);
             }
 
             PaintSprites(e.Graphics, SpritePenGrid);
@@ -210,7 +224,7 @@ namespace BeebSpriter.Controls
         {
             foreach (Rectangle rect in SpriteList)
             {
-                Rectangle zoomRect = new(rect.X * ZoomFactor, rect.Y * ZoomFactor, rect.Width * ZoomFactor, rect.Height * ZoomFactor);
+                Rectangle zoomRect = new(rect.X * PixelAspectRatio.X * ZoomFactor, rect.Y * PixelAspectRatio.Y * ZoomFactor, rect.Width * PixelAspectRatio.X * ZoomFactor, rect.Height * PixelAspectRatio.Y * ZoomFactor);
                 gfx.DrawRectangle(pen, zoomRect);
             }
         }
@@ -243,15 +257,27 @@ namespace BeebSpriter.Controls
 
             for (int x = GridXOffset; x < rect.Width; x += GridXOffset)
             {
-                gfx.DrawLine(pen, x, 0, x, rect.Height);
+                gfx.DrawLine(pen, rect.X + x, rect.Y, rect.X + x, rect.Y + rect.Height);
             }
 
             int GridYOffset = gridSize.Height * ZoomFactor;
 
             for (int y = GridYOffset; y < rect.Height; y += GridYOffset)
             {
-                gfx.DrawLine(pen, 0, y, rect.Width, y);
+                gfx.DrawLine(pen, rect.X, rect.Y + y, rect.X + rect.Width, rect.Y + y);
             }
+        }
+
+        /// <summary>
+        /// Rotate an Image
+        /// </summary>
+        /// <param name="value"></param>
+        public void RotateImage(float value)
+        {
+            OriginalImage ??= (Bitmap)Image.Clone();
+
+            Image = OriginalImage.RotateImage(value);
+            Invalidate();
         }
     }
 }

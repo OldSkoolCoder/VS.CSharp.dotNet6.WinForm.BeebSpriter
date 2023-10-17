@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace BeebSpriter.Internal
 {
@@ -210,6 +212,76 @@ namespace BeebSpriter.Internal
             Image.UnlockBits(bmpData);
 
             return data;
+        }
+
+        /// <summary>
+        /// Convert Beeb Sprite image into Windows Bitmap image
+        /// </summary>
+        /// <param name="sprite"></param>
+        /// <param name="palette"></param>
+        /// <returns></returns>
+        public static Bitmap ToImage(this Sprite sprite, BeebPalette palette)
+        {
+            Bitmap newImage = new(sprite.Width, sprite.Height, PixelFormat.Format32bppArgb);
+
+            Rectangle rect = new(0, 0, newImage.Width, newImage.Height);
+            BitmapData bmpData = newImage.LockBits(rect, ImageLockMode.ReadWrite, newImage.PixelFormat);
+
+            IntPtr ptr = bmpData.Scan0;
+
+            int bytes = Math.Abs(bmpData.Stride) * newImage.Height;
+            byte[] rgbValues = new byte[bytes];
+
+            int counter = 0;
+
+            for (int index = 0; index < sprite.Bitmap.Length; index++)
+            {
+                int pixel = sprite.Bitmap[index];
+
+                Color rgbColour = (pixel != 255) ? palette.WinColours[pixel] : Color.Gray;
+
+                rgbValues[counter++] = rgbColour.B;
+                rgbValues[counter++] = rgbColour.G;
+                rgbValues[counter++] = rgbColour.R;
+                rgbValues[counter++] = rgbColour.A;
+            }
+
+            Marshal.Copy(rgbValues, 0, ptr, bytes);
+            newImage.UnlockBits(bmpData);
+
+            return newImage;
+        }
+
+        /// <summary>
+        /// Rotate Image by a set angle
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="angle"></param>
+        /// <returns></returns>
+        public static Bitmap RotateImage(this Bitmap image, float angle)
+        {
+            Bitmap newImage = new(image.Width, image.Height);
+
+            SolidBrush transparentBrush = new(Color.Gray);
+
+            Graphics gfx = Graphics.FromImage(newImage);
+
+            gfx.SmoothingMode = SmoothingMode.None;
+            gfx.InterpolationMode = InterpolationMode.NearestNeighbor;
+            gfx.CompositingMode = CompositingMode.SourceCopy;
+            gfx.CompositingQuality = CompositingQuality.HighSpeed;
+            gfx.PixelOffsetMode = PixelOffsetMode.Half;
+
+            gfx.FillRectangle(transparentBrush, 0, 0, image.Width, image.Height);
+
+            gfx.TranslateTransform((float)newImage.Width / 2, (float)newImage.Height / 2);
+            gfx.RotateTransform(angle);
+            gfx.TranslateTransform(-(float)newImage.Width / 2, -(float)newImage.Height / 2);
+
+            gfx.DrawImage(image, new Point(0, 0));
+            gfx.Dispose();
+
+            return newImage;
         }
     }
 };
