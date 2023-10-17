@@ -995,6 +995,7 @@ namespace BeebSpriter
             //ContextMenuStrip menu = menuItem.Owner as ContextMenuStrip;
             //SpritePanel spritePanel = menu.SourceControl as SpritePanel;
 
+            animationPreview.ClearAnimationList();
             foreach (Sprite sprite in this.spriteSheet.SpriteList)
             {
                 animationPreview.Add(sprite);
@@ -1180,6 +1181,28 @@ namespace BeebSpriter
                 IsUnsaved = true;
                 SetAsOpened();
             }
+        }
+
+        private void tsmiAddToNewAnimationSet_Click(object sender, EventArgs e)
+        {
+            if (animationPreview == null)
+            {
+                OpenAnimationPreview();
+                //addToAnimationPreviewToolStripMenuItem_Click(sender, e);
+            }
+            // This is the rather long-winded way to get the object which created the context menu
+            //ToolStripItem menuItem = sender as ToolStripItem;
+            //ContextMenuStrip menu = menuItem.Owner as ContextMenuStrip;
+            //SpritePanel spritePanel = menu.SourceControl as SpritePanel;
+
+            animationPreview.ClearAnimationList();
+
+            // This is the rather long-winded way to get the object which created the context menu
+            ToolStripItem menuItem = sender as ToolStripItem;
+            ContextMenuStrip menu = menuItem.Owner as ContextMenuStrip;
+            SpritePanel spritePanel = menu.SourceControl as SpritePanel;
+
+            animationPreview.Add(spritePanel.Sprite);
         }
     }
 }

@@ -29,217 +29,262 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnimationPreview));
-            this.lbSpriteList = new System.Windows.Forms.ListBox();
-            this.previewPanel = new BeebSpriter.DoubleBufferedPanel();
-            this.tbSpeed = new System.Windows.Forms.TrackBar();
-            this.lbMode = new System.Windows.Forms.ListBox();
-            this.lblFast = new System.Windows.Forms.Label();
-            this.lblSlow = new System.Windows.Forms.Label();
-            this.btnDeleteSprite = new System.Windows.Forms.Button();
-            this.btnSpriteMoveUp = new System.Windows.Forms.Button();
-            this.btnSpriteMoveDown = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.btnPlay = new System.Windows.Forms.Button();
-            this.tbZoom = new System.Windows.Forms.TrackBar();
-            this.lblZoom = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbZoom)).BeginInit();
-            this.SuspendLayout();
+            lbSpriteList = new System.Windows.Forms.ListBox();
+            previewPanel = new DoubleBufferedPanel();
+            tbSpeed = new System.Windows.Forms.TrackBar();
+            lbMode = new System.Windows.Forms.ListBox();
+            lblFast = new System.Windows.Forms.Label();
+            lblSlow = new System.Windows.Forms.Label();
+            btnDeleteSprite = new System.Windows.Forms.Button();
+            btnSpriteMoveUp = new System.Windows.Forms.Button();
+            btnSpriteMoveDown = new System.Windows.Forms.Button();
+            btnStop = new System.Windows.Forms.Button();
+            btnPlay = new System.Windows.Forms.Button();
+            tbZoom = new System.Windows.Forms.TrackBar();
+            lblZoom = new System.Windows.Forms.Label();
+            cbAnimationSets = new System.Windows.Forms.ComboBox();
+            btnAddAnimationSet = new System.Windows.Forms.Button();
+            btnEditAnimationSet = new System.Windows.Forms.Button();
+            btnDeleteAnimationSet = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)tbSpeed).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbZoom).BeginInit();
+            SuspendLayout();
             // 
             // lbSpriteList
             // 
-            this.lbSpriteList.AllowDrop = true;
-            this.lbSpriteList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbSpriteList.FormattingEnabled = true;
-            this.lbSpriteList.IntegralHeight = false;
-            this.lbSpriteList.ItemHeight = 15;
-            this.lbSpriteList.Location = new System.Drawing.Point(14, 10);
-            this.lbSpriteList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.lbSpriteList.Name = "lbSpriteList";
-            this.lbSpriteList.Size = new System.Drawing.Size(185, 282);
-            this.lbSpriteList.TabIndex = 0;
-            this.lbSpriteList.Click += new System.EventHandler(this.lbSpriteList_Click);
+            lbSpriteList.AllowDrop = true;
+            lbSpriteList.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            lbSpriteList.DisplayMember = "Name";
+            lbSpriteList.FormattingEnabled = true;
+            lbSpriteList.IntegralHeight = false;
+            lbSpriteList.ItemHeight = 15;
+            lbSpriteList.Location = new System.Drawing.Point(14, 39);
+            lbSpriteList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            lbSpriteList.Name = "lbSpriteList";
+            lbSpriteList.Size = new System.Drawing.Size(185, 253);
+            lbSpriteList.TabIndex = 0;
+            lbSpriteList.Click += lbSpriteList_Click;
             // 
             // previewPanel
             // 
-            this.previewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.previewPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.previewPanel.Location = new System.Drawing.Point(217, 83);
-            this.previewPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.previewPanel.Name = "previewPanel";
-            this.previewPanel.Size = new System.Drawing.Size(305, 209);
-            this.previewPanel.TabIndex = 1;
-            this.previewPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.previewPanel_Paint);
+            previewPanel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            previewPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            previewPanel.Location = new System.Drawing.Point(217, 65);
+            previewPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            previewPanel.Name = "previewPanel";
+            previewPanel.Size = new System.Drawing.Size(305, 227);
+            previewPanel.TabIndex = 1;
+            previewPanel.Paint += previewPanel_Paint;
             // 
             // tbSpeed
             // 
-            this.tbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSpeed.LargeChange = 1;
-            this.tbSpeed.Location = new System.Drawing.Point(217, 10);
-            this.tbSpeed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tbSpeed.Maximum = 8;
-            this.tbSpeed.Minimum = 1;
-            this.tbSpeed.Name = "tbSpeed";
-            this.tbSpeed.Size = new System.Drawing.Size(153, 45);
-            this.tbSpeed.TabIndex = 2;
-            this.tbSpeed.Value = 6;
-            this.tbSpeed.ValueChanged += new System.EventHandler(this.tbSpeed_ValueChanged);
+            tbSpeed.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tbSpeed.LargeChange = 1;
+            tbSpeed.Location = new System.Drawing.Point(297, 10);
+            tbSpeed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tbSpeed.Maximum = 8;
+            tbSpeed.Minimum = 1;
+            tbSpeed.Name = "tbSpeed";
+            tbSpeed.Size = new System.Drawing.Size(153, 45);
+            tbSpeed.TabIndex = 2;
+            tbSpeed.Value = 6;
+            tbSpeed.ValueChanged += tbSpeed_ValueChanged;
             // 
             // lbMode
             // 
-            this.lbMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbMode.FormattingEnabled = true;
-            this.lbMode.ItemHeight = 15;
-            this.lbMode.Items.AddRange(new object[] {
-            "Cyclic",
-            "Yo-yo",
-            "One shot"});
-            this.lbMode.Location = new System.Drawing.Point(396, 10);
-            this.lbMode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.lbMode.Name = "lbMode";
-            this.lbMode.Size = new System.Drawing.Size(126, 49);
-            this.lbMode.TabIndex = 3;
+            lbMode.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            lbMode.FormattingEnabled = true;
+            lbMode.ItemHeight = 15;
+            lbMode.Items.AddRange(new object[] { "Cyclic", "Yo-yo", "One shot" });
+            lbMode.Location = new System.Drawing.Point(458, 10);
+            lbMode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            lbMode.Name = "lbMode";
+            lbMode.Size = new System.Drawing.Size(64, 49);
+            lbMode.TabIndex = 3;
             // 
             // lblFast
             // 
-            this.lblFast.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFast.AutoSize = true;
-            this.lblFast.Location = new System.Drawing.Point(225, 47);
-            this.lblFast.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFast.Name = "lblFast";
-            this.lblFast.Size = new System.Drawing.Size(28, 15);
-            this.lblFast.TabIndex = 4;
-            this.lblFast.Text = "Fast";
+            lblFast.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblFast.AutoSize = true;
+            lblFast.Location = new System.Drawing.Point(305, 47);
+            lblFast.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblFast.Name = "lblFast";
+            lblFast.Size = new System.Drawing.Size(28, 15);
+            lblFast.TabIndex = 4;
+            lblFast.Text = "Fast";
             // 
             // lblSlow
             // 
-            this.lblSlow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSlow.AutoSize = true;
-            this.lblSlow.Location = new System.Drawing.Point(335, 47);
-            this.lblSlow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSlow.Name = "lblSlow";
-            this.lblSlow.Size = new System.Drawing.Size(32, 15);
-            this.lblSlow.TabIndex = 5;
-            this.lblSlow.Text = "Slow";
+            lblSlow.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            lblSlow.AutoSize = true;
+            lblSlow.Location = new System.Drawing.Point(415, 47);
+            lblSlow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblSlow.Name = "lblSlow";
+            lblSlow.Size = new System.Drawing.Size(32, 15);
+            lblSlow.TabIndex = 5;
+            lblSlow.Text = "Slow";
             // 
             // btnDeleteSprite
             // 
-            this.btnDeleteSprite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteSprite.Image = global::BeebSpriter.Properties.Resources.remove;
-            this.btnDeleteSprite.Location = new System.Drawing.Point(14, 295);
-            this.btnDeleteSprite.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnDeleteSprite.Name = "btnDeleteSprite";
-            this.btnDeleteSprite.Size = new System.Drawing.Size(28, 28);
-            this.btnDeleteSprite.TabIndex = 6;
-            this.btnDeleteSprite.UseVisualStyleBackColor = true;
-            this.btnDeleteSprite.Click += new System.EventHandler(this.btnDelete_Click);
+            btnDeleteSprite.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            btnDeleteSprite.Image = Properties.Resources.remove;
+            btnDeleteSprite.Location = new System.Drawing.Point(14, 295);
+            btnDeleteSprite.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnDeleteSprite.Name = "btnDeleteSprite";
+            btnDeleteSprite.Size = new System.Drawing.Size(28, 28);
+            btnDeleteSprite.TabIndex = 6;
+            btnDeleteSprite.UseVisualStyleBackColor = true;
+            btnDeleteSprite.Click += btnDelete_Click;
             // 
             // btnSpriteMoveUp
             // 
-            this.btnSpriteMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSpriteMoveUp.Image = global::BeebSpriter.Properties.Resources.moveup;
-            this.btnSpriteMoveUp.Location = new System.Drawing.Point(42, 295);
-            this.btnSpriteMoveUp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSpriteMoveUp.Name = "btnSpriteMoveUp";
-            this.btnSpriteMoveUp.Size = new System.Drawing.Size(28, 28);
-            this.btnSpriteMoveUp.TabIndex = 7;
-            this.btnSpriteMoveUp.UseVisualStyleBackColor = true;
-            this.btnSpriteMoveUp.Click += new System.EventHandler(this.btnSpriteMoveUp_Click);
+            btnSpriteMoveUp.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            btnSpriteMoveUp.Image = Properties.Resources.moveup;
+            btnSpriteMoveUp.Location = new System.Drawing.Point(42, 295);
+            btnSpriteMoveUp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnSpriteMoveUp.Name = "btnSpriteMoveUp";
+            btnSpriteMoveUp.Size = new System.Drawing.Size(28, 28);
+            btnSpriteMoveUp.TabIndex = 7;
+            btnSpriteMoveUp.UseVisualStyleBackColor = true;
+            btnSpriteMoveUp.Click += btnSpriteMoveUp_Click;
             // 
             // btnSpriteMoveDown
             // 
-            this.btnSpriteMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSpriteMoveDown.Image = global::BeebSpriter.Properties.Resources.movedown;
-            this.btnSpriteMoveDown.Location = new System.Drawing.Point(71, 295);
-            this.btnSpriteMoveDown.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSpriteMoveDown.Name = "btnSpriteMoveDown";
-            this.btnSpriteMoveDown.Size = new System.Drawing.Size(28, 28);
-            this.btnSpriteMoveDown.TabIndex = 8;
-            this.btnSpriteMoveDown.UseVisualStyleBackColor = true;
-            this.btnSpriteMoveDown.Click += new System.EventHandler(this.btnSpriteMoveDown_Click);
+            btnSpriteMoveDown.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            btnSpriteMoveDown.Image = Properties.Resources.movedown;
+            btnSpriteMoveDown.Location = new System.Drawing.Point(71, 295);
+            btnSpriteMoveDown.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnSpriteMoveDown.Name = "btnSpriteMoveDown";
+            btnSpriteMoveDown.Size = new System.Drawing.Size(28, 28);
+            btnSpriteMoveDown.TabIndex = 8;
+            btnSpriteMoveDown.UseVisualStyleBackColor = true;
+            btnSpriteMoveDown.Click += btnSpriteMoveDown_Click;
             // 
             // btnStop
             // 
-            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStop.Image = global::BeebSpriter.Properties.Resources.Stop;
-            this.btnStop.Location = new System.Drawing.Point(495, 300);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(28, 28);
-            this.btnStop.TabIndex = 9;
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            btnStop.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            btnStop.Image = Properties.Resources.Stop;
+            btnStop.Location = new System.Drawing.Point(495, 300);
+            btnStop.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnStop.Name = "btnStop";
+            btnStop.Size = new System.Drawing.Size(28, 28);
+            btnStop.TabIndex = 9;
+            btnStop.UseVisualStyleBackColor = true;
+            btnStop.Click += btnStop_Click;
             // 
             // btnPlay
             // 
-            this.btnPlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPlay.Image = global::BeebSpriter.Properties.Resources.Play;
-            this.btnPlay.Location = new System.Drawing.Point(464, 300);
-            this.btnPlay.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(28, 28);
-            this.btnPlay.TabIndex = 10;
-            this.btnPlay.UseVisualStyleBackColor = true;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            btnPlay.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            btnPlay.Image = Properties.Resources.Play;
+            btnPlay.Location = new System.Drawing.Point(464, 300);
+            btnPlay.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnPlay.Name = "btnPlay";
+            btnPlay.Size = new System.Drawing.Size(28, 28);
+            btnPlay.TabIndex = 10;
+            btnPlay.UseVisualStyleBackColor = true;
+            btnPlay.Click += btnPlay_Click;
             // 
             // tbZoom
             // 
-            this.tbZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbZoom.Location = new System.Drawing.Point(217, 300);
-            this.tbZoom.Maximum = 50;
-            this.tbZoom.Minimum = 2;
-            this.tbZoom.Name = "tbZoom";
-            this.tbZoom.Size = new System.Drawing.Size(203, 45);
-            this.tbZoom.TabIndex = 11;
-            this.tbZoom.Value = 2;
-            this.tbZoom.Scroll += new System.EventHandler(this.tbZoom_Scroll);
+            tbZoom.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            tbZoom.Location = new System.Drawing.Point(217, 300);
+            tbZoom.Maximum = 50;
+            tbZoom.Minimum = 2;
+            tbZoom.Name = "tbZoom";
+            tbZoom.Size = new System.Drawing.Size(203, 45);
+            tbZoom.TabIndex = 11;
+            tbZoom.Value = 2;
+            tbZoom.Scroll += tbZoom_Scroll;
             // 
             // lblZoom
             // 
-            this.lblZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblZoom.AutoSize = true;
-            this.lblZoom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblZoom.Location = new System.Drawing.Point(419, 308);
-            this.lblZoom.Name = "lblZoom";
-            this.lblZoom.Size = new System.Drawing.Size(39, 21);
-            this.lblZoom.TabIndex = 12;
-            this.lblZoom.Text = "x 20";
+            lblZoom.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            lblZoom.AutoSize = true;
+            lblZoom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblZoom.Location = new System.Drawing.Point(419, 308);
+            lblZoom.Name = "lblZoom";
+            lblZoom.Size = new System.Drawing.Size(39, 21);
+            lblZoom.TabIndex = 12;
+            lblZoom.Text = "x 20";
+            // 
+            // cbAnimationSets
+            // 
+            cbAnimationSets.DisplayMember = "Name";
+            cbAnimationSets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cbAnimationSets.FormattingEnabled = true;
+            cbAnimationSets.Location = new System.Drawing.Point(14, 10);
+            cbAnimationSets.Name = "cbAnimationSets";
+            cbAnimationSets.Size = new System.Drawing.Size(185, 23);
+            cbAnimationSets.TabIndex = 13;
+            cbAnimationSets.ValueMember = "Name";
+            cbAnimationSets.SelectedValueChanged += cbAnimationSets_SelectedValueChanged;
+            // 
+            // btnAddAnimationSet
+            // 
+            btnAddAnimationSet.Image = Properties.Resources.add;
+            btnAddAnimationSet.Location = new System.Drawing.Point(206, 10);
+            btnAddAnimationSet.Margin = new System.Windows.Forms.Padding(1);
+            btnAddAnimationSet.Name = "btnAddAnimationSet";
+            btnAddAnimationSet.Size = new System.Drawing.Size(24, 24);
+            btnAddAnimationSet.TabIndex = 14;
+            btnAddAnimationSet.UseVisualStyleBackColor = true;
+            btnAddAnimationSet.Click += btnAddAnimationSet_Click;
+            // 
+            // btnEditAnimationSet
+            // 
+            btnEditAnimationSet.Image = Properties.Resources.Pencil;
+            btnEditAnimationSet.Location = new System.Drawing.Point(230, 10);
+            btnEditAnimationSet.Margin = new System.Windows.Forms.Padding(1);
+            btnEditAnimationSet.Name = "btnEditAnimationSet";
+            btnEditAnimationSet.Size = new System.Drawing.Size(24, 24);
+            btnEditAnimationSet.TabIndex = 15;
+            btnEditAnimationSet.UseVisualStyleBackColor = true;
+            btnEditAnimationSet.Click += btnEditAnimationSet_Click;
+            // 
+            // btnDeleteAnimationSet
+            // 
+            btnDeleteAnimationSet.Image = Properties.Resources.remove;
+            btnDeleteAnimationSet.Location = new System.Drawing.Point(254, 10);
+            btnDeleteAnimationSet.Margin = new System.Windows.Forms.Padding(1);
+            btnDeleteAnimationSet.Name = "btnDeleteAnimationSet";
+            btnDeleteAnimationSet.Size = new System.Drawing.Size(24, 24);
+            btnDeleteAnimationSet.TabIndex = 16;
+            btnDeleteAnimationSet.UseVisualStyleBackColor = true;
+            btnDeleteAnimationSet.Click += btnDeleteAnimationSet_Click;
             // 
             // AnimationPreview
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 343);
-            this.Controls.Add(this.lblZoom);
-            this.Controls.Add(this.tbZoom);
-            this.Controls.Add(this.btnPlay);
-            this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.btnSpriteMoveDown);
-            this.Controls.Add(this.btnSpriteMoveUp);
-            this.Controls.Add(this.btnDeleteSprite);
-            this.Controls.Add(this.lblSlow);
-            this.Controls.Add(this.lblFast);
-            this.Controls.Add(this.lbMode);
-            this.Controls.Add(this.tbSpeed);
-            this.Controls.Add(this.previewPanel);
-            this.Controls.Add(this.lbSpriteList);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MinimumSize = new System.Drawing.Size(504, 276);
-            this.Name = "AnimationPreview";
-            this.Text = "Animation previewer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AnimationPreview_FormClosing);
-            this.ResizeEnd += new System.EventHandler(this.AnimationPreview_ResizeEnd);
-            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbZoom)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(537, 343);
+            Controls.Add(btnDeleteAnimationSet);
+            Controls.Add(btnEditAnimationSet);
+            Controls.Add(btnAddAnimationSet);
+            Controls.Add(cbAnimationSets);
+            Controls.Add(lblZoom);
+            Controls.Add(tbZoom);
+            Controls.Add(btnPlay);
+            Controls.Add(btnStop);
+            Controls.Add(btnSpriteMoveDown);
+            Controls.Add(btnSpriteMoveUp);
+            Controls.Add(btnDeleteSprite);
+            Controls.Add(lblSlow);
+            Controls.Add(lblFast);
+            Controls.Add(lbMode);
+            Controls.Add(tbSpeed);
+            Controls.Add(previewPanel);
+            Controls.Add(lbSpriteList);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MinimumSize = new System.Drawing.Size(504, 276);
+            Name = "AnimationPreview";
+            Text = "Animation previewer";
+            FormClosing += AnimationPreview_FormClosing;
+            ResizeEnd += AnimationPreview_ResizeEnd;
+            ((System.ComponentModel.ISupportInitialize)tbSpeed).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbZoom).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -257,5 +302,9 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.TrackBar tbZoom;
         private System.Windows.Forms.Label lblZoom;
+        private System.Windows.Forms.ComboBox cbAnimationSets;
+        private System.Windows.Forms.Button btnAddAnimationSet;
+        private System.Windows.Forms.Button btnEditAnimationSet;
+        private System.Windows.Forms.Button btnDeleteAnimationSet;
     }
 }

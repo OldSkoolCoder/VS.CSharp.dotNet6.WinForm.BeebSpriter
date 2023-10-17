@@ -64,6 +64,7 @@
             editDefaultPaletteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             ChangeGfxModeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            ImportImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -75,6 +76,7 @@
             renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            tsmiAddToNewAnimationSet = new System.Windows.Forms.ToolStripMenuItem();
             addToAnimationPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             addAllSpritesToAnimationPreviewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -93,7 +95,6 @@
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ZoomOutoolStripButton = new System.Windows.Forms.ToolStripButton();
             ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
-            ImportImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             contextMenu.SuspendLayout();
             spriteContextMenu.SuspendLayout();
@@ -337,6 +338,13 @@
             ChangeGfxModeToolStripMenuItem1.Text = "Change Gfx Mode";
             ChangeGfxModeToolStripMenuItem1.Click += ChangeGfxModeToolStripMenuItem_Click;
             // 
+            // ImportImageToolStripMenuItem
+            // 
+            ImportImageToolStripMenuItem.Name = "ImportImageToolStripMenuItem";
+            ImportImageToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            ImportImageToolStripMenuItem.Text = "Import from Image";
+            ImportImageToolStripMenuItem.Click += ImportImageToolStripMenuItem_Click;
+            // 
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { aboutToolStripMenuItem });
@@ -391,48 +399,55 @@
             // spriteContextMenu
             // 
             spriteContextMenu.ImageScalingSize = new System.Drawing.Size(32, 32);
-            spriteContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { addCopyOfThisSpriteToolStripMenuItem, renameToolStripMenuItem, deleteToolStripMenuItem, toolStripMenuItem2, addToAnimationPreviewToolStripMenuItem, addAllSpritesToAnimationPreviewWindowToolStripMenuItem });
+            spriteContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { addCopyOfThisSpriteToolStripMenuItem, renameToolStripMenuItem, deleteToolStripMenuItem, toolStripMenuItem2, tsmiAddToNewAnimationSet, addToAnimationPreviewToolStripMenuItem, addAllSpritesToAnimationPreviewWindowToolStripMenuItem });
             spriteContextMenu.Name = "spriteContextMenu";
-            spriteContextMenu.Size = new System.Drawing.Size(266, 120);
+            spriteContextMenu.Size = new System.Drawing.Size(263, 142);
             // 
             // addCopyOfThisSpriteToolStripMenuItem
             // 
             addCopyOfThisSpriteToolStripMenuItem.Name = "addCopyOfThisSpriteToolStripMenuItem";
-            addCopyOfThisSpriteToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            addCopyOfThisSpriteToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             addCopyOfThisSpriteToolStripMenuItem.Text = "Make copy...";
             addCopyOfThisSpriteToolStripMenuItem.Click += addCopyOfThisSpriteToolStripMenuItem_Click;
             // 
             // renameToolStripMenuItem
             // 
             renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            renameToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            renameToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             renameToolStripMenuItem.Text = "Rename...";
             renameToolStripMenuItem.Click += renameToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            deleteToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new System.Drawing.Size(262, 6);
+            toolStripMenuItem2.Size = new System.Drawing.Size(259, 6);
+            // 
+            // tsmiAddToNewAnimationSet
+            // 
+            tsmiAddToNewAnimationSet.Name = "tsmiAddToNewAnimationSet";
+            tsmiAddToNewAnimationSet.Size = new System.Drawing.Size(262, 22);
+            tsmiAddToNewAnimationSet.Text = "Add to new animation set";
+            tsmiAddToNewAnimationSet.Click += tsmiAddToNewAnimationSet_Click;
             // 
             // addToAnimationPreviewToolStripMenuItem
             // 
             addToAnimationPreviewToolStripMenuItem.Name = "addToAnimationPreviewToolStripMenuItem";
-            addToAnimationPreviewToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
-            addToAnimationPreviewToolStripMenuItem.Text = "Add to animation preview";
+            addToAnimationPreviewToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            addToAnimationPreviewToolStripMenuItem.Text = "Add to existing animation set";
             addToAnimationPreviewToolStripMenuItem.Click += addToAnimationPreviewToolStripMenuItem_Click;
             // 
             // addAllSpritesToAnimationPreviewWindowToolStripMenuItem
             // 
             addAllSpritesToAnimationPreviewWindowToolStripMenuItem.Name = "addAllSpritesToAnimationPreviewWindowToolStripMenuItem";
-            addAllSpritesToAnimationPreviewWindowToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
-            addAllSpritesToAnimationPreviewWindowToolStripMenuItem.Text = "Add all sprites to Animation Preview";
+            addAllSpritesToAnimationPreviewWindowToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            addAllSpritesToAnimationPreviewWindowToolStripMenuItem.Text = "Add all sprites to new animation set";
             addAllSpritesToAnimationPreviewWindowToolStripMenuItem.Click += addAllSpritesToAnimationPreviewWindowToolStripMenuItem_Click;
             // 
             // openFileDialog1
@@ -568,13 +583,6 @@
             ZoomInToolStripButton.Text = "Zoom In";
             ZoomInToolStripButton.Click += ZoomInToolStripButton_Click;
             // 
-            // ImportImageToolStripMenuItem
-            // 
-            ImportImageToolStripMenuItem.Name = "ImportImageToolStripMenuItem";
-            ImportImageToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            ImportImageToolStripMenuItem.Text = "Import from Image";
-            ImportImageToolStripMenuItem.Click += ImportImageToolStripMenuItem_Click;
-            // 
             // SpriteSheetForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -670,6 +678,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem ChangeGfxModeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ImportImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAddToNewAnimationSet;
     }
 }
 
