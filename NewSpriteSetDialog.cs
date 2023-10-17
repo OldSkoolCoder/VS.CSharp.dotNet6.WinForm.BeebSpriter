@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace BeebSpriter
+{
+    public class NewSpriteSetDialog : CopySpriteDialog
+    {
+        public NewSpriteSetDialog()
+        {
+            Text = "Animation Set";
+        }
+
+        private void InitializeComponent()
+        {
+
+        }
+    }
+}

@@ -89,7 +89,7 @@ namespace BeebSpriter
             }
             else
             {
-                return Name;
+                return Name + "-OSK";
             }
         }
 

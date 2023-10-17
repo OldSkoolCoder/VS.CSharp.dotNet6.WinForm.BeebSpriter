@@ -53,6 +53,7 @@ namespace BeebSpriter
         private int yScale;
         private int bitsPerPixel;
         private List<Sprite> spriteList = new List<Sprite>();
+        private List<AnimationSet> animationSet = new List<AnimationSet>();
         private BackColour backgroundColour = BackColour.Transparent;
         private BeebPalette.Colour[] defaultPalette;
         private bool defaultShowGridLines = true;
@@ -249,7 +250,11 @@ namespace BeebSpriter
             set { this.spriteList = value; }
         }
 
-
+        public List<AnimationSet> AnimationSets
+        {
+            get { return this.animationSet; }
+            set { this.animationSet = value; }
+        }
 
         public SpriteSheet()
         {

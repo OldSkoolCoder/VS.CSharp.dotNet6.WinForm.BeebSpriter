@@ -9,6 +9,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using BeebSpriter.Enum;
+using BeebSpriter.Internal;
+using System.Linq;
+using System.Security.Policy;
 
 namespace BeebSpriter
 {
@@ -40,6 +43,9 @@ namespace BeebSpriter
 
             // Set the data source for the sprite list
             lbSpriteList.DataSource = spriteList;
+
+            // Set Data Source of animation sets
+            cbAnimationSets.DataSource = SpriteSheetForm.Instance.SpriteSheet.AnimationSets;
 
             // Initialise the Zoom Control
             setZoomLevel();
@@ -104,6 +110,11 @@ namespace BeebSpriter
             spriteList.Remove(sprite);
         }
 
+        public void ClearAnimationList()
+        {
+            cbAnimationSets.SelectedIndex = -1;
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int index = lbSpriteList.SelectedIndex;
@@ -127,7 +138,7 @@ namespace BeebSpriter
             }
         }
 
-        
+
         private void btnSpriteMoveDown_Click(object sender, EventArgs e)
         {
             int index = lbSpriteList.SelectedIndex;
@@ -285,6 +296,95 @@ namespace BeebSpriter
         {
             currentFrame = spriteNumber;
             previewPanel.Invalidate();
+        }
+
+        private void btnAddAnimationSet_Click(object sender, EventArgs e)
+        {
+            NewSpriteSetDialog nss = new NewSpriteSetDialog();
+            if (nss.ShowDialog() == DialogResult.OK)
+            {
+                AnimationSet animationSet = new AnimationSet();
+                animationSet.Name = nss.SpriteName;
+
+                foreach (Sprite spr in spriteList)
+                {
+                    animationSet.Sprites.Add(spr.Name);
+                }
+
+                SpriteSheetForm.Instance.SpriteSheet.AnimationSets.Add(animationSet);
+                SpriteSheetForm.Instance.IsUnsaved = true;
+                cbAnimationSets.DataSource = null;
+                cbAnimationSets.DataSource = SpriteSheetForm.Instance.SpriteSheet.AnimationSets;
+
+                cbAnimationSets.SelectedValue = nss.SpriteName;
+                cbAnimationSets.Invalidate();
+            }
+        }
+
+        private void cbAnimationSets_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbAnimationSets.SelectedIndex != -1)
+            {
+                spriteList.Clear();
+                AnimationSet animationSetSelected = SpriteSheetForm.Instance.SpriteSheet.AnimationSets[cbAnimationSets.SelectedIndex];
+
+                foreach (string spriteName in animationSetSelected.Sprites)
+                {
+                    foreach (Sprite spr in SpriteSheetForm.Instance.SpriteSheet.SpriteList)
+                    {
+                        if (spr.Name == spriteName)
+                        {
+                            spriteList.Add(spr);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                spriteList.Clear();
+            }
+        }
+
+        private void btnEditAnimationSet_Click(object sender, EventArgs e)
+        {
+            int SelectedIndex = cbAnimationSets.SelectedIndex;
+
+            if (SelectedIndex != -1)
+            {
+                AnimationSet animationSetSelected = SpriteSheetForm.Instance.SpriteSheet.AnimationSets[SelectedIndex];
+
+                animationSetSelected.Sprites.Clear();
+                foreach (Sprite spr in spriteList)
+                {
+                    animationSetSelected.Sprites.Add(spr.Name);
+                }
+
+                SpriteSheetForm.Instance.IsUnsaved = true;
+                cbAnimationSets.DataSource = null;
+                cbAnimationSets.DataSource = SpriteSheetForm.Instance.SpriteSheet.AnimationSets;
+
+                cbAnimationSets.SelectedIndex = SelectedIndex;
+                cbAnimationSets.Invalidate();
+            }
+        }
+
+        private void btnDeleteAnimationSet_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are You Sure About This?", "Delete Animation Set", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int index = cbAnimationSets.SelectedIndex;
+
+                if (index != -1 && index < cbAnimationSets.Items.Count)
+                {
+                    SpriteSheetForm.Instance.SpriteSheet.AnimationSets.RemoveAt(index);
+
+                    SpriteSheetForm.Instance.IsUnsaved = true;
+                    cbAnimationSets.DataSource = null;
+                    cbAnimationSets.DataSource = SpriteSheetForm.Instance.SpriteSheet.AnimationSets;
+                    ClearAnimationList();
+                    cbAnimationSets.Invalidate();
+                }
+            }
         }
     }
 }
