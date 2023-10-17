@@ -7,6 +7,9 @@ namespace BeebSpriter
 {
     public class BeebPalette
     {
+
+        private const int TRANSPARENT_COLOUR = 255;
+
         public enum Colour
         {
             Black = 0,
@@ -52,6 +55,11 @@ namespace BeebSpriter
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="numColours"></param>
+        /// <param name="palette"></param>
         public BeebPalette(int numColours, Colour[] palette)
         {
             NumColours = numColours;
@@ -65,8 +73,6 @@ namespace BeebSpriter
                 WinColours[i] = GetWindowsColour((Colour)(palette[i]));
             }
         }
-
-
 
         public static Color GetWindowsColour(Colour beebColour)
         {
@@ -111,7 +117,7 @@ namespace BeebSpriter
                 if (col == WinColours[i]) return i;
             }
 
-            return 255;
+            return TRANSPARENT_COLOUR;
         }
 
         /// <summary>

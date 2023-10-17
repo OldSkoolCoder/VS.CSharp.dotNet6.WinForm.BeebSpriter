@@ -262,24 +262,22 @@ namespace BeebSpriter.Internal
         {
             Bitmap newImage = new(image.Width, image.Height);
 
+            SolidBrush transparentBrush = new(Color.Gray);
+
             Graphics gfx = Graphics.FromImage(newImage);
-
-            SolidBrush transBrush = new(Color.Gray);
-
-            gfx.FillRectangle(transBrush, 0, 0, image.Width, image.Height);
-
-            gfx.TranslateTransform((float)newImage.Width / 2, (float)newImage.Height / 2);
-
-            gfx.RotateTransform(angle);
-
-            gfx.TranslateTransform(-(float)newImage.Width / 2, -(float)newImage.Height / 2);
 
             gfx.SmoothingMode = SmoothingMode.None;
             gfx.InterpolationMode = InterpolationMode.NearestNeighbor;
             gfx.CompositingMode = CompositingMode.SourceCopy;
             gfx.CompositingQuality = CompositingQuality.HighSpeed;
             gfx.PixelOffsetMode = PixelOffsetMode.Half;
-            
+
+            gfx.FillRectangle(transparentBrush, 0, 0, image.Width, image.Height);
+
+            gfx.TranslateTransform((float)newImage.Width / 2, (float)newImage.Height / 2);
+            gfx.RotateTransform(angle);
+            gfx.TranslateTransform(-(float)newImage.Width / 2, -(float)newImage.Height / 2);
+
             gfx.DrawImage(image, new Point(0, 0));
             gfx.Dispose();
 

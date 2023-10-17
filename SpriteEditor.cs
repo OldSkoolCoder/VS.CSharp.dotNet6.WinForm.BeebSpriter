@@ -1934,12 +1934,14 @@ namespace BeebSpriter
         /// <param name="e"></param>
         private void Rotator_Click(object sender, EventArgs e)
         {
-            SpriteRotator rotator = new SpriteRotator(sprite);
+            SpriteRotator rotator = new(sprite, pixelSizeX, pixelSizeY);
 
             if (rotator.ShowDialog() == DialogResult.OK)
             {
-                Rectangle rect = new(0, 0, sprite.Width, sprite.Height);
+                AddHistory();
+
                 BeebPalette palette = new(sprite.NumColours, sprite.Palette);
+                Rectangle rect = new(0, 0, sprite.Width, sprite.Height);
 
                 sprite.Bitmap = rotator.Image.ExtractSprite(palette, rect);
 

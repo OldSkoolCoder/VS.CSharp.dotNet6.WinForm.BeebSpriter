@@ -9,29 +9,39 @@ namespace BeebSpriter
     public partial class SpriteRotator : Form
     {
         private const int ZOOM_INCREMENT = 1;
-        private const int ZOOM_MIN_FACTOR = 1;
+        private const int ZOOM_MIN_FACTOR = 4;
         private const int ZOOM_MAX_FACTOR = 20;
 
         public Bitmap Image => ImageBox.Image;
 
-        public SpriteRotator(Sprite sprite)
+        public SpriteRotator(Sprite sprite, int pixelSizeX, int pixelSizeY)
         {
             InitializeComponent();
 
-            ImageBox.ZoomFactor = 8;
-
             BeebPalette palette = new(sprite.NumColours, sprite.Palette);
+            
             ImageBox.CenterImage = true;
+            ImageBox.ZoomFactor = 8;
+            ImageBox.PixelAspectRatio = new Point(pixelSizeX, pixelSizeY);
             ImageBox.Image = sprite.ToImage(palette);
-            //ImageBox.OriginalImage = ImageBox.Image;
-            ImageBox.ImageSize = new System.Drawing.Size(sprite.Width, sprite.Height);
+            ImageBox.ImageSize = new Size(sprite.Width, sprite.Height);
             ImageBox.Invalidate();
-
+            
             ZoomToolStripStatusLabel.Text = string.Format("Zoom x{0}", ImageBox.ZoomFactor);
         }
 
         /// <summary>
-        ///
+        /// Form Resized
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SpriteRotator_Resize(object sender, EventArgs e)
+        {
+            ImageBox.Invalidate();
+        }
+
+        /// <summary>
+        /// Show / Hide Pixel Grid
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -42,7 +52,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        ///
+        /// Zoom Out
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -55,7 +65,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        ///
+        /// Zoom In
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -67,6 +77,10 @@ namespace BeebSpriter
             }
         }
 
+        /// <summary>
+        /// Zoom
+        /// </summary>
+        /// <param name="value"></param>
         private void Zoom(int value)
         {
             ImageBox.ZoomFactor += value;
@@ -75,7 +89,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        ///
+        /// Rotate image by set angle
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -85,7 +99,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        ///
+        /// OK button Clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -96,7 +110,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        ///
+        /// Cancel button clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -106,9 +120,6 @@ namespace BeebSpriter
             Close();
         }
 
-        private void SpriteRotator_Resize(object sender, EventArgs e)
-        {
-            ImageBox.Invalidate();
-        }
+        
     }
 }

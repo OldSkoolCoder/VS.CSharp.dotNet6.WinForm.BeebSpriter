@@ -203,7 +203,7 @@
             tsmiRotateClockwise.Name = "tsmiRotateClockwise";
             tsmiRotateClockwise.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Oemplus;
             tsmiRotateClockwise.Size = new System.Drawing.Size(302, 22);
-            tsmiRotateClockwise.Text = "Rotate Clockwise";
+            tsmiRotateClockwise.Text = "Rotate 90º Clockwise";
             tsmiRotateClockwise.Click += tsmiRotateClockwise_Click;
             // 
             // tsmiRotateAntiClockwise
@@ -212,7 +212,7 @@
             tsmiRotateAntiClockwise.Name = "tsmiRotateAntiClockwise";
             tsmiRotateAntiClockwise.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.OemMinus;
             tsmiRotateAntiClockwise.Size = new System.Drawing.Size(302, 22);
-            tsmiRotateAntiClockwise.Text = "Rotate AntiClockwise";
+            tsmiRotateAntiClockwise.Text = "Rotate 90º AntiClockwise";
             tsmiRotateAntiClockwise.Click += tsmiRotateAntiClockwise_Click;
             // 
             // Rotator

@@ -13,7 +13,7 @@ namespace BeebSpriter.Controls
         private bool IsSelected;
         private Point SelectionStart;
         private Point SelectionEnd;
-        private Size PixelGridSize;
+        //private Size PixelGridSize;
 
         public int ZoomFactor { get; set; }
         public Bitmap Image { get; set; }
@@ -39,8 +39,7 @@ namespace BeebSpriter.Controls
 
             CenterImage = false;
 
-            PixelGridSize = new Size(2, 2);
-            PixelAspectRatio = new Point(2, 2);
+            PixelAspectRatio = new Point(1, 1);
 
             PixelPenGrid = new Pen(SystemColors.ControlDarkDark)
             {
@@ -208,7 +207,7 @@ namespace BeebSpriter.Controls
 
             if (ShowGrid)
             {
-                PaintGrid(e.Graphics, ImageRect, PixelGridSize, PixelPenGrid);
+                PaintGrid(e.Graphics, ImageRect, (Size)PixelAspectRatio, PixelPenGrid);
             }
 
             PaintSprites(e.Graphics, SpritePenGrid);
@@ -225,7 +224,7 @@ namespace BeebSpriter.Controls
         {
             foreach (Rectangle rect in SpriteList)
             {
-                Rectangle zoomRect = new(rect.X * ZoomFactor, rect.Y * ZoomFactor, rect.Width * ZoomFactor, rect.Height * ZoomFactor);
+                Rectangle zoomRect = new(rect.X * PixelAspectRatio.X * ZoomFactor, rect.Y * PixelAspectRatio.Y * ZoomFactor, rect.Width * PixelAspectRatio.X * ZoomFactor, rect.Height * PixelAspectRatio.Y * ZoomFactor);
                 gfx.DrawRectangle(pen, zoomRect);
             }
         }
