@@ -1,13 +1,9 @@
 ﻿using BeebSpriter.Enum;
+using BeebSpriter.Internal;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
-using static BeebSpriter.BeebPalette;
 
 namespace BeebSpriter
 {
@@ -84,7 +80,7 @@ namespace BeebSpriter
         /// <summary>
         ///  List of possible editing modes
         /// </summary>
-        enum Mode
+        private enum Mode
         {
             Draw,
             Fill,
@@ -155,7 +151,7 @@ namespace BeebSpriter
         /// </summary>
         private Panel[] colourPanels;
 
-        struct Snapshot
+        private struct Snapshot
         {
             public int width;
             public int height;
@@ -167,6 +163,7 @@ namespace BeebSpriter
         ///  A circular stack is one whose oldest elements are dropped forever when it runs out of space
         /// </summary>
         private CircularStack<Snapshot> undoBuffer = new CircularStack<Snapshot>(64);
+
         private CircularStack<Snapshot> redoBuffer = new CircularStack<Snapshot>(64);
 
         private ResizeDialog resizeDialog = new ResizeDialog();
@@ -205,7 +202,7 @@ namespace BeebSpriter
             ApplyVerticalBlockDividersToForm();
 
             ShowGrid.Checked = spriteSheet.DefaultShowGridLines;
-          
+
             if (sprite.Name != "")
             {
                 this.Text = sprite.Name;
@@ -275,7 +272,6 @@ namespace BeebSpriter
 
         private void timer_Tick(object sender, EventArgs e)
         {
-
             if (sprite.Palette.Length > 7)
             {
                 for (int index = 8; index < 16; index++)
@@ -289,7 +285,6 @@ namespace BeebSpriter
             }
         }
 
-
         /// <summary>
         ///  Just before the form is closed, NULL its reference in the SpritePanel that spawned it,
         ///  so the GC is free to delete it when it wants
@@ -299,7 +294,6 @@ namespace BeebSpriter
             spritePanel.ForgetEditorForm();
         }
 
-
         /// <summary>
         ///  Called when the panel is resized
         /// </summary>
@@ -307,9 +301,6 @@ namespace BeebSpriter
         {
             RepositionZoomedSprite();
         }
-
-
-
 
         #region Zoom
 
@@ -324,7 +315,6 @@ namespace BeebSpriter
             int y = Math.Max(0, (editorContainer.ClientSize.Height - sprite.Height * yzoom) / 2);
             editorPanel.Location = new Point(x, y);
         }
-
 
         /// <summary>
         ///  Applies the current value of this.zoom to various controls in the form,
@@ -341,10 +331,7 @@ namespace BeebSpriter
             editorPanel.Invalidate();
         }
 
-
-
-        #endregion
-
+        #endregion Zoom
 
         #region Character block dividers
 
@@ -383,7 +370,6 @@ namespace BeebSpriter
 
             editorPanel.Invalidate();
         }
-
 
         /// <summary>
         ///  Applies the current value of verticalBlockDividers to the menu items in the form,
@@ -485,8 +471,7 @@ namespace BeebSpriter
             ApplyVerticalBlockDividersToForm();
         }
 
-        #endregion
-
+        #endregion Character block dividers
 
         /// <summary>
         ///  Draws the zoomed sprite
@@ -617,10 +602,7 @@ namespace BeebSpriter
                 dc.DrawRectangle(new Pen(Color.LightGray, 3),
                                  rect);
             }
-
         }
-
-
 
         #region Colour/palette selection
 
@@ -859,8 +841,7 @@ namespace BeebSpriter
             dc.FillPolygon(eraseBrush, new Point[] { botLeft, topRight, botRight });
         }
 
-        #endregion
-
+        #endregion Colour/palette selection
 
         #region Editing implementation
 
@@ -940,7 +921,6 @@ namespace BeebSpriter
                     }
                     break;
             }
-
         }
 
         /// <summary>
@@ -1030,7 +1010,6 @@ namespace BeebSpriter
                             // i.e. the union of the previous and the current bounding rectangle.
                             editorPanel.Invalidate();
                         }
-
                     }
                     break;
             }
@@ -1044,7 +1023,6 @@ namespace BeebSpriter
         {
             isMouseHeld = false;
         }
-
 
         /// <summary>
         ///  Bresenham line implementation
@@ -1101,7 +1079,6 @@ namespace BeebSpriter
             return list;
         }
 
-
         /// <summary>
         ///  Called in draw mode to set pixels in the sprite.
         ///  A line is interpolated between the last known mouse position and the one passed in.
@@ -1155,7 +1132,6 @@ namespace BeebSpriter
                                                        (bottom - top + 2) * pixelSizeY));
         }
 
-
         /// <summary>
         ///  Called to do a flood fill
         /// </summary>
@@ -1179,7 +1155,6 @@ namespace BeebSpriter
             panel.Invalidate();
             spritePanel.Panel.Invalidate();
         }
-
 
         /// <summary>
         ///  Recursive method which does the flood fill.
@@ -1247,7 +1222,6 @@ namespace BeebSpriter
             }
         }
 
-
         /// <summary>
         ///  Called when in insert mode to insert a row into the bimap
         /// </summary>
@@ -1278,7 +1252,6 @@ namespace BeebSpriter
             panel.Invalidate();
             spritePanel.Panel.Invalidate();
         }
-
 
         /// <summary>
         ///  Called when in delete mode to delete the clicked row
@@ -1311,7 +1284,6 @@ namespace BeebSpriter
             spritePanel.Panel.Invalidate();
         }
 
-
         /// <summary>
         ///  Called when in insert mode to insert a column into the bimap
         /// </summary>
@@ -1343,7 +1315,6 @@ namespace BeebSpriter
             spritePanel.Panel.Invalidate();
         }
 
-
         /// <summary>
         ///  Called when in delete mode to delete the clicked column
         /// </summary>
@@ -1374,7 +1345,6 @@ namespace BeebSpriter
             panel.Invalidate();
             spritePanel.Panel.Invalidate();
         }
-
 
         /// <summary>
         ///  Copies the contents of the clipboard to the location specified in the MouseEventArgs
@@ -1409,8 +1379,7 @@ namespace BeebSpriter
             spritePanel.Panel.Invalidate();
         }
 
-        #endregion
-
+        #endregion Editing implementation
 
         #region Edit mode selection
 
@@ -1448,7 +1417,6 @@ namespace BeebSpriter
             // Set new edit mode
             editMode = mode;
         }
-
 
         private void button_modeDraw_Click(object sender, EventArgs e)
         {
@@ -1489,7 +1457,6 @@ namespace BeebSpriter
         {
             SetNewEditMode(sender as ToolStripButton, Mode.Paste);
         }
-
 
         /// <summary>
         ///  The resize doesn't work like a normal edit mode; instead it launches a dialog box
@@ -1532,9 +1499,7 @@ namespace BeebSpriter
             }
         }
 
-
-        #endregion
-
+        #endregion Edit mode selection
 
         #region Select functionality
 
@@ -1550,7 +1515,6 @@ namespace BeebSpriter
             editorPanel.Invalidate();
         }
 
-
         /// <summary>
         ///  Called when Clear Selection is clicked
         /// </summary>
@@ -1559,7 +1523,6 @@ namespace BeebSpriter
             isSelection = false;
             editorPanel.Invalidate();
         }
-
 
         /// <summary>
         ///  Returns the sprite pixel bounds of the selected area
@@ -1571,7 +1534,6 @@ namespace BeebSpriter
             endx = Math.Min(sprite.Width - 1, Math.Max(selectionOrigin.X, selectionEnd.X) / xzoom);
             endy = Math.Min(sprite.Height - 1, Math.Max(selectionOrigin.Y, selectionEnd.Y) / yzoom);
         }
-
 
         /// <summary>
         ///  Helper method which puts the selected area into the clipboard
@@ -1604,7 +1566,6 @@ namespace BeebSpriter
             }
         }
 
-
         /// <summary>
         ///  Called when 'Cut' is clicked on the Edit menu
         /// </summary>
@@ -1632,7 +1593,6 @@ namespace BeebSpriter
             }
         }
 
-
         /// <summary>
         ///  Called when 'Copy' is clicked on the Edit menu
         /// </summary>
@@ -1641,7 +1601,6 @@ namespace BeebSpriter
             AddToClipboard();
         }
 
-
         /// <summary>
         ///  Called when 'Paste' is clicked on the Edit menu
         /// </summary>
@@ -1649,7 +1608,6 @@ namespace BeebSpriter
         {
             SetNewEditMode(button_modePaste, Mode.Paste);
         }
-
 
         /// <summary>
         ///  Flips the selected area left-right
@@ -1678,9 +1636,7 @@ namespace BeebSpriter
                 editorPanel.Invalidate();
                 spritePanel.Panel.Invalidate();
             }
-
         }
-
 
         /// <summary>
         ///  Flips the selected area up-down
@@ -1711,8 +1667,7 @@ namespace BeebSpriter
             }
         }
 
-        #endregion
-
+        #endregion Select functionality
 
         #region Undo/redo
 
@@ -1725,7 +1680,6 @@ namespace BeebSpriter
             snapshot.bitmap = (byte[])sprite.Bitmap.Clone();
             undoBuffer.Push(snapshot);
         }
-
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1783,8 +1737,7 @@ namespace BeebSpriter
             }
         }
 
-
-        #endregion
+        #endregion Undo/redo
 
         private void tsmiRotateClockwise_Click(object sender, EventArgs e)
         {
@@ -1879,7 +1832,6 @@ namespace BeebSpriter
 
             editorPanel.Invalidate();
             spritePanel.Panel.Invalidate();
-
         }
 
         /// <summary>
@@ -1902,7 +1854,6 @@ namespace BeebSpriter
                 editorPanel.Invalidate();
                 spritePanel.Panel.Invalidate();
             }
-
         }
 
         /// <summary>
@@ -1976,5 +1927,27 @@ namespace BeebSpriter
             ApplyZoomToForm();
         }
 
+        /// <summary>
+        /// Sprite Z-Rotator
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Rotator_Click(object sender, EventArgs e)
+        {
+            SpriteRotator rotator = new SpriteRotator(sprite);
+
+            if (rotator.ShowDialog() == DialogResult.OK)
+            {
+                Rectangle rect = new(0, 0, sprite.Width, sprite.Height);
+                BeebPalette palette = new(sprite.NumColours, sprite.Palette);
+
+                sprite.Bitmap = rotator.Image.ExtractSprite(palette, rect);
+
+                SpriteSheetForm.Instance.IsUnsaved = true;
+
+                editorPanel.Invalidate();
+                spritePanel.Panel.Invalidate();
+            }
+        }
     }
 }

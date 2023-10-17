@@ -54,6 +54,9 @@
     <Compile Update="SpriteEditor.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SpriteRotator.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SpriteSheetForm.cs">
       <SubType>Form</SubType>
     </Compile>

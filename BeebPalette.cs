@@ -52,6 +52,22 @@ namespace BeebSpriter
             }
         }
 
+        public BeebPalette(int numColours, Colour[] palette)
+        {
+            NumColours = numColours;
+
+            BeebColours = new Colour[NumColours];
+            WinColours = new Color[NumColours];
+
+            for (int i = 0; i < NumColours; i++)
+            {
+                BeebColours[i] = palette[i];
+                WinColours[i] = GetWindowsColour((Colour)(palette[i]));
+            }
+        }
+
+
+
         public static Color GetWindowsColour(Colour beebColour)
         {
             switch (beebColour)
@@ -95,7 +111,7 @@ namespace BeebSpriter
                 if (col == WinColours[i]) return i;
             }
 
-            return 0;
+            return 255;
         }
 
         /// <summary>
