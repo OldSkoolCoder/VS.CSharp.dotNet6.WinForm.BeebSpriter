@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeebSpriter.Enum;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -10,6 +11,56 @@ namespace BeebSpriter.Internal
 {
     internal static class Extensions
     {
+        /// <summary>
+        /// Converts the object value of this instance to its equivalent integer representation.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>Converted object or default value of 0</returns>
+        public static int ToInteger(this object obj)
+        {
+            int result = 0;
+
+            if (obj != null && !int.TryParse(obj.ToString(), out result))
+                result = 0;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Converts the object value of this instance to its equivalent hex representation.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="digits"></param>
+        /// <returns></returns>
+        public static string ToHex(this Object obj)
+        {
+            string result = string.Empty;
+
+            if (obj != null)
+            {
+                result = string.Format("{0:X2}", obj.ToInteger());
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Converts the object value of this instance to its equivalent binary representation.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>Converted object or default value of 00000000</returns>
+        public static string ToBinary(this Object obj)
+        {
+            string result = string.Empty;
+
+            if (obj != null)
+            {
+                result = Convert.ToString(obj.ToInteger(), 2).PadLeft(8, '0');
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Get the description field from the Enum
         /// </summary>
@@ -282,6 +333,36 @@ namespace BeebSpriter.Internal
             gfx.Dispose();
 
             return newImage;
+        }
+
+        /// <summary>
+        /// Convert C64 colour to Beeb colour
+        /// </summary>
+        /// <param name="colour"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static BeebColourType ToBeebColour(this C64ColourType colour)
+        {
+            return colour switch
+            {
+                C64ColourType.Black => BeebColourType.Black,
+                C64ColourType.White => BeebColourType.White,
+                C64ColourType.Red => BeebColourType.Red,
+                C64ColourType.Cyan => BeebColourType.Cyan,
+                C64ColourType.Purple => BeebColourType.Magenta,
+                C64ColourType.Green => BeebColourType.Green,
+                C64ColourType.Blue => BeebColourType.Blue,
+                C64ColourType.Yellow => BeebColourType.Yellow,
+                C64ColourType.Orange => BeebColourType.Yellow,
+                C64ColourType.Brown => BeebColourType.Red,
+                C64ColourType.Pink => BeebColourType.Magenta,
+                C64ColourType.DarkGrey => BeebColourType.Black,
+                C64ColourType.MediumGrey => BeebColourType.Blue,
+                C64ColourType.LightGreen => BeebColourType.Green,
+                C64ColourType.LightBlue => BeebColourType.Blue,
+                C64ColourType.LightGrey => BeebColourType.White,
+                _ => throw new Exception("Unknown Colour"),
+            };
         }
     }
 };

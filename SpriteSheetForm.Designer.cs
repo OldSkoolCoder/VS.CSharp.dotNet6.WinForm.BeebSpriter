@@ -95,6 +95,8 @@
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ZoomOutoolStripButton = new System.Windows.Forms.ToolStripButton();
             ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
+            ImportSpritePadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             menuStrip1.SuspendLayout();
             contextMenu.SuspendLayout();
             spriteContextMenu.SuspendLayout();
@@ -307,7 +309,7 @@
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem, toolStripSeparator3, ChangeGfxModeToolStripMenuItem1, ImportImageToolStripMenuItem });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem, toolStripSeparator3, ChangeGfxModeToolStripMenuItem1, toolStripMenuItem5, ImportImageToolStripMenuItem, ImportSpritePadToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             toolsToolStripMenuItem.Text = "Tools";
@@ -583,6 +585,18 @@
             ZoomInToolStripButton.Text = "Zoom In";
             ZoomInToolStripButton.Click += ZoomInToolStripButton_Click;
             // 
+            // ImportSpritePadToolStripMenuItem
+            // 
+            ImportSpritePadToolStripMenuItem.Name = "ImportSpritePadToolStripMenuItem";
+            ImportSpritePadToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            ImportSpritePadToolStripMenuItem.Text = "Import from SpritePad";
+            ImportSpritePadToolStripMenuItem.Click += ImportSpritePadToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem5
+            // 
+            toolStripMenuItem5.Name = "toolStripMenuItem5";
+            toolStripMenuItem5.Size = new System.Drawing.Size(190, 6);
+            // 
             // SpriteSheetForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -679,6 +693,8 @@
         private System.Windows.Forms.ToolStripMenuItem ChangeGfxModeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ImportImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddToNewAnimationSet;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem ImportSpritePadToolStripMenuItem;
     }
 }
 
