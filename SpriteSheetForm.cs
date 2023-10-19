@@ -1225,17 +1225,15 @@ namespace BeebSpriter
 
                 // Load the SpritePad data into the SpritePad class
                 spritePad.Generate(openFileDialog.FileName);
-                
+
                 // Use Mode 2
                 NewSpriteSheet(2);
 
                 // Create Default 16 colour palette
-                BeebPalette palette = new(16);  
+                BeebPalette palette = new(16);
 
-                int spriteNum = 0;
-               
                 // Convert the SpritePad data into BeebSpriter spritesheet
-                foreach (byte[] itm in spritePad.Data)
+                for (int spriteNum = 0; spriteNum < spritePad.Data.Count; spriteNum++)
                 {
                     string spriteName = String.Format("Sprite_{0}", spriteNum + 1);
 
@@ -1248,8 +1246,6 @@ namespace BeebSpriter
                     CreateSpritePanel(sprite);
 
                     SpriteSheet.SpriteList.Add(sprite);
-
-                    spriteNum++;
                 }
 
                 // Add a RichTextBox to the form and un-comment the below function
