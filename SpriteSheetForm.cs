@@ -1204,5 +1204,58 @@ namespace BeebSpriter
 
             animationPreview.Add(spritePanel.Sprite);
         }
+
+        /// <summary>
+        /// Import sprites from SpritePad
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportSpritePadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Open SpritePad File",
+                Filter = "SpritePad C64 project files|*.spd",
+                DefaultExt = "spd"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                SpritePad spritePad = new();
+
+                // Load the SpritePad data into the SpritePad class
+                spritePad.Generate(openFileDialog.FileName);
+
+                // Use Mode 2
+                NewSpriteSheet(2);
+
+                // Create Default 16 colour palette
+                BeebPalette palette = new(16);
+
+                // Convert the SpritePad data into BeebSpriter spritesheet
+                for (int spriteNum = 0; spriteNum < spritePad.Data.Count; spriteNum++)
+                {
+                    string spriteName = String.Format("Sprite_{0}", spriteNum + 1);
+
+                    // Generate the BeebSpriter sprites from the SpritePad data
+                    Sprite sprite = new(spriteName, 12, 21, palette.BeebColours)
+                    {
+                        Bitmap = spritePad.ToBytes(spriteNum)
+                    };
+
+                    CreateSpritePanel(sprite);
+
+                    SpriteSheet.SpriteList.Add(sprite);
+                }
+
+                // Add a RichTextBox to the form and un-comment the below function
+                // to see the data from the SpritePad
+                // Useful for debugging purposes
+                // spritePad.ShowData(RichTextBox1);
+
+                IsUnsaved = true;
+                SetAsOpened();
+            }
+        }
     }
 }
