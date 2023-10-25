@@ -64,7 +64,9 @@
             editDefaultPaletteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             ChangeGfxModeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             ImportImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ImportSpritePadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -95,8 +97,7 @@
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ZoomOutoolStripButton = new System.Windows.Forms.ToolStripButton();
             ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
-            ImportSpritePadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            ImportFromSEUCKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             contextMenu.SuspendLayout();
             spriteContextMenu.SuspendLayout();
@@ -309,7 +310,7 @@
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem, toolStripSeparator3, ChangeGfxModeToolStripMenuItem1, toolStripMenuItem5, ImportImageToolStripMenuItem, ImportSpritePadToolStripMenuItem });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem, toolStripSeparator3, ChangeGfxModeToolStripMenuItem1, toolStripMenuItem5, ImportImageToolStripMenuItem, ImportSpritePadToolStripMenuItem, ImportFromSEUCKToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             toolsToolStripMenuItem.Text = "Tools";
@@ -340,12 +341,24 @@
             ChangeGfxModeToolStripMenuItem1.Text = "Change Gfx Mode";
             ChangeGfxModeToolStripMenuItem1.Click += ChangeGfxModeToolStripMenuItem_Click;
             // 
+            // toolStripMenuItem5
+            // 
+            toolStripMenuItem5.Name = "toolStripMenuItem5";
+            toolStripMenuItem5.Size = new System.Drawing.Size(190, 6);
+            // 
             // ImportImageToolStripMenuItem
             // 
             ImportImageToolStripMenuItem.Name = "ImportImageToolStripMenuItem";
             ImportImageToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             ImportImageToolStripMenuItem.Text = "Import from Image";
             ImportImageToolStripMenuItem.Click += ImportImageToolStripMenuItem_Click;
+            // 
+            // ImportSpritePadToolStripMenuItem
+            // 
+            ImportSpritePadToolStripMenuItem.Name = "ImportSpritePadToolStripMenuItem";
+            ImportSpritePadToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            ImportSpritePadToolStripMenuItem.Text = "Import from SpritePad";
+            ImportSpritePadToolStripMenuItem.Click += ImportSpritePadToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -585,17 +598,12 @@
             ZoomInToolStripButton.Text = "Zoom In";
             ZoomInToolStripButton.Click += ZoomInToolStripButton_Click;
             // 
-            // ImportSpritePadToolStripMenuItem
+            // ImportFromSEUCKToolStripMenuItem
             // 
-            ImportSpritePadToolStripMenuItem.Name = "ImportSpritePadToolStripMenuItem";
-            ImportSpritePadToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            ImportSpritePadToolStripMenuItem.Text = "Import from SpritePad";
-            ImportSpritePadToolStripMenuItem.Click += ImportSpritePadToolStripMenuItem_Click;
-            // 
-            // toolStripMenuItem5
-            // 
-            toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new System.Drawing.Size(190, 6);
+            ImportFromSEUCKToolStripMenuItem.Name = "ImportFromSEUCKToolStripMenuItem";
+            ImportFromSEUCKToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            ImportFromSEUCKToolStripMenuItem.Text = "Import from SEUCK";
+            ImportFromSEUCKToolStripMenuItem.Click += ImportFromSEUCKToolStripMenuItem_Click;
             // 
             // SpriteSheetForm
             // 
@@ -695,6 +703,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiAddToNewAnimationSet;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem ImportSpritePadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ImportFromSEUCKToolStripMenuItem;
     }
 }
 

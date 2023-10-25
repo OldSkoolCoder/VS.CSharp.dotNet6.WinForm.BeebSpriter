@@ -1257,5 +1257,53 @@ namespace BeebSpriter
                 SetAsOpened();
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportFromSEUCKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Import SEUCK Sprite Data",
+                Filter = "SEUCK sprite files (*.a)|*.a;|Any file (*.*)|*.*",
+                DefaultExt = "A"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                SEUCK seuck = new();
+
+                // Load the SpritePad data into the SpritePad class
+                seuck.Generate(openFileDialog.FileName);
+
+                // Use Mode 2
+                NewSpriteSheet(2);
+
+                // Create Default 16 colour palette
+                BeebPalette palette = new(16);
+
+                // Convert the SpritePad data into BeebSpriter spritesheet
+                for (int spriteNum = 0; spriteNum < seuck.Data.Count; spriteNum++)
+                {
+                    string spriteName = String.Format("Sprite_{0}", spriteNum + 1);
+
+                    // Generate the BeebSpriter sprites from the SpritePad data
+                    Sprite sprite = new(spriteName, 12, 21, palette.BeebColours)
+                    {
+                        Bitmap = seuck.ToBytes(spriteNum)
+                    };
+
+                    CreateSpritePanel(sprite);
+
+                    SpriteSheet.SpriteList.Add(sprite);
+                }
+
+                IsUnsaved = true;
+                SetAsOpened();
+            }
+        }
     }
 }
