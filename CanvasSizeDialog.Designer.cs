@@ -1,6 +1,6 @@
 ﻿namespace BeebSpriter
 {
-    partial class ResizeDialog
+    partial class CanvasSizeDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -32,9 +32,9 @@
             label1 = new System.Windows.Forms.Label();
             numericHeight = new System.Windows.Forms.NumericUpDown();
             numericWidth = new System.Windows.Forms.NumericUpDown();
-            ButtonOK = new System.Windows.Forms.Button();
-            ButtonCancel = new System.Windows.Forms.Button();
             ImageBox = new Controls.ImageBox();
+            ButtonCancel = new System.Windows.Forms.Button();
+            ButtonOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)numericHeight).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericWidth).BeginInit();
             SuspendLayout();
@@ -81,28 +81,6 @@
             numericWidth.TabIndex = 5;
             numericWidth.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // ButtonOK
-            // 
-            ButtonOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
-            ButtonOK.Location = new System.Drawing.Point(216, 151);
-            ButtonOK.Name = "ButtonOK";
-            ButtonOK.Size = new System.Drawing.Size(75, 23);
-            ButtonOK.TabIndex = 11;
-            ButtonOK.Text = "&OK";
-            ButtonOK.UseVisualStyleBackColor = true;
-            ButtonOK.Click += ButtonOK_Click;
-            // 
-            // ButtonCancel
-            // 
-            ButtonCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
-            ButtonCancel.Location = new System.Drawing.Point(297, 151);
-            ButtonCancel.Name = "ButtonCancel";
-            ButtonCancel.Size = new System.Drawing.Size(75, 23);
-            ButtonCancel.TabIndex = 12;
-            ButtonCancel.Text = "Cancel";
-            ButtonCancel.UseVisualStyleBackColor = true;
-            ButtonCancel.Click += ButtonCancel_Click;
-            // 
             // ImageBox
             // 
             ImageBox.AutoScroll = true;
@@ -110,17 +88,39 @@
             ImageBox.CenterImage = false;
             ImageBox.Image = null;
             ImageBox.ImageSize = new System.Drawing.Size(0, 0);
-            ImageBox.Location = new System.Drawing.Point(13, 38);
+            ImageBox.Location = new System.Drawing.Point(29, 32);
             ImageBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             ImageBox.Name = "ImageBox";
             ImageBox.OriginalImage = null;
             ImageBox.PixelAspectRatio = new System.Drawing.Point(1, 1);
             ImageBox.ShowGrid = true;
             ImageBox.Size = new System.Drawing.Size(143, 107);
-            ImageBox.TabIndex = 13;
+            ImageBox.TabIndex = 16;
             ImageBox.ZoomFactor = 5;
             // 
-            // ResizeDialog
+            // ButtonCancel
+            // 
+            ButtonCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            ButtonCancel.Location = new System.Drawing.Point(297, 151);
+            ButtonCancel.Name = "ButtonCancel";
+            ButtonCancel.Size = new System.Drawing.Size(75, 23);
+            ButtonCancel.TabIndex = 15;
+            ButtonCancel.Text = "Cancel";
+            ButtonCancel.UseVisualStyleBackColor = true;
+            ButtonCancel.Click += ButtonCancel_Click;
+            // 
+            // ButtonOK
+            // 
+            ButtonOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            ButtonOK.Location = new System.Drawing.Point(216, 151);
+            ButtonOK.Name = "ButtonOK";
+            ButtonOK.Size = new System.Drawing.Size(75, 23);
+            ButtonOK.TabIndex = 14;
+            ButtonOK.Text = "&OK";
+            ButtonOK.UseVisualStyleBackColor = true;
+            ButtonOK.Click += ButtonOK_Click;
+            // 
+            // CanvasResizeDialog
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -135,9 +135,9 @@
             Controls.Add(numericWidth);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            Name = "ResizeDialog";
+            Name = "CanvasResizeDialog";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            Text = "Resize sprite";
+            Text = "Canvas Size";
             ((System.ComponentModel.ISupportInitialize)numericHeight).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericWidth).EndInit();
             ResumeLayout(false);
@@ -149,8 +149,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericHeight;
         private System.Windows.Forms.NumericUpDown numericWidth;
-        private System.Windows.Forms.Button ButtonOK;
-        private System.Windows.Forms.Button ButtonCancel;
         private Controls.ImageBox ImageBox;
+        private System.Windows.Forms.Button ButtonCancel;
+        private System.Windows.Forms.Button ButtonOK;
     }
 }
