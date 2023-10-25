@@ -1959,12 +1959,12 @@ namespace BeebSpriter
                 AddHistory();
 
                 BeebPalette palette = new(sprite.NumColours, sprite.Palette);
-                Rectangle rect = new(0,0, imageResize.NewWidth, imageResize.NewHeight);
+                Rectangle rect = new(0, 0, imageResize.NewWidth, imageResize.NewHeight);
 
                 sprite.Width = imageResize.NewWidth;
                 sprite.Height = imageResize.NewHeight;
                 sprite.Bitmap = imageResize.Image.ExtractSprite(palette, rect);
-             
+
                 SpriteSheetForm.Instance.IsUnsaved = true;
 
                 ApplyZoomToForm();

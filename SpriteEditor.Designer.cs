@@ -54,6 +54,9 @@
             toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ImageResize = new System.Windows.Forms.ToolStripMenuItem();
+            CanvasResize = new System.Windows.Forms.ToolStripMenuItem();
             viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             horizontalBlockDividersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             horizNever = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,9 +110,6 @@
             statusStrip1 = new System.Windows.Forms.StatusStrip();
             MessageToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             ZoomToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ImageResize = new System.Windows.Forms.ToolStripMenuItem();
-            CanvasResize = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             editorContainer.SuspendLayout();
@@ -313,6 +313,29 @@
             redoToolStripMenuItem.Text = "Redo";
             redoToolStripMenuItem.Click += redoToolStripMenuItem_Click;
             // 
+            // imageToolStripMenuItem
+            // 
+            imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { ImageResize, CanvasResize });
+            imageToolStripMenuItem.Name = "imageToolStripMenuItem";
+            imageToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            imageToolStripMenuItem.Text = "Image";
+            // 
+            // ImageResize
+            // 
+            ImageResize.Name = "ImageResize";
+            ImageResize.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R;
+            ImageResize.Size = new System.Drawing.Size(217, 22);
+            ImageResize.Text = "Resize...";
+            ImageResize.Click += ImageResize_Click;
+            // 
+            // CanvasResize
+            // 
+            CanvasResize.Name = "CanvasResize";
+            CanvasResize.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.R;
+            CanvasResize.Size = new System.Drawing.Size(217, 22);
+            CanvasResize.Text = "Canvas Size...";
+            CanvasResize.Click += CanvasResize_Click;
+            // 
             // viewToolStripMenuItem
             // 
             viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { horizontalBlockDividersToolStripMenuItem, showVerticalBlockDividersToolStripMenuItem });
@@ -435,7 +458,7 @@
             ZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             ZoomOut.Name = "ZoomOut";
             ZoomOut.Size = new System.Drawing.Size(23, 24);
-            ZoomOut.Text = "toolStripButton2";
+            ZoomOut.Text = "Zoom Out";
             ZoomOut.Click += ZoomOut_Click;
             // 
             // ZoomIn
@@ -565,7 +588,7 @@
             resizeIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
             resizeIcon.Name = "resizeIcon";
             resizeIcon.Size = new System.Drawing.Size(23, 24);
-            resizeIcon.Text = "Resize";
+            resizeIcon.Text = "Canvas Size";
             resizeIcon.Click += CanvasResize_Click;
             // 
             // currentColour
@@ -815,29 +838,6 @@
             ZoomToolStripStatusLabel.Name = "ZoomToolStripStatusLabel";
             ZoomToolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             ZoomToolStripStatusLabel.Text = "Zoom";
-            // 
-            // imageToolStripMenuItem
-            // 
-            imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { ImageResize, CanvasResize });
-            imageToolStripMenuItem.Name = "imageToolStripMenuItem";
-            imageToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            imageToolStripMenuItem.Text = "Image";
-            // 
-            // ImageResize
-            // 
-            ImageResize.Name = "ImageResize";
-            ImageResize.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R;
-            ImageResize.Size = new System.Drawing.Size(217, 22);
-            ImageResize.Text = "Resize...";
-            ImageResize.Click += ImageResize_Click;
-            // 
-            // CanvasResize
-            // 
-            CanvasResize.Name = "CanvasResize";
-            CanvasResize.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.R;
-            CanvasResize.Size = new System.Drawing.Size(217, 22);
-            CanvasResize.Text = "Canvas Size...";
-            CanvasResize.Click += CanvasResize_Click;
             // 
             // SpriteEditor
             // 
