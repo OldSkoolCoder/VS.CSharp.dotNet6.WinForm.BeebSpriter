@@ -177,7 +177,7 @@ namespace BeebSpriter.Internal
             {
                 ReleaseSelectedItems();
 
-                var newpnt = pnt;
+                Point newpnt = pnt;
 
                 List<SpriteObject> clonedItems = GetObjectData;
 
@@ -188,9 +188,9 @@ namespace BeebSpriter.Internal
                     if (value.Rect.Y < pnt.Y) newpnt.Y = value.Rect.Y;
                 }
 
-                foreach (SpriteObject value in clonedItems)
+                foreach (SpriteObject spriteObject in clonedItems)
                 {
-                    SpriteObject pasteObject = ((SpriteObject)value).Clone();
+                    SpriteObject pasteObject = spriteObject.Clone();
 
                     pasteObject.Move(Point.Subtract(pnt, (Size)newpnt));
 
@@ -218,7 +218,7 @@ namespace BeebSpriter.Internal
                 // Remove in reverse order to resolve index error
                 for (int i = Items.Count - 1; i >= 0; i -= 1)
                 {
-                    if ((Items[i]).Selected)
+                    if (Items[i].Selected)
                     {
                         Items.RemoveAt(i);
                     }
@@ -253,12 +253,15 @@ namespace BeebSpriter.Internal
             if (SelectedItems.Count == 0)
                 return;
 
-            for (int i = 0, loopTo = SelectedItems.Count - 1; i <= loopTo; i++)
+            for (int i = 0; i <= SelectedItems.Count - 1; i++)
+                (SelectedItems[i]).Move(pnt);
+
+            for (int i = 0; i <= SelectedItems.Count - 1; i++)
                 (SelectedItems[i]).Move(pnt);
         }
 
         /// <summary>
-        ///
+        /// Resize all selected sprite objects
         /// </summary>
         /// <param name="pnt"></param>
         public void ResizeSelectedItems(Point pnt)
@@ -266,7 +269,7 @@ namespace BeebSpriter.Internal
             if (SelectedItems.Count == 0)
                 return;
 
-            for (int i = 0, loopTo = SelectedItems.Count - 1; i <= loopTo; i++)
+            for (int i = 0; i <= SelectedItems.Count - 1; i++)
                 SelectedItems[i].Resize(ActiveSprite.SelectedNode, pnt);
         }
 
@@ -442,30 +445,7 @@ namespace BeebSpriter.Internal
         /// <summary>
         ///
         /// </summary>
-        /// <param name="value"></param>
-        public void FindByObjectID(string value)
-        {
-            ActiveSprite = null;
-            SelectedItems.Clear();
-
-            Items.ReleaseAll();
-
-            for (int i = Items.Count - 1; i >= 0; i -= 1)
-            {
-                if (Items[i].Guid.ToString() == value)
-                {
-                    Items[i].Selected = true;
-                    SelectedItems.Add(Items[i]);
-                    break;
-                }
-            }
-
-            if (SelectedItems.Count > 0)
-            {
-                ActiveSprite = SelectedItems[0];
-            }
-        }
-
+        /// <param name="pnt"></param>
         public void HoverSelectedNode(Point pnt)
         {
             ActiveNode = NodeLocation.None;
@@ -499,7 +479,7 @@ namespace BeebSpriter.Internal
         {
             if (CanAlign)
             {
-                for (int i = 1, loopTo = SelectedItems.Count - 1; i <= loopTo; i++)
+                for (int i = 1; i <= SelectedItems.Count - 1; i++)
                 {
                     Point pnt = SelectedItems[i].Rect.Location;
 
@@ -552,7 +532,7 @@ namespace BeebSpriter.Internal
         {
             if (CanResize)
             {
-                for (int i = 1, loopTo = SelectedItems.Count - 1; i <= loopTo; i++)
+                for (int i = 1; i <= SelectedItems.Count - 1; i++)
                 {
                     Rectangle rect = SelectedItems[i].Rect;
 
@@ -595,15 +575,19 @@ namespace BeebSpriter.Internal
                 SelectedItems = (value == SpaceOutType.Horizontal) ? SelectedItems.OrderBy(x => x.Rect.Left).ToList() : SelectedItems.OrderBy(x => x.Rect.Bottom).ToList();
 
                 // Calculate area rectangle
-                var areaRect = new Rectangle(0, 0, 0, 0);
-                areaRect.X = SelectedItems[0].Rect.X;
-                areaRect.Y = SelectedItems[0].Rect.Y;
+                Rectangle areaRect = new(0, 0, 0, 0)
+                {
+                    X = SelectedItems[0].Rect.X,
+                    Y = SelectedItems[0].Rect.Y,
+                };
+
                 areaRect.Width = SelectedItems[^1].Rect.Right - areaRect.Left;
                 areaRect.Height = SelectedItems[^1].Rect.Bottom - areaRect.Top;
 
                 // Calculate Total object rectangle
-                var objRect = new Rectangle(0, 0, 0, 0);
-                for (int i = 0, loopTo = SelectedItems.Count - 1; i <= loopTo; i++)
+                Rectangle objRect = new(0, 0, 0, 0);
+
+                for (int i = 0; i <= SelectedItems.Count - 1; i++)
                 {
                     objRect.Width += SelectedItems[i].Rect.Width;
                     objRect.Height += SelectedItems[i].Rect.Height;
@@ -615,12 +599,12 @@ namespace BeebSpriter.Internal
                 if (hspace < 0) hspace = 0;
                 if (vspace < 0) vspace = 0;
 
-                System.Drawing.Point offset = SelectedItems[0].Rect.Location + SelectedItems[0].Rect.Size;
+                Point offset = SelectedItems[0].Rect.Location + SelectedItems[0].Rect.Size;
 
                 // Never move the first object
-                for (int i = 1, loopTo1 = SelectedItems.Count - 1; i <= loopTo1; i++)
+                for (int i = 1; i <= SelectedItems.Count - 1; i++)
                 {
-                    System.Drawing.Point pnt = SelectedItems[i].Rect.Location;
+                    Point pnt = SelectedItems[i].Rect.Location;
 
                     if (value == SpaceOutType.Horizontal)
                     {
