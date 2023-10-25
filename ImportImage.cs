@@ -154,6 +154,7 @@ namespace BeebSpriter
                 case 0:
                     ButtonGenerate.Enabled = false;
                     ImageBox.Image = ImageBox.OriginalImage;
+                    ImageBox.Animate(true);
                     break;
 
                 case 1: Mode = 0; ConvertMode(2); break;

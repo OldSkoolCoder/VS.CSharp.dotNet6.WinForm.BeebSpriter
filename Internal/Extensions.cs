@@ -1,5 +1,6 @@
 ﻿using BeebSpriter.Enum;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -98,6 +99,31 @@ namespace BeebSpriter.Internal
             }
 
             throw new ArgumentException(string.Format("Not found '{0}' in Enum", nameof(value)));
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="spriteView"></param>
+        public static void ReleaseAll(this List<SpriteObject> spriteView)
+        {
+            foreach (SpriteObject obj in spriteView)
+                spriteView.Release(obj);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="spriteView"></param>
+        /// <param name="spriteObject"></param>
+        public static void Release(this List<SpriteObject> spriteView, SpriteObject spriteObject)
+        {
+            int index = spriteView.IndexOf(spriteObject);
+            if (index != -1)
+            {
+                spriteView[index].Selected = false;
+                spriteView[index].SelectedNode = NodeLocation.None;
+            }
         }
 
         /// <summary>
