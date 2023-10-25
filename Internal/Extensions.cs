@@ -303,10 +303,18 @@ namespace BeebSpriter.Internal
             return newImage;
         }
 
+        /// <summary>
+        /// Resize image by a fixed width and height
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
         public static Bitmap ResizeImage(this Bitmap image, int width, int height)
         {
-            Rectangle imgRect = new(0, 0, image.Width, image.Height);
-            Rectangle rect = new(0, 0, width, height);
+            Rectangle srcRect = new(0, 0, image.Width, image.Height);
+            Rectangle destRect = new(0, 0, width, height);
+
             Bitmap newImage = new(width, height, PixelFormat.Format32bppArgb);
 
             Graphics gfx = Graphics.FromImage(newImage);
@@ -317,7 +325,7 @@ namespace BeebSpriter.Internal
             gfx.CompositingQuality = CompositingQuality.HighSpeed;
             gfx.PixelOffsetMode = PixelOffsetMode.Half;
 
-            gfx.DrawImage(image, rect, imgRect, GraphicsUnit.Pixel);
+            gfx.DrawImage(image, destRect, srcRect, GraphicsUnit.Pixel);
             gfx.Dispose();
 
             return newImage;
