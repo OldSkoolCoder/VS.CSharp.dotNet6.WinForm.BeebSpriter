@@ -123,29 +123,28 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tsmiRotateClockwise.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAEGSURBVDhPpdM/akJBEMdxxQREiSaCESzt4xFsrKzSeoSk
-        SScoQUnO4CFEsAxYWXsPwSZoUgRjIbz1O+sYNuv6D3/wwbe7M/NgecaMMRcJbp4juHmOYCqtjzxGeNYt
-        SVt/D4emOLKoYYEXPZrjbvO4JxRXMYFxRChzvMK7LQyFoiRmeEMJj/hFS0tkwDdu7coPhQ+QN17jHmM0
-        9VgiA+TWOnblh+IyIl3+pdcfFPRxO+ALGdn4F5rl8lK6lMY4nvCDK7a2A8Qr9oeGIoYwyh8www12Q3Ed
-        c6c5NEC492Mbc+g5TccGfCIN21zD1GnwhQaIhjR3ETnFviUSFMs34A+YBP8gpzOxNWvvla7MePOGAAAA
-        AElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EQAACxEBf2RfkQAAAQZJREFUOE+l0z9qQkEQx3HFBESJJoIRLO3jEWysrNJ6hKRJJyhBSc7gIUSwDFhZ
+        ew/BJmhSBGMhvPU76xg26/oPf/DBt7sz82B5xowxFwluniO4eY5gKq2PPEZ41i1JW38Ph6Y4sqhhgRc9
+        muNu87gnFFcxgXFEKHO8wrstDIWiJGZ4QwmP+EVLS2TAN27tyg+FD5A3XuMeYzT1WCID5NY6duWH4jIi
+        Xf6l1x8U9HE74AsZ2fgXmuXyUrqUxjie8IMrtrYDxCv2h4YihjDKHzDDDXZDcR1zpzk0QLj3Yxtz6DlN
+        xwZ8Ig3bXMPUafCFBoiGNHcROcW+JRIUyzfgD5gE/yCnM7E1a++Vrsx484YAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tsmiRotateAntiClockwise.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAD3SURBVDhPpdO/jgFRFMfxofO/kaxCo9zWA2g1NFqtZqOQ
-        EAmxL+IJRChVGr1nUErEZkPDbiTi+h7mTsa4Y4hf8slMzj3nJHOTsZRSbzEWX2EsvsIv3/bTKnQnNcyQ
-        sUuBSWIjLwx94Q9lpBCSelB6UDR/4gR515YoXtvMSeAXl4+juY1/VJBDD1vE5NyUDmTYuR2aW5gjgzCO
-        yNvHN4njB86CwXD8IU93GD74LWhDD+sFO9ThXB7DUdxdZhRreBco2xRZqfmlCfewd4HYogo5ukkEKwQt
-        0EZIy7lOA97hRwvECiXpkSzgHd5BFuxdQyZ94w/yPGWdAcXoi7Pt2ogLAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EQAACxEBf2RfkQAAAPdJREFUOE+l07+OAVEUx/Gh87+RrEKj3NYDaDU0Wq1mo5AQCbEv4glEKFUavWdQ
+        SsRmQ8NuJOL6HuZOxrhjiF/yyUzOPeckc5OxlFJvMRZfYSy+wi/f9tMqdCc1zJCxS4FJYiMvDH3hD2Wk
+        EJJ6UHpQNH/iBHnXlihe28xJ4BeXj6O5jX9UkEMPW8Tk3JQOZNi5HZpbmCODMI7I28c3ieMHzoLBcPwh
+        T3cYPvgtaEMP6wU71OFcHsNR3F1mFGt4FyjbFFmp+aUJ97B3gdiiCjm6SQQrBC3QRkjLuU4D3uFHC8QK
+        JemRLOAd3kEW7F1DJn3jD/I8ZZ0BxeiLs+3aiAsAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="Rotator.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA7CAAAOwgEVKEqAAAABcklE
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA7BAAAOwQG4kWvtAAABcklE
         QVQ4T62TuUtDQRDGFwsbGy9QmxwEomDvia0HFlaK+naTwtJeK8HSQlBLsTBipykF326EiGUqwT9ALTwR
         BUHb+M36kUtDLPzBMPvNzszO7uOp/8HYdWVcsWTaXXOnzOxRs5o/66KqQ8qOK20ffJNa0nYU8VcVuDlG
         akjZKUxyx8SfDYRUOOBzjJtghCzkOxG8Vzoc8bpeA8HkhrH/BN/BCNBuFZ33qORNNrj6HeP2cdUVKmBs

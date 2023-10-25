@@ -303,6 +303,26 @@ namespace BeebSpriter.Internal
             return newImage;
         }
 
+        public static Bitmap ResizeImage(this Bitmap image, int width, int height)
+        {
+            Rectangle imgRect = new(0, 0, image.Width, image.Height);
+            Rectangle rect = new(0, 0, width, height);
+            Bitmap newImage = new(width, height, PixelFormat.Format32bppArgb);
+
+            Graphics gfx = Graphics.FromImage(newImage);
+
+            gfx.SmoothingMode = SmoothingMode.None;
+            gfx.InterpolationMode = InterpolationMode.NearestNeighbor;
+            gfx.CompositingMode = CompositingMode.SourceCopy;
+            gfx.CompositingQuality = CompositingQuality.HighSpeed;
+            gfx.PixelOffsetMode = PixelOffsetMode.Half;
+
+            gfx.DrawImage(image, rect, imgRect, GraphicsUnit.Pixel);
+            gfx.Dispose();
+
+            return newImage;
+        }
+
         /// <summary>
         /// Rotate Image by a set angle
         /// </summary>

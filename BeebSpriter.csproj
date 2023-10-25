@@ -50,6 +50,9 @@
     <Version>$(Prefix)</Version>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="ResizeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="DoubleBufferedPanel.cs">
       <SubType>Component</SubType>
     </Compile>

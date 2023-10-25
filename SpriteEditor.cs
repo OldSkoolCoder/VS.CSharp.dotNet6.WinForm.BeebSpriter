@@ -166,8 +166,6 @@ namespace BeebSpriter
 
         private CircularStack<Snapshot> redoBuffer = new CircularStack<Snapshot>(64);
 
-        private ResizeDialog resizeDialog = new ResizeDialog();
-
         private Timer timer = new Timer();
 
         /// <summary>
@@ -1462,16 +1460,16 @@ namespace BeebSpriter
         ///  The resize doesn't work like a normal edit mode; instead it launches a dialog box
         ///  to prompt the user to enter the new size.
         /// </summary>
-        private void resizeIcon_Click(object sender, EventArgs e)
+        private void CanvasResize_Click(object sender, EventArgs e)
         {
-            resizeDialog.SpriteWidth = sprite.Width;
-            resizeDialog.SpriteHeight = sprite.Height;
-            if (resizeDialog.ShowDialog(this) == DialogResult.OK)
+            CanvasSizeDialog canvasSize = new(sprite);
+
+            if (canvasSize.ShowDialog(this) == DialogResult.OK)
             {
                 AddHistory();
 
-                int newWidth = resizeDialog.SpriteWidth;
-                int newHeight = resizeDialog.SpriteHeight;
+                int newWidth = canvasSize.NewWidth;
+                int newHeight = canvasSize.NewHeight;
 
                 byte[] newBitmap = new byte[newWidth * newHeight];
 
@@ -1948,6 +1946,28 @@ namespace BeebSpriter
                 SpriteSheetForm.Instance.IsUnsaved = true;
 
                 editorPanel.Invalidate();
+                spritePanel.Panel.Invalidate();
+            }
+        }
+
+        private void ImageResize_Click(object sender, EventArgs e)
+        {
+            ResizeDialog imageResize = new(sprite);
+
+            if (imageResize.ShowDialog() == DialogResult.OK)
+            {
+                AddHistory();
+
+                BeebPalette palette = new(sprite.NumColours, sprite.Palette);
+                Rectangle rect = new(0,0, imageResize.NewWidth, imageResize.NewHeight);
+
+                sprite.Width = imageResize.NewWidth;
+                sprite.Height = imageResize.NewHeight;
+                sprite.Bitmap = imageResize.Image.ExtractSprite(palette, rect);
+             
+                SpriteSheetForm.Instance.IsUnsaved = true;
+
+                ApplyZoomToForm();
                 spritePanel.Panel.Invalidate();
             }
         }

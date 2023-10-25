@@ -5,13 +5,16 @@ using System.Windows.Forms;
 
 namespace BeebSpriter
 {
-    public partial class ResizeDialog : Form
+    public partial class CanvasSizeDialog : Form
     {
-        public Bitmap Image => ImageBox.Image;
         public int NewWidth { get; set; }
         public int NewHeight { get; set; }
 
-        public ResizeDialog(Sprite sprite)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sprite"></param>
+        public CanvasSizeDialog(Sprite sprite)
         {
             InitializeComponent();
 
@@ -36,8 +39,6 @@ namespace BeebSpriter
         {
             NewWidth = numericWidth.Value.ToInteger();
             NewHeight = numericHeight.Value.ToInteger();
-
-            ImageBox.Image = ImageBox.Image.ResizeImage(NewWidth, NewHeight);
 
             DialogResult = DialogResult.OK;
             Close();
