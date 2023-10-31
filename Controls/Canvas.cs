@@ -185,7 +185,7 @@ namespace BeebSpriter.Controls
 
                 //m_MousePos = ConvertMouseCoords(Point.Subtract(e.Location, (Size)this.AutoScrollPosition));
 
-                mousePos = e.Location;
+                mousePos = ConvertMouseCoords(e.Location);
                 mouseStartPos = mousePos;
                 mouseEndPos = mousePos;
             }
@@ -199,11 +199,11 @@ namespace BeebSpriter.Controls
         /// <param name="e"></param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            mousePos = e.Location;
+            mousePos = ConvertMouseCoords(e.Location);
 
             if (mouseDown)
             {
-                mouseEndPos = e.Location;
+                mouseEndPos = ConvertMouseCoords(e.Location);
 
                 if (mouseEndPos != mouseStartPos)
                 {
@@ -264,7 +264,7 @@ namespace BeebSpriter.Controls
                 }
                 else
                 {
-                    SpriteObjectList.Capture(e.Location, ctrlKey);
+                    SpriteObjectList.Capture(ConvertMouseCoords(e.Location), ctrlKey);
                     SpriteClicked?.Invoke(this, new ActiveSpriteEventArgs(SpriteObjectList.ActiveSprite));
                     Invalidate();
                 }
@@ -273,6 +273,20 @@ namespace BeebSpriter.Controls
             }
 
             base.OnMouseUp(e);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public Point ConvertMouseCoords(Point point)
+        {
+            Point newPoint = Point.Subtract(point, (Size)AutoScrollPosition);
+            newPoint.X /= ZoomFactor;
+            newPoint.Y /= ZoomFactor;
+
+            return newPoint;
         }
 
         /// <summary>
@@ -374,6 +388,8 @@ namespace BeebSpriter.Controls
 
             Rectangle rect = SwapRect(spriteObject.Rect);
 
+            rect = new Rectangle(rect.X * ZoomFactor, rect.Y * ZoomFactor, rect.Width * ZoomFactor, rect.Height * ZoomFactor);
+
             spriteObject.Pen = pen;
 
             gfx.DrawRectangle(spriteObject.Pen, rect);
@@ -415,6 +431,8 @@ namespace BeebSpriter.Controls
         {
             Rectangle newRect = SwapRect(rect);
 
+            newRect = new Rectangle(newRect.X * ZoomFactor, newRect.Y * ZoomFactor, newRect.Width, newRect.Height * ZoomFactor);
+
             Pen pen = new(Color.Black)
             {
                 DashStyle = DashStyle.Dash
@@ -428,6 +446,8 @@ namespace BeebSpriter.Controls
                 {
                     Rectangle noderect = this.node.GetRect(node, rect);
 
+                    //noderect = new Rectangle(noderect.X * ZoomFactor, noderect.Y * ZoomFactor, noderect.Width, noderect.Height * ZoomFactor);
+              
                     if (Active)
                     {
                         DrawNode(gfx, noderect, this.node.SelectedColour);
