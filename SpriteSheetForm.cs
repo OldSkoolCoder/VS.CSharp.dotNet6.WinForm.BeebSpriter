@@ -1329,14 +1329,14 @@ namespace BeebSpriter
 
                     if (spriteSheet.NumColours != 16)
                     {
-                        spriteSheet.DefaultPalette[index] = (BeebPalette.Colour)replaceColour.NewColour;
+                        spriteSheet.DefaultPalette[index] = (BeebPalette.Colour)(replaceColour.NewColour & 7);
                     }
 
                     foreach (Sprite itm in spriteSheet.SpriteList)
                     {
                         if (spriteSheet.NumColours != 16)
                         {
-                            itm.Palette[index] = (BeebPalette.Colour)replaceColour.NewColour;
+                            itm.Palette[index] = (BeebPalette.Colour)(replaceColour.NewColour & 7);
                         }
                         else
                         {
