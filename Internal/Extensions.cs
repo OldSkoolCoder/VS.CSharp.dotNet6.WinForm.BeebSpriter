@@ -6,6 +6,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using static BeebSpriter.BeebPalette;
 
 namespace BeebSpriter.Internal
 {
@@ -391,6 +392,21 @@ namespace BeebSpriter.Internal
                 C64ColourType.LightGrey => BeebColourType.White,
                 _ => throw new Exception("Unknown Colour"),
             };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="colourArray"></param>
+        /// <param name="colour"></param>
+        /// <returns></returns>
+        public static int ColourIndex(this Colour[] colourArray, Colour colour)
+        {
+            for(int i=0; i < colourArray.Length; i++)
+            {
+                if (colour == colourArray[i]) return i;
+            }
+            return 0;
         }
     }
 };

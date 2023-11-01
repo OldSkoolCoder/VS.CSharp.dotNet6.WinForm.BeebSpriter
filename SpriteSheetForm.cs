@@ -276,6 +276,8 @@ namespace BeebSpriter
             exportToBeebToolStripMenuItem.Enabled = value;
             viewToolStripMenuItem.Enabled = value;
 
+            ReplaceColourToolStripMenuItem.Enabled = value;
+
             animationPreviewerToolStripMenuItem.Enabled = value;
             editDefaultPaletteToolStripMenuItem.Enabled = value;
             ChangeGfxModeToolStripMenuItem1.Enabled = value;
@@ -1259,7 +1261,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1305,5 +1307,52 @@ namespace BeebSpriter
                 SetAsOpened();
             }
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReplaceColourToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (spriteSheet != null && spriteSheet.SpriteList.Count > 0)
+            {
+                // Create Default 16 colour palette and a dummy sprite thst won't be used
+                BeebPalette palette = new(16);
+                Sprite sprite = new("Dummy", 0, 0, palette.BeebColours);
+
+                ReplaceColour replaceColour = new(sprite);
+
+                if (replaceColour.ShowDialog(this) == DialogResult.OK)
+                {
+                    int index = spriteSheet.DefaultPalette.ColourIndex((BeebPalette.Colour)replaceColour.OldColour);
+
+                    if (spriteSheet.NumColours != 16)
+                    {
+                        spriteSheet.DefaultPalette[index] = (BeebPalette.Colour)(replaceColour.NewColour & 7);
+                    }
+
+                    foreach (Sprite itm in spriteSheet.SpriteList)
+                    {
+                        if (spriteSheet.NumColours != 16)
+                        {
+                            itm.Palette[index] = (BeebPalette.Colour)(replaceColour.NewColour & 7);
+                        }
+                        else
+                        {
+                            itm.ReplaceColours(replaceColour.OldColour, replaceColour.NewColour);
+                        }
+                    }
+
+                    foreach (SpritePanel sp in flowLayoutPanel1.Controls)
+                    {
+                        sp.Panel.Invalidate();
+                    }
+
+                    SpriteSheetForm.Instance.IsUnsaved = true;
+                }
+            }
+        }
+
     }
 }
