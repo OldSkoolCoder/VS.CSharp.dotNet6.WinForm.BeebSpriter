@@ -277,9 +277,9 @@ namespace BeebSpriter
                     sprite.Palette[index] = BeebPalette.GetFlashingColour(sprite.Palette[index]);
                     colourPanels[index].BackColor = BeebPalette.GetWindowsColour(sprite.Palette[index]); ;
                 }
-                currentColour.Invalidate();
-                editorPanel.Invalidate();
-                spritePanel.Panel.Invalidate();
+                //currentColour.Invalidate();
+                //editorPanel.Invalidate();
+                //spritePanel.Panel.Invalidate();
             }
         }
 
