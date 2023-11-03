@@ -154,6 +154,12 @@ namespace BeebSpriter
             if (editorForm == null)
             {
                 editorForm = new SpriteEditor(this);
+
+                //Form myForm = new MyForm();
+                //myForm.FormClosed += (s, args) => myForm.Dispose();
+                //myForm.Show();
+
+
                 editorForm.Show(SpriteSheetForm.Instance);
             }
             else
