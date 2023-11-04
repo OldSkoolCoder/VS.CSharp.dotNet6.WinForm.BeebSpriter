@@ -289,6 +289,7 @@ namespace BeebSpriter
         /// </summary>
         private void SpriteEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
+            timer.Stop();
             spritePanel.ForgetEditorForm();
         }
 
