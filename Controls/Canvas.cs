@@ -183,8 +183,6 @@ namespace BeebSpriter.Controls
 
                 mouseDown = true;
 
-                //m_MousePos = ConvertMouseCoords(Point.Subtract(e.Location, (Size)this.AutoScrollPosition));
-
                 mousePos = ConvertMouseCoords(e.Location);
                 mouseStartPos = mousePos;
                 mouseEndPos = mousePos;
@@ -264,7 +262,9 @@ namespace BeebSpriter.Controls
                 }
                 else
                 {
+                    //SpriteObjectList.Capture(ConvertZoomFactor(e.Location), ctrlKey);      
                     SpriteObjectList.Capture(ConvertMouseCoords(e.Location), ctrlKey);
+
                     SpriteClicked?.Invoke(this, new ActiveSpriteEventArgs(SpriteObjectList.ActiveSprite));
                     Invalidate();
                 }
@@ -283,11 +283,23 @@ namespace BeebSpriter.Controls
         public Point ConvertMouseCoords(Point point)
         {
             Point newPoint = Point.Subtract(point, (Size)AutoScrollPosition);
+            return newPoint;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public Point ConvertZoomFactor(Point point)
+        {
+            Point newPoint = Point.Subtract(point, (Size)AutoScrollPosition);
             newPoint.X /= ZoomFactor;
             newPoint.Y /= ZoomFactor;
 
             return newPoint;
         }
+
 
         /// <summary>
         ///
@@ -336,13 +348,11 @@ namespace BeebSpriter.Controls
             // Draw Active Node
             foreach (SpriteObject itm in SpriteObjectList.SelectedItems)
             {
-                if (DrawActiveNode(e.Graphics, itm))
-                {
-                    break;
-                }
+                if (DrawActiveNode(e.Graphics, itm)) break;
             }
 
-            DrawActiveSprite(e.Graphics);
+
+            DrawRubberband(e.Graphics);
 
             base.OnPaint(e);
         }
@@ -351,32 +361,40 @@ namespace BeebSpriter.Controls
         ///
         /// </summary>
         /// <param name="gfx"></param>
-        private void DrawActiveSprite(Graphics gfx)
+        private void DrawRubberband(Graphics gfx)
         {
             if (mouseDragging)
             {
-                Rectangle rect = new(mouseStartPos, (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos));
-                DrawActiveRectangle(gfx, rect);
+                //Point pnt = Point.Subtract(mouseEndPos, (Size)mouseStartPos);
+
+                //Point location = new(mouseStartPos.X / ZoomFactor, mouseStartPos.Y / ZoomFactor);
+                //Size size = new(pnt.X / ZoomFactor, pnt.Y / ZoomFactor);
+                //Point location = mouseStartPos;
+                //Size size = (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos);
+
+                //Rectangle rect = new(mouseStartPos, (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos));
+                //Rectangle rect = new(location, size);
+
+                //using Pen pen = new(Color.Green);
+              
+                //rect = SwapRect(rect);
+
+                //gfx.DrawRectangle(pen, rect);
+
+                //Point location = ConvertZoomFactor(mouseStartPos);
+                //Size size = (Size)Point.Subtract(ConvertZoomFactor(mouseEndPos), (Size)location);
+
+                Point location = ConvertZoomFactor(mouseStartPos);
+                Size size = (Size)ConvertZoomFactor(Point.Subtract(mouseEndPos, (Size)mouseStartPos));
+
+                Rectangle newRect = new(location, size);
+
+                DrawNodes(gfx, newRect, true);
+
+                //DrawActiveRectangle(gfx, rect);
             }
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="gfx"></param>
-        /// <param name="rect"></param>
-        private void DrawActiveRectangle(Graphics gfx, Rectangle rect)
-        {
-            if (mouseDragging)
-            {
-                rect = SwapRect(rect);
-
-                using Pen pen = new(Color.Black);
-                gfx.DrawRectangle(pen, rect);
-                DrawNodes(gfx, rect, true);
-            }
-        }
-
+   
         /// <summary>
         ///
         /// </summary>
@@ -384,11 +402,12 @@ namespace BeebSpriter.Controls
         /// <param name="spriteObject"></param>
         private void DrawSprites(Graphics gfx, SpriteObject spriteObject)
         {
-            using Pen pen = new(SystemColors.ControlDarkDark);
+            using Pen pen = new(Color.Red);//SystemColors.ControlDarkDark);
 
             Rectangle rect = SwapRect(spriteObject.Rect);
 
             rect = new Rectangle(rect.X * ZoomFactor, rect.Y * ZoomFactor, rect.Width * ZoomFactor, rect.Height * ZoomFactor);
+            //rect = new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
 
             spriteObject.Pen = pen;
 
@@ -431,7 +450,7 @@ namespace BeebSpriter.Controls
         {
             Rectangle newRect = SwapRect(rect);
 
-            newRect = new Rectangle(newRect.X * ZoomFactor, newRect.Y * ZoomFactor, newRect.Width, newRect.Height * ZoomFactor);
+            newRect = new Rectangle(newRect.X * ZoomFactor, newRect.Y * ZoomFactor, newRect.Width * ZoomFactor, newRect.Height * ZoomFactor);
 
             Pen pen = new(Color.Black)
             {
@@ -439,15 +458,14 @@ namespace BeebSpriter.Controls
             };
 
             gfx.DrawRectangle(pen, newRect);
+            
 
             foreach (NodeLocation node in System.Enum.GetValues(typeof(NodeLocation)))
             {
                 if (node != NodeLocation.Everything)
                 {
-                    Rectangle noderect = this.node.GetRect(node, rect);
+                    Rectangle noderect = this.node.GetRect(node, newRect);
 
-                    //noderect = new Rectangle(noderect.X * ZoomFactor, noderect.Y * ZoomFactor, noderect.Width, noderect.Height * ZoomFactor);
-              
                     if (Active)
                     {
                         DrawNode(gfx, noderect, this.node.SelectedColour);
@@ -549,9 +567,18 @@ namespace BeebSpriter.Controls
         /// </summary>
         private void CreateSpriteObject()
         {
+            Point pnt = Point.Subtract(mouseEndPos, (Size)mouseStartPos);
+
+            Point location = new(mouseStartPos.X / ZoomFactor, mouseStartPos.Y / ZoomFactor);
+            Size size = new(pnt.X / ZoomFactor, pnt.Y / ZoomFactor);
+
+            //Rectangle rect = new Rectangle(mouseStartPos, (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos))
+            //Rectangle rect = new(mouseStartPos.X / ZoomFactor, mouseStartPos.Y / ZoomFactor,)
+
             SpriteObject itm = new()
             {
-                Rect = new Rectangle(mouseStartPos, (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos))
+                //Rect = new Rectangle(mouseStartPos, (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos))
+                Rect = new Rectangle(location, size)
             };
 
             SpriteObjectList.Add(itm);
