@@ -311,7 +311,7 @@ namespace BeebSpriter.Internal
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public static Bitmap ResizeImage(this Bitmap image, int width, int height)
+        public static Bitmap ResizeImage(this Bitmap image, int width, int height, InterpolationMode mode)
         {
             Rectangle srcRect = new(0, 0, image.Width, image.Height);
             Rectangle destRect = new(0, 0, width, height);
@@ -321,7 +321,7 @@ namespace BeebSpriter.Internal
             Graphics gfx = Graphics.FromImage(newImage);
 
             gfx.SmoothingMode = SmoothingMode.None;
-            gfx.InterpolationMode = InterpolationMode.NearestNeighbor;
+            gfx.InterpolationMode = mode; //InterpolationMode.NearestNeighbor;
             gfx.CompositingMode = CompositingMode.SourceCopy;
             gfx.CompositingQuality = CompositingQuality.HighSpeed;
             gfx.PixelOffsetMode = PixelOffsetMode.Half;
