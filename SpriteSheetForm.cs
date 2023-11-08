@@ -276,6 +276,8 @@ namespace BeebSpriter
             exportToBeebToolStripMenuItem.Enabled = value;
             viewToolStripMenuItem.Enabled = value;
 
+            ReplaceColourToolStripMenuItem.Enabled = value;
+
             animationPreviewerToolStripMenuItem.Enabled = value;
             editDefaultPaletteToolStripMenuItem.Enabled = value;
             ChangeGfxModeToolStripMenuItem1.Enabled = value;
@@ -1257,5 +1259,100 @@ namespace BeebSpriter
                 SetAsOpened();
             }
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportFromSEUCKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Import SEUCK Sprite Data",
+                Filter = "SEUCK sprite files (*.a)|*.a;|Any file (*.*)|*.*",
+                DefaultExt = "A"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                SEUCK seuck = new();
+
+                // Load the SpritePad data into the SpritePad class
+                seuck.Generate(openFileDialog.FileName);
+
+                // Use Mode 2
+                NewSpriteSheet(2);
+
+                // Create Default 16 colour palette
+                BeebPalette palette = new(16);
+
+                // Convert the SpritePad data into BeebSpriter spritesheet
+                for (int spriteNum = 0; spriteNum < seuck.Data.Count; spriteNum++)
+                {
+                    string spriteName = String.Format("Sprite_{0}", spriteNum + 1);
+
+                    // Generate the BeebSpriter sprites from the SpritePad data
+                    Sprite sprite = new(spriteName, 12, 21, palette.BeebColours)
+                    {
+                        Bitmap = seuck.ToBytes(spriteNum)
+                    };
+
+                    CreateSpritePanel(sprite);
+
+                    SpriteSheet.SpriteList.Add(sprite);
+                }
+
+                IsUnsaved = true;
+                SetAsOpened();
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReplaceColourToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (spriteSheet != null && spriteSheet.SpriteList.Count > 0)
+            {
+                // Create Default 16 colour palette and a dummy sprite thst won't be used
+                BeebPalette palette = new(16);
+                Sprite sprite = new("Dummy", 0, 0, palette.BeebColours);
+
+                ReplaceColour replaceColour = new(sprite);
+
+                if (replaceColour.ShowDialog(this) == DialogResult.OK)
+                {
+                    int index = spriteSheet.DefaultPalette.ColourIndex((BeebPalette.Colour)replaceColour.OldColour);
+
+                    if (spriteSheet.NumColours != 16)
+                    {
+                        spriteSheet.DefaultPalette[index] = (BeebPalette.Colour)(replaceColour.NewColour & 7);
+                    }
+
+                    foreach (Sprite itm in spriteSheet.SpriteList)
+                    {
+                        if (spriteSheet.NumColours != 16)
+                        {
+                            itm.Palette[index] = (BeebPalette.Colour)(replaceColour.NewColour & 7);
+                        }
+                        else
+                        {
+                            itm.ReplaceColours(replaceColour.OldColour, replaceColour.NewColour);
+                        }
+                    }
+
+                    foreach (SpritePanel sp in flowLayoutPanel1.Controls)
+                    {
+                        sp.Panel.Invalidate();
+                    }
+
+                    SpriteSheetForm.Instance.IsUnsaved = true;
+                }
+            }
+        }
+
     }
 }

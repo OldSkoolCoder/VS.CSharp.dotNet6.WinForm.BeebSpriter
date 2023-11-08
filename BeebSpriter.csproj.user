@@ -54,7 +54,7 @@
     <Compile Update="ReplaceColour.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ResizeDialog.cs">
+    <Compile Update="CanvasSizeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="SpriteEditor.cs">

@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using static BeebSpriter.BeebPalette;
 
 namespace BeebSpriter.Internal
 {
@@ -330,6 +331,34 @@ namespace BeebSpriter.Internal
         }
 
         /// <summary>
+        /// Resize image by a fixed width and height
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public static Bitmap ResizeImage(this Bitmap image, int width, int height, InterpolationMode mode)
+        {
+            Rectangle srcRect = new(0, 0, image.Width, image.Height);
+            Rectangle destRect = new(0, 0, width, height);
+
+            Bitmap newImage = new(width, height, PixelFormat.Format32bppArgb);
+
+            Graphics gfx = Graphics.FromImage(newImage);
+
+            gfx.SmoothingMode = SmoothingMode.None;
+            gfx.InterpolationMode = mode; //InterpolationMode.NearestNeighbor;
+            gfx.CompositingMode = CompositingMode.SourceCopy;
+            gfx.CompositingQuality = CompositingQuality.HighSpeed;
+            gfx.PixelOffsetMode = PixelOffsetMode.Half;
+
+            gfx.DrawImage(image, destRect, srcRect, GraphicsUnit.Pixel);
+            gfx.Dispose();
+
+            return newImage;
+        }
+
+        /// <summary>
         /// Rotate Image by a set angle
         /// </summary>
         /// <param name="image"></param>
@@ -400,6 +429,21 @@ namespace BeebSpriter.Internal
         {
             Rectangle newRect = new(rect.X * factor, rect.Y * factor, rect.Width * factor, rect.Height * factor);
             return newRect;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="colourArray"></param>
+        /// <param name="colour"></param>
+        /// <returns></returns>
+        public static int ColourIndex(this Colour[] colourArray, Colour colour)
+        {
+            for(int i=0; i < colourArray.Length; i++)
+            {
+                if (colour == colourArray[i]) return i;
+            }
+            return 0;
         }
     }
 }
