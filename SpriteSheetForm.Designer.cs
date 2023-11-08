@@ -67,7 +67,6 @@
             toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             ImportImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ImportSpritePadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -311,7 +310,7 @@
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem, toolStripSeparator3, ChangeGfxModeToolStripMenuItem1, toolStripMenuItem5, ImportImageToolStripMenuItem, ImportSpritePadToolStripMenuItem, testToolStripMenuItem });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { animationPreviewerToolStripMenuItem, editDefaultPaletteToolStripMenuItem, toolStripSeparator3, ChangeGfxModeToolStripMenuItem1, toolStripMenuItem5, ImportImageToolStripMenuItem, ImportSpritePadToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             toolsToolStripMenuItem.Text = "Tools";
@@ -360,13 +359,6 @@
             ImportSpritePadToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             ImportSpritePadToolStripMenuItem.Text = "Import from SpritePad";
             ImportSpritePadToolStripMenuItem.Click += ImportSpritePadToolStripMenuItem_Click;
-            // 
-            // testToolStripMenuItem
-            // 
-            testToolStripMenuItem.Name = "testToolStripMenuItem";
-            testToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            testToolStripMenuItem.Text = "Test";
-            testToolStripMenuItem.Click += testToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -704,7 +696,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiAddToNewAnimationSet;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem ImportSpritePadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 

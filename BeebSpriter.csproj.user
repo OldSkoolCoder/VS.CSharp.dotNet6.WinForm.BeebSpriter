@@ -36,10 +36,7 @@
     <Compile Update="Export.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ImageImport2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ImportImage.cs">
+    <Compile Update="ImageImport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="NewGfxMode.cs">

@@ -198,16 +198,19 @@ namespace BeebSpriter.Controls
         protected override void OnMouseMove(MouseEventArgs e)
         {
             mousePos = ConvertMouseCoords(e.Location);
-
+            
             if (mouseDown)
             {
-                mouseEndPos = ConvertMouseCoords(e.Location);
-
+                mouseEndPos = mousePos;//ConvertMouseCoords(e.Location);
+                
                 if (mouseEndPos != mouseStartPos)
                 {
                     if (SpriteObjectList.SelectedItems.Count > 0)
                     {
-                        MoveSpriteObject();
+                        Point pt = ConvertZoomFactor(mouseEndPos);
+                        Size sz = (Size)ConvertZoomFactor(mouseStartPos);
+
+                        MoveSpriteObject(pt, sz);
                     }
 
                     mouseDragging = true;
@@ -216,9 +219,11 @@ namespace BeebSpriter.Controls
             }
             else
             {
+                Point pnt = ConvertZoomFactor(mousePos);
+
                 NodeLocation LastActiveNode = SpriteObjectList.ActiveNode;
 
-                SpriteObjectList.HoverSelectedNode(mousePos);
+                SpriteObjectList.HoverSelectedNode(pnt);
 
                 if (LastActiveNode != SpriteObjectList.ActiveNode)
                 {
@@ -235,6 +240,8 @@ namespace BeebSpriter.Controls
         /// <param name="e"></param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
+            mousePos = ConvertMouseCoords(e.Location);
+
             if (mouseDown)
             {
                 if (mouseDragging)
@@ -262,8 +269,7 @@ namespace BeebSpriter.Controls
                 }
                 else
                 {
-                    //SpriteObjectList.Capture(ConvertZoomFactor(e.Location), ctrlKey);      
-                    SpriteObjectList.Capture(ConvertMouseCoords(e.Location), ctrlKey);
+                    SpriteObjectList.Capture(ConvertZoomFactor(mousePos), ctrlKey);
 
                     SpriteClicked?.Invoke(this, new ActiveSpriteEventArgs(SpriteObjectList.ActiveSprite));
                     Invalidate();
@@ -283,6 +289,7 @@ namespace BeebSpriter.Controls
         public Point ConvertMouseCoords(Point point)
         {
             Point newPoint = Point.Subtract(point, (Size)AutoScrollPosition);
+
             return newPoint;
         }
 
@@ -293,13 +300,12 @@ namespace BeebSpriter.Controls
         /// <returns></returns>
         public Point ConvertZoomFactor(Point point)
         {
-            Point newPoint = Point.Subtract(point, (Size)AutoScrollPosition);
+            Point newPoint = point;//Point.Subtract(point, (Size)AutoScrollPosition);
             newPoint.X /= ZoomFactor;
             newPoint.Y /= ZoomFactor;
 
             return newPoint;
         }
-
 
         /// <summary>
         ///
@@ -322,39 +328,60 @@ namespace BeebSpriter.Controls
                 ImageAnimator.UpdateFrames(Image);
 
                 e.Graphics.DrawImage(Image, ImageRect);
+
+                if (ShowGrid)
+                {
+                    PaintGrid(e.Graphics, ImageRect, (Size)PixelAspectRatio, PixelPenGrid);
+                }
+
+                // Draw rectangles around current defined sprites
+                foreach (SpriteObject itm in SpriteObjectList.Items)
+                {
+                    DrawSprites(e.Graphics, itm);
+                }
+
+                // Draw Selected Nodes - first one is active
+                bool Active = true;
+                foreach (SpriteObject obj in SpriteObjectList.SelectedItems)
+                {
+                    DrawNodes(e.Graphics, obj.Rect, Active);
+                    Active = false;
+                }
+
+                // Draw Active Node
+                foreach (SpriteObject itm in SpriteObjectList.SelectedItems)
+                {
+                    if (DrawActiveNode(e.Graphics, itm)) break;
+                }
+
+                DrawRubberband(e.Graphics);
             }
-
-            //if (ShowGrid)
-            //{
-            //    PaintGrid(e.Graphics, ImageRect, (Size)PixelAspectRatio, PixelPenGrid);
-            //}
-
-            //PaintSprites(e.Graphics, SpritePenGrid);
-            //PaintSelector(e.Graphics, SpritePenGrid);
-
-            foreach (SpriteObject itm in SpriteObjectList.Items)
-            {
-                DrawSprites(e.Graphics, itm);
-            }
-
-            // Draw Selected Nodes - first one is active
-            bool Active = true;
-            foreach (SpriteObject obj in SpriteObjectList.SelectedItems)
-            {
-                DrawNodes(e.Graphics, obj.Rect, Active);
-                Active = false;
-            }
-
-            // Draw Active Node
-            foreach (SpriteObject itm in SpriteObjectList.SelectedItems)
-            {
-                if (DrawActiveNode(e.Graphics, itm)) break;
-            }
-
-
-            DrawRubberband(e.Graphics);
 
             base.OnPaint(e);
+        }
+
+        /// <summary>
+        /// Paint the pixel grid
+        /// </summary>
+        /// <param name="gfx"></param>
+        /// <param name="rect"></param>
+        /// <param name="gridSize"></param>
+        /// <param name="pen"></param>
+        private void PaintGrid(Graphics gfx, Rectangle rect, Size gridSize, Pen pen)
+        {
+            int GridXOffset = gridSize.Width * ZoomFactor;
+
+            for (int x = GridXOffset; x < rect.Width; x += GridXOffset)
+            {
+                gfx.DrawLine(pen, rect.X + x, rect.Y, rect.X + x, rect.Y + rect.Height);
+            }
+
+            int GridYOffset = gridSize.Height * ZoomFactor;
+
+            for (int y = GridYOffset; y < rect.Height; y += GridYOffset)
+            {
+                gfx.DrawLine(pen, rect.X, rect.Y + y, rect.X + rect.Width, rect.Y + y);
+            }
         }
 
         /// <summary>
@@ -365,33 +392,15 @@ namespace BeebSpriter.Controls
         {
             if (mouseDragging)
             {
-                //Point pnt = Point.Subtract(mouseEndPos, (Size)mouseStartPos);
-
-                //Point location = new(mouseStartPos.X / ZoomFactor, mouseStartPos.Y / ZoomFactor);
-                //Size size = new(pnt.X / ZoomFactor, pnt.Y / ZoomFactor);
-                //Point location = mouseStartPos;
-                //Size size = (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos);
-
-                //Rectangle rect = new(mouseStartPos, (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos));
-                //Rectangle rect = new(location, size);
-
-                //using Pen pen = new(Color.Green);
-              
-                //rect = SwapRect(rect);
-
-                //gfx.DrawRectangle(pen, rect);
-
-                //Point location = ConvertZoomFactor(mouseStartPos);
-                //Size size = (Size)Point.Subtract(ConvertZoomFactor(mouseEndPos), (Size)location);
-
                 Point location = ConvertZoomFactor(mouseStartPos);
                 Size size = (Size)ConvertZoomFactor(Point.Subtract(mouseEndPos, (Size)mouseStartPos));
+                
+                //Point location = ConvertMouseCoords(mouseStartPos);
+                //Size size = (Size)ConvertMouseCoords(Point.Subtract(mouseEndPos, (Size)mouseStartPos));
 
                 Rectangle newRect = new(location, size);
 
                 DrawNodes(gfx, newRect, true);
-
-                //DrawActiveRectangle(gfx, rect);
             }
         }
    
@@ -402,15 +411,7 @@ namespace BeebSpriter.Controls
         /// <param name="spriteObject"></param>
         private void DrawSprites(Graphics gfx, SpriteObject spriteObject)
         {
-            using Pen pen = new(Color.Red);//SystemColors.ControlDarkDark);
-
-            Rectangle rect = SwapRect(spriteObject.Rect);
-
-            rect = new Rectangle(rect.X * ZoomFactor, rect.Y * ZoomFactor, rect.Width * ZoomFactor, rect.Height * ZoomFactor);
-            //rect = new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
-
-            spriteObject.Pen = pen;
-
+            Rectangle rect = spriteObject.Rect.Resize(ZoomFactor);//SwapRect(spriteObject.Rect).Resize(ZoomFactor);
             gfx.DrawRectangle(spriteObject.Pen, rect);
         }
 
@@ -427,8 +428,9 @@ namespace BeebSpriter.Controls
                 Cursor = node.Arrow(obj.SelectedNode);
 
                 if (obj.SelectedNode != NodeLocation.Everything)
-                {
-                    Rectangle noderect = node.GetRect(obj.SelectedNode, obj.Rect);
+                {             
+                    Rectangle noderect = node.GetRect(obj.SelectedNode, obj.Rect.Resize(ZoomFactor));
+
                     DrawNode(gfx, noderect, node.ActiveColour);
                 }
 
@@ -448,9 +450,7 @@ namespace BeebSpriter.Controls
         /// <param name="Active"></param>
         private void DrawNodes(Graphics gfx, Rectangle rect, bool Active)
         {
-            Rectangle newRect = SwapRect(rect);
-
-            newRect = new Rectangle(newRect.X * ZoomFactor, newRect.Y * ZoomFactor, newRect.Width * ZoomFactor, newRect.Height * ZoomFactor);
+            Rectangle newRect = SwapRect(rect).Resize(ZoomFactor);
 
             Pen pen = new(Color.Black)
             {
@@ -567,18 +567,19 @@ namespace BeebSpriter.Controls
         /// </summary>
         private void CreateSpriteObject()
         {
+            Point location = new(mouseStartPos.X, mouseStartPos.Y);
+
             Point pnt = Point.Subtract(mouseEndPos, (Size)mouseStartPos);
 
-            Point location = new(mouseStartPos.X / ZoomFactor, mouseStartPos.Y / ZoomFactor);
-            Size size = new(pnt.X / ZoomFactor, pnt.Y / ZoomFactor);
+            //Size size = new(pnt.X, pnt.Y);
 
-            //Rectangle rect = new Rectangle(mouseStartPos, (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos))
-            //Rectangle rect = new(mouseStartPos.X / ZoomFactor, mouseStartPos.Y / ZoomFactor,)
+            //Rectangle rect = new Rectangle(mouseStartPos.X, mouseStartPos.Y, pnt.X, pnt.Y);//.Resize(ZoomFactor);
+
+            Rectangle rect = new Rectangle(ConvertZoomFactor(location), (Size)ConvertZoomFactor(pnt));
 
             SpriteObject itm = new()
             {
-                //Rect = new Rectangle(mouseStartPos, (Size)Point.Subtract(mouseEndPos, (Size)mouseStartPos))
-                Rect = new Rectangle(location, size)
+                Rect = SwapRect(rect) //new Rectangle(location, size)
             };
 
             SpriteObjectList.Add(itm);
@@ -587,10 +588,11 @@ namespace BeebSpriter.Controls
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
-        /// <param name="pnt"></param>
-        private void MoveSpriteObject()
+        /// <param name="pt"></param>
+        /// <param name="sz"></param>
+        private void MoveSpriteObject(Point pt, Size sz)
         {
             if (SpriteObjectList.ActiveSprite.SelectedNode == NodeLocation.None)
             {
@@ -602,13 +604,13 @@ namespace BeebSpriter.Controls
             if (SpriteObjectList.ActiveSprite.SelectedNode == NodeLocation.Everything)
             {
                 spritesMove = true;
-                SpriteObjectList.MoveSelectedItems(Point.Subtract(mouseEndPos, (Size)mouseStartPos));
+                SpriteObjectList.MoveSelectedItems(Point.Subtract(pt, sz));
                 SpritesMoving?.Invoke(this, new SelectedSpritesEventArgs(SpriteObjectList.SelectedItems));
             }
             else
             {
                 spritesResize = true;
-                SpriteObjectList.ResizeSelectedItems(Point.Subtract(mouseEndPos, (Size)mouseStartPos));
+                SpriteObjectList.ResizeSelectedItems(Point.Subtract(pt, sz));
                 SpritesResizing?.Invoke(this, new SelectedSpritesEventArgs(SpriteObjectList.SelectedItems));
             }
 
@@ -626,7 +628,12 @@ namespace BeebSpriter.Controls
             Invalidate();
         }
 
-        private void ContextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -760,12 +767,17 @@ namespace BeebSpriter.Controls
             {
                 Cursor = Cursors.WaitCursor;
                 SpritesDeleted?.Invoke(this, new SelectedSpritesEventArgs(SpriteObjectList.SelectedItems));
-                SpriteObjectList.CutSelectedItems(); // Cut after event has been raised
+
+                // Cut after event has been raised
+                SpriteObjectList.CutSelectedItems(); 
                 Cursor = Cursors.Default;
                 Invalidate();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void CopySelectedItems()
         {
             if (SpriteObjectList.CanCopy)
@@ -777,6 +789,9 @@ namespace BeebSpriter.Controls
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void PasteSelectedItems()
         {
             if (SpriteObjectList.CanPaste)
@@ -789,6 +804,9 @@ namespace BeebSpriter.Controls
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void DeleteSelectedItems()
         {
             if (SpriteObjectList.CanDelete)
@@ -801,6 +819,9 @@ namespace BeebSpriter.Controls
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void SelectAll()
         {
             Cursor = Cursors.WaitCursor;
@@ -861,6 +882,10 @@ namespace BeebSpriter.Controls
             Invalidate();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
         public void SpaceOutSelectedItems(SpaceOutType value)
         {
             Cursor = Cursors.WaitCursor;

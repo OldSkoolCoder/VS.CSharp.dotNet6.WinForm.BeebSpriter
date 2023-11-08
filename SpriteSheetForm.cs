@@ -1144,7 +1144,7 @@ namespace BeebSpriter
         /// <param name="e"></param>
         private void ImportImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImportImage importImage = new();
+            ImageImport importImage = new ImageImport();
 
             if (importImage.ShowDialog() == DialogResult.OK)
             {
@@ -1165,11 +1165,11 @@ namespace BeebSpriter
                 }
 
                 int index = 1;
-                foreach (Rectangle rect in importImage.SpriteList)
+                foreach (SpriteObject spriteObject in importImage.SpriteImages.Items)
                 {
                     string spriteName = String.Format("Sprite_{0}", index);
 
-                    Sprite sprite = importImage.ExtractSprite(spriteName, rect);
+                    Sprite sprite = importImage.ExtractSprite(spriteName, spriteObject.Rect);
 
                     CreateSpritePanel(sprite);
 
@@ -1252,47 +1252,6 @@ namespace BeebSpriter
                 // to see the data from the SpritePad
                 // Useful for debugging purposes
                 // spritePad.ShowData(RichTextBox1);
-
-                IsUnsaved = true;
-                SetAsOpened();
-            }
-        }
-
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ImageImport2 importImage = new ImageImport2();
-
-            if (importImage.ShowDialog() == DialogResult.OK)
-            {
-                if (spriteSheet != null && spriteSheet.Mode == importImage.Mode)
-                {
-                    DialogResult result = MessageBox.Show("Do you want to merge the new sprites?",
-                                                      "Warning",
-                                                      MessageBoxButtons.YesNo);
-
-                    if (result == DialogResult.No)
-                    {
-                        NewSpriteSheet(importImage.Mode);
-                    }
-                }
-                else
-                {
-                    NewSpriteSheet(importImage.Mode);
-                }
-
-                int index = 1;
-                foreach (SpriteObject spriteObject in importImage.SpriteImages.Items)
-                {
-                    string spriteName = String.Format("Sprite_{0}", index);
-
-                    Sprite sprite = importImage.ExtractSprite(spriteName, spriteObject.Rect);
-
-                    CreateSpritePanel(sprite);
-
-                    SpriteSheet.SpriteList.Add(sprite);
-
-                    index++;
-                }
 
                 IsUnsaved = true;
                 SetAsOpened();

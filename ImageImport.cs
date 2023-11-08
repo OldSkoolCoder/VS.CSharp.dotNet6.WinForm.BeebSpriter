@@ -2,7 +2,6 @@
 using BeebSpriter.Enum;
 using BeebSpriter.Internal;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,7 +9,7 @@ using static BeebSpriter.BeebPalette;
 
 namespace BeebSpriter
 {
-    public partial class ImageImport2 : Form
+    public partial class ImageImport : Form
     {
         private const int MAX_COLOURS = 16;
 
@@ -30,7 +29,7 @@ namespace BeebSpriter
         /// </summary>
         public BeebPalette Palette { get; set; }
 
-        public ImageImport2()
+        public ImageImport()
         {
             InitializeComponent();
 
@@ -40,7 +39,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -133,7 +132,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -163,11 +162,10 @@ namespace BeebSpriter
             Canvas.PixelAspectRatio = new Point(xs, ys);
 
             Canvas.Invalidate();
-
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -177,7 +175,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -187,7 +185,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -197,7 +195,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -207,7 +205,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -217,7 +215,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -227,7 +225,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -237,7 +235,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -247,7 +245,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -257,7 +255,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -267,7 +265,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -277,7 +275,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -287,7 +285,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -297,7 +295,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -307,7 +305,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -317,7 +315,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -327,7 +325,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -337,7 +335,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -347,7 +345,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -357,7 +355,7 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private void UpdateMainMenu()
         {
@@ -436,18 +434,22 @@ namespace BeebSpriter
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonGenerate_Click(object sender, EventArgs e)
         {
+            // Remove any invalid sprites
+            Rectangle rect = new(0, 0, Canvas.Image.Width, Canvas.Image.Height);
+            Canvas.SpriteObjectList.RemoveInvalidItems(rect);
+
             DialogResult = DialogResult.OK;
             Close();
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

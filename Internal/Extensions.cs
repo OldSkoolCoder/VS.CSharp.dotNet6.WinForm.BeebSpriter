@@ -390,5 +390,16 @@ namespace BeebSpriter.Internal
                 _ => throw new Exception("Unknown Colour"),
             };
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <param name="factor"></param>
+        public static Rectangle Resize(this Rectangle rect, int factor)
+        {
+            Rectangle newRect = new(rect.X * factor, rect.Y * factor, rect.Width * factor, rect.Height * factor);
+            return newRect;
+        }
     }
 };

@@ -1,6 +1,6 @@
 ﻿namespace BeebSpriter
 {
-    partial class ImageImport2
+    partial class ImageImport
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageImport2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageImport));
             Internal.SpriteObjectList spriteObjectList2 = new Internal.SpriteObjectList();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             OpenToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -110,9 +110,7 @@
             // 
             // ButtonGrid
             // 
-            ButtonGrid.Checked = true;
             ButtonGrid.CheckOnClick = true;
-            ButtonGrid.CheckState = System.Windows.Forms.CheckState.Checked;
             ButtonGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             ButtonGrid.Image = (System.Drawing.Image)resources.GetObject("ButtonGrid.Image");
             ButtonGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -471,7 +469,7 @@
             SendToBackToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             SendToBackToolStripMenuItem.Text = "Send To Back";
             // 
-            // ImageImport2
+            // ImageImport
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -482,8 +480,8 @@
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             Margin = new System.Windows.Forms.Padding(1);
-            Name = "ImageImport2";
-            Text = "ImageImport2";
+            Name = "ImageImport";
+            Text = "Import from Image";
             Load += ImageImport_Load;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();

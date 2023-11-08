@@ -44,7 +44,7 @@ namespace BeebSpriter.Internal
             Guid = Guid.NewGuid();
             Selected = true;
             SelectedNode = NodeLocation.None;
-            Pen = new Pen(Color.Black);
+            Pen = new Pen(Color.Red);
 
             BackColour = Color.Transparent;
         }

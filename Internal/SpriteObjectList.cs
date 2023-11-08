@@ -256,8 +256,8 @@ namespace BeebSpriter.Internal
             for (int i = 0; i <= SelectedItems.Count - 1; i++)
                 (SelectedItems[i]).Move(pnt);
 
-            for (int i = 0; i <= SelectedItems.Count - 1; i++)
-                (SelectedItems[i]).Move(pnt);
+            //for (int i = 0; i <= SelectedItems.Count - 1; i++)
+            //    (SelectedItems[i]).Move(pnt);
         }
 
         /// <summary>
@@ -699,6 +699,40 @@ namespace BeebSpriter.Internal
             if (SelectedItems.Count > 0)
             {
                 ActiveSprite = SelectedItems[0];
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect"></param>
+        public void RemoveInvalidItems(Rectangle rect)
+        {
+            // Remove in reverse order to resolve index error
+            for (int i = Items.Count - 1; i >= 0; i -= 1)
+            {
+                if (rect.Contains(Items[i].Rect) == false)
+                {
+                    // Can we extract a bit of the image?
+                    if (Items[i].Rect.X < rect.Width && Items[i].Rect.Y < rect.Height)
+                    {
+                        // make extracted sprite smaller
+                        if (Items[i].Rect.X + Items[i].Rect.Width > rect.Width)
+                        {
+                            Items[i].Size = new Size(rect.Width - Items[i].Rect.X, Items[i].Rect.Height);
+                        }
+
+                        if (Items[i].Rect.Y + Items[i].Rect.Height > rect.Height)
+                        {
+                            Items[i].Size = new Size(Items[i].Rect.Width,rect.Height - Items[i].Rect.Y);
+                        }
+
+                    }
+                    else
+                    {
+                        Items.RemoveAt(i);
+                    }
+                }
             }
         }
     }
