@@ -402,4 +402,4 @@ namespace BeebSpriter.Internal
             return newRect;
         }
     }
-};
+}

@@ -797,7 +797,10 @@ namespace BeebSpriter.Controls
             if (SpriteObjectList.CanPaste)
             {
                 Cursor = Cursors.WaitCursor;
-                SpriteObjectList.PasteSelectedItems(mousePos);
+                
+                Point pnt = ConvertZoomFactor(mousePos);
+                
+                SpriteObjectList.PasteSelectedItems(pnt);
                 SpritesCreated?.Invoke(this, new SelectedSpritesEventArgs(SpriteObjectList.SelectedItems));
                 Cursor = Cursors.Default;
                 Invalidate();
