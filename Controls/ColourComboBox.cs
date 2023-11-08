@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using BeebSpriter.Enum;
+using BeebSpriter.Internal;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace BeebSpriter.Controls
@@ -46,8 +48,9 @@ namespace BeebSpriter.Controls
             for (int i = 0; i < sprite.Palette.Length; i++)
             {
                 Color spriteColour = BeebPalette.GetWindowsColour(sprite.Palette[i]);
-                Items.Add(new ColourInfo(System.Enum.GetName(sprite.Palette[i]), spriteColour));
+                Items.Add(new ColourInfo(((BeebColourType)i).ToDescription(), spriteColour)); //(BeebColourType[i]   sprite.Palette[i]), spriteColour)); ;
             }
+
             SelectedIndex = 0;
         }
 

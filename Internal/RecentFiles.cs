@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace BeebSpriter.Internal
@@ -51,14 +52,21 @@ namespace BeebSpriter.Internal
 
             for (int i = 0; i <= SpriteFileList.Count - 1; i++)
             {
-                menuItm = new ToolStripMenuItem
+                if (File.Exists(SpriteFileList[i]))
                 {
-                    Text = (i + 1).ToString() + " " + SpriteFileList[i],
-                    Tag = SpriteFileList[i]
-                };
+                    menuItm = new ToolStripMenuItem
+                    {
+                        Text = (i + 1).ToString() + " " + SpriteFileList[i],
+                        Tag = SpriteFileList[i]
+                    };
 
-                menuItm.Click += MenuItm_Click;
-                RecentFilesMenu.DropDownItems.Add(menuItm);
+                    menuItm.Click += MenuItm_Click;
+                    RecentFilesMenu.DropDownItems.Add(menuItm);
+                }
+                else
+                {
+                    SpriteFileList.Remove(SpriteFileList[i]);
+                }
             }
         }
 
@@ -70,7 +78,15 @@ namespace BeebSpriter.Internal
         private void MenuItm_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            OpenSprites(item.Tag.ToString());
+            if (File.Exists(item.Tag.ToString()))
+            {
+                OpenSprites(item.Tag.ToString());
+            }
+            else
+            {
+                MessageBox.Show("This file is no longer available","File No Longer Exists",MessageBoxButtons.OK);
+                RecentFilesMenu.DropDownItems.Remove(item);
+            }
         }
 
         /// <summary>
