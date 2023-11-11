@@ -42,7 +42,7 @@ namespace BeebSpriter
                     break;
             }
             lblVersion.Text = String.Format("BeebSpriter {0} {1}", sVersion, sBuildPackage);
-            lblBuildDate.Text = "1st October 2023";
+            lblBuildDate.Text = "11th November 2023";
         }
 
     }
