@@ -228,9 +228,9 @@ namespace BeebSpriter
                 {
                     Bitmap[index++] = clonedImage[(y % Height) * Width + x];
                 }
-
             }
         }
+
         /// Reduce colours down to lower depth
         /// </summary>
         /// <param name="colourDepth"></param>
@@ -242,6 +242,76 @@ namespace BeebSpriter
             {
                 if (Bitmap[index] != 255)
                     Bitmap[index] = (byte)(Bitmap[index] % colourDepth);
+            }
+        }
+
+        /// <summary>
+        /// Flip Left to Right
+        /// </summary>
+        public void FlipLeftToRight()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = Width - 1; x >= 0; x--)
+                {
+                    Bitmap[index++] = clonedImage[y * Width + x];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Flip Top to Bottom
+        /// </summary>
+        public void FlipTopToBottom()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int index = 0;
+            for (int y = Height - 1; y >= 0; y--)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Bitmap[index++] = clonedImage[y * Width + x];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reflect Left to Right
+        /// </summary>
+        public void ReflectLeftToRight()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int halfWidth = Width / 2;
+
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0, x1 = Width - 1; x < halfWidth; x++, x1--)
+                {
+                    Bitmap[y * Width + x1] = clonedImage[y * Width + x];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reflect Top to Bottom
+        /// </summary>
+        public void ReflectTopToBottom()
+        {
+            byte[] clonedImage = (byte[])Bitmap.Clone();
+
+            int halfHeight = Height / 2;
+
+            for (int y = 0, y1 = Height - 1; y < halfHeight; y++, y1--)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Bitmap[y1 * Width + x] = clonedImage[y * Width + x];
+                }
             }
         }
     }

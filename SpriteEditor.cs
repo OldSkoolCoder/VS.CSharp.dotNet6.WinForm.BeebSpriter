@@ -1951,6 +1951,11 @@ namespace BeebSpriter
             }
         }
 
+        /// <summary>
+        /// Resize Image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImageResize_Click(object sender, EventArgs e)
         {
             ResizeDialog imageResize = new(sprite);
@@ -1972,5 +1977,71 @@ namespace BeebSpriter
                 spritePanel.Panel.Invalidate();
             }
         }
+
+        /// <summary>
+        /// Flip image Left ot right
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FlipLeftToRightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddHistory();
+            sprite.FlipLeftToRight();
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
+        /// <summary>
+        /// Flip image Top to Bottom
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FlipTopToBottomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddHistory();
+            sprite.FlipTopToBottom();
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
+        /// <summary>
+        /// Reflect image left to right
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReflectLeftToRightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddHistory();
+            sprite.ReflectLeftToRight();
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReflectTopToBottomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddHistory();
+            sprite.ReflectTopToBottom();
+
+            SpriteSheetForm.Instance.IsUnsaved = true;
+
+            editorPanel.Invalidate();
+            spritePanel.Panel.Invalidate();
+        }
+
+        
     }
 }
