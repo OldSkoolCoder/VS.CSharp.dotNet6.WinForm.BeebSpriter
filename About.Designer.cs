@@ -29,105 +29,102 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
-            this.lblVersion = new System.Windows.Forms.Label();
-            this.lblOrginialCreator = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.lblBuildDate = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblUpgraders = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            lblVersion = new System.Windows.Forms.Label();
+            lblOrginialCreator = new System.Windows.Forms.Label();
+            button1 = new System.Windows.Forms.Button();
+            lblBuildDate = new System.Windows.Forms.Label();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            lblUpgraders = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // lblVersion
             // 
-            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblVersion.Location = new System.Drawing.Point(14, 10);
-            this.lblVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(304, 24);
-            this.lblVersion.TabIndex = 0;
-            this.lblVersion.Text = "BeebSpriter v0.04 (pre-release)";
-            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblVersion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lblVersion.Location = new System.Drawing.Point(14, 10);
+            lblVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVersion.Name = "lblVersion";
+            lblVersion.Size = new System.Drawing.Size(304, 24);
+            lblVersion.TabIndex = 0;
+            lblVersion.Text = "BeebSpriter v0.04 (pre-release)";
+            lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblOrginialCreator
             // 
-            this.lblOrginialCreator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblOrginialCreator.Location = new System.Drawing.Point(12, 144);
-            this.lblOrginialCreator.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblOrginialCreator.Name = "lblOrginialCreator";
-            this.lblOrginialCreator.Size = new System.Drawing.Size(304, 72);
-            this.lblOrginialCreator.TabIndex = 1;
-            this.lblOrginialCreator.Text = "Originally created by Richard Talbot-Watkins\r\nrichtw1@gmail.com\r\n\r\nhttp://www.ret" +
-    "rosoftware.co.uk/BeebSpriter";
-            this.lblOrginialCreator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblOrginialCreator.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblOrginialCreator.Location = new System.Drawing.Point(12, 144);
+            lblOrginialCreator.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblOrginialCreator.Name = "lblOrginialCreator";
+            lblOrginialCreator.Size = new System.Drawing.Size(304, 72);
+            lblOrginialCreator.TabIndex = 1;
+            lblOrginialCreator.Text = "Originally created by Richard Talbot-Watkins\r\nrichtw1@gmail.com\r\n\r\nhttp://www.retrosoftware.co.uk/BeebSpriter";
+            lblOrginialCreator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(116, 219);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 27);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
+            button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            button1.DialogResult = System.Windows.Forms.DialogResult.OK;
+            button1.Location = new System.Drawing.Point(116, 219);
+            button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(88, 27);
+            button1.TabIndex = 2;
+            button1.Text = "OK";
+            button1.UseVisualStyleBackColor = true;
             // 
             // lblBuildDate
             // 
-            this.lblBuildDate.Location = new System.Drawing.Point(18, 36);
-            this.lblBuildDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBuildDate.Name = "lblBuildDate";
-            this.lblBuildDate.Size = new System.Drawing.Size(301, 27);
-            this.lblBuildDate.TabIndex = 3;
-            this.lblBuildDate.Text = "28th September 2023";
-            this.lblBuildDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblBuildDate.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblBuildDate.Location = new System.Drawing.Point(18, 36);
+            lblBuildDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblBuildDate.Name = "lblBuildDate";
+            lblBuildDate.Size = new System.Drawing.Size(301, 27);
+            lblBuildDate.TabIndex = 3;
+            lblBuildDate.Text = "11th November 2023";
+            lblBuildDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 35);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new System.Drawing.Point(12, 10);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(35, 35);
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
             // 
             // lblUpgraders
             // 
-            this.lblUpgraders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUpgraders.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblUpgraders.Location = new System.Drawing.Point(12, 63);
-            this.lblUpgraders.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUpgraders.Name = "lblUpgraders";
-            this.lblUpgraders.Size = new System.Drawing.Size(304, 81);
-            this.lblUpgraders.TabIndex = 5;
-            this.lblUpgraders.Text = "Upgraded by :\r\nOldSkoolCoder, \r\nFizgog, Sorcer3r, Docster, Phaze101";
-            this.lblUpgraders.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            lblUpgraders.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblUpgraders.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            lblUpgraders.Location = new System.Drawing.Point(12, 63);
+            lblUpgraders.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblUpgraders.Name = "lblUpgraders";
+            lblUpgraders.Size = new System.Drawing.Size(304, 81);
+            lblUpgraders.TabIndex = 5;
+            lblUpgraders.Text = "Project Manager : OldSkoolCoder\r\nLead Programmer : Fizgog\r\nProgrammers: OldSkoolCoder, Sorcer3r, Docster, Phaze101";
+            lblUpgraders.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // About
             // 
-            this.AcceptButton = this.button1;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 255);
-            this.ControlBox = false;
-            this.Controls.Add(this.lblUpgraders);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblBuildDate);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.lblOrginialCreator);
-            this.Controls.Add(this.lblVersion);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "About";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "About BeebSpriter";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-
+            AcceptButton = button1;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(332, 255);
+            ControlBox = false;
+            Controls.Add(lblUpgraders);
+            Controls.Add(pictureBox1);
+            Controls.Add(lblBuildDate);
+            Controls.Add(button1);
+            Controls.Add(lblOrginialCreator);
+            Controls.Add(lblVersion);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "About";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "About BeebSpriter";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
