@@ -18,6 +18,9 @@
     <Compile Update="AnimationPreview.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Controls\Canvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Controls\ColourComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -33,7 +36,7 @@
     <Compile Update="Export.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ImportImage.cs">
+    <Compile Update="ImageImport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="NewGfxMode.cs">

@@ -1146,7 +1146,7 @@ namespace BeebSpriter
         /// <param name="e"></param>
         private void ImportImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImportImage importImage = new();
+            ImageImport importImage = new ImageImport();
 
             if (importImage.ShowDialog() == DialogResult.OK)
             {
@@ -1167,11 +1167,11 @@ namespace BeebSpriter
                 }
 
                 int index = 1;
-                foreach (Rectangle rect in importImage.SpriteList)
+                foreach (SpriteObject spriteObject in importImage.SpriteImages.Items)
                 {
                     string spriteName = String.Format("Sprite_{0}", index);
 
-                    Sprite sprite = importImage.ExtractSprite(spriteName, rect);
+                    Sprite sprite = importImage.ExtractSprite(spriteName, spriteObject.Rect);
 
                     CreateSpritePanel(sprite);
 

@@ -395,7 +395,7 @@
             flowLayoutPanel1.Location = new System.Drawing.Point(0, 49);
             flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10, 8, 10, 8);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new System.Drawing.Size(405, 408);
+            flowLayoutPanel1.Size = new System.Drawing.Size(405, 205);
             flowLayoutPanel1.TabIndex = 1;
             flowLayoutPanel1.DragEnter += flowLayoutPanel1_DragEnter;
             flowLayoutPanel1.DragOver += flowLayoutPanel1_DragOver;
@@ -497,7 +497,7 @@
             // 
             statusStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
             statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { MessageToolStripStatusLabel, ZoomToolStripStatusLabel });
-            statusStrip1.Location = new System.Drawing.Point(0, 457);
+            statusStrip1.Location = new System.Drawing.Point(0, 254);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 34, 0);
             statusStrip1.Size = new System.Drawing.Size(405, 22);
@@ -634,7 +634,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(405, 479);
+            ClientSize = new System.Drawing.Size(405, 276);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(toolStrip1);
             Controls.Add(statusStrip1);

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Reflection.Metadata;
 using System.Windows.Forms;
 
 namespace BeebSpriter.Controls
@@ -13,8 +12,6 @@ namespace BeebSpriter.Controls
         private bool IsSelected;
         private Point SelectionStart;
         private Point SelectionEnd;
-        //private Size PixelGridSize;
-
         public int ZoomFactor { get; set; }
         public Bitmap Image { get; set; }
         public Bitmap OriginalImage { get; set; }
@@ -67,6 +64,8 @@ namespace BeebSpriter.Controls
             OriginalImage = (Bitmap)Image.Clone();
 
             ImageSize = new Size(Image.Width, Image.Height);
+
+            Animate(true);
 
             Invalidate();
         }
@@ -202,6 +201,8 @@ namespace BeebSpriter.Controls
                 e.Graphics.CompositingQuality = CompositingQuality.HighSpeed;
                 e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
 
+                ImageAnimator.UpdateFrames(Image);
+
                 e.Graphics.DrawImage(Image, ImageRect);
             }
 
@@ -277,6 +278,42 @@ namespace BeebSpriter.Controls
             OriginalImage ??= (Bitmap)Image.Clone();
 
             Image = OriginalImage.RotateImage(value);
+            Invalidate();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="animate"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void Animate(bool animate)
+        {
+            if (Image != null)
+            {
+                if (animate)
+                {
+                    ImageAnimator.Animate(Image, new EventHandler(OnFrameChanged));
+                }
+                else
+                {
+                    ImageAnimator.StopAnimate(Image, new EventHandler(OnFrameChanged));
+                }
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFrameChanged(object sender, EventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new EventHandler(OnFrameChanged), sender, e);
+                return;
+            }
+
             Invalidate();
         }
     }

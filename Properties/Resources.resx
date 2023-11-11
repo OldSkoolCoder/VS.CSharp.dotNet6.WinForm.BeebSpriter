@@ -184,4 +184,19 @@
   <data name="Colours" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Colours.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BringForward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BringForward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BringToFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BringToFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteObject" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteClause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SendBackward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SendBackward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SendToBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SendtoBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

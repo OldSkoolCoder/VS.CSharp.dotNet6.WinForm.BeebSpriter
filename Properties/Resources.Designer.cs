@@ -225,5 +225,50 @@ namespace BeebSpriter.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap BringForward
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("BringForward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap BringToFront
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("BringToFront", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap SendBackward
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("SendBackward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap SendToBack
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("SendToBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap DeleteObject
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("DeleteObject", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
