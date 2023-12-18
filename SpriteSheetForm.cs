@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -452,6 +453,8 @@ namespace BeebSpriter
         private void Open()
         {
             Cursor.Current = Cursors.WaitCursor;
+
+            Dictionary<String, String> xRefForNames = new Dictionary<string, string>();
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(SpriteSheet));
@@ -461,11 +464,32 @@ namespace BeebSpriter
                 }
 
                 flowLayoutPanel1.Controls.Clear();
+                int index = 0;
                 foreach (Sprite s in this.spriteSheet.SpriteList)
                 {
+                    s.Name = Helper.CorrectSpriteName(s.Name);
+                    if (Helper.CheckForDuplicateNames(this.spriteSheet.SpriteList, s.Name, 1))
+                    {
+                        string newSpriteName = String.Format("Sprite_{0}{1}_{2}", DateTime.Now.ToString("yyMMdd"), DateTime.Now.ToString("HHmmss"),index);
+                        xRefForNames.Add(s.Name, newSpriteName);
+                        s.Name = newSpriteName;
+                    }
                     CreateSpritePanel(s);
+                    index++;
+                }
+
+                foreach(AnimationSet aSet in this.spriteSheet.AnimationSets)
+                {
+                    for(index = 0; index<aSet.Sprites.Count;index++)
+                    {
+                        if (xRefForNames.ContainsKey(aSet.Sprites[index]))
+                        {
+                            aSet.Sprites[index] = xRefForNames[aSet.Sprites[index]];
+                        }
+                    }
                 }
             }
+
             catch (Exception e)
             {
                 Cursor.Current = Cursors.Default;
@@ -1169,7 +1193,7 @@ namespace BeebSpriter
                 int index = 1;
                 foreach (SpriteObject spriteObject in importImage.SpriteImages.Items)
                 {
-                    string spriteName = String.Format("Sprite_{0}", index);
+                    string spriteName = String.Format("Sprite_{0}{1}_{2}", DateTime.Now.ToString("yyMMdd"), DateTime.Now.ToString("HHmmss"), index);
 
                     Sprite sprite = importImage.ExtractSprite(spriteName, spriteObject.Rect);
 
@@ -1237,7 +1261,7 @@ namespace BeebSpriter
                 // Convert the SpritePad data into BeebSpriter spritesheet
                 for (int spriteNum = 0; spriteNum < spritePad.Data.Count; spriteNum++)
                 {
-                    string spriteName = String.Format("Sprite_{0}", spriteNum + 1);
+                    string spriteName = String.Format("Sprite_{0}{1}_{2}", DateTime.Now.ToString("yyMMdd"), DateTime.Now.ToString("HHmmss"), spriteNum + 1);
 
                     // Generate the BeebSpriter sprites from the SpritePad data
                     Sprite sprite = new(spriteName, 12, 21, palette.BeebColours)
@@ -1290,7 +1314,7 @@ namespace BeebSpriter
                 // Convert the SpritePad data into BeebSpriter spritesheet
                 for (int spriteNum = 0; spriteNum < seuck.Data.Count; spriteNum++)
                 {
-                    string spriteName = String.Format("Sprite_{0}", spriteNum + 1);
+                    string spriteName = String.Format("Sprite_{0}{1}_{2}", DateTime.Now.ToString("yyMMdd"), DateTime.Now.ToString("HHmmss"), spriteNum + 1);
 
                     // Generate the BeebSpriter sprites from the SpritePad data
                     Sprite sprite = new(spriteName, 12, 21, palette.BeebColours)

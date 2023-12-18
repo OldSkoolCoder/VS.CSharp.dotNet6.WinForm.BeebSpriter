@@ -1,11 +1,14 @@
-﻿using System;
+﻿using BeebSpriter.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BeebSpriter
 {
@@ -75,6 +78,22 @@ namespace BeebSpriter
         void numericUpDown_GotFocus(object sender, EventArgs e)
         {
             (sender as NumericUpDown).Select(0, 100);
+        }
+
+        private void textBox1_Validating(object sender, CancelEventArgs e)
+        {
+            string sError = Helper.CheckNameOfSprite(SpriteSheetForm.Instance.SpriteSheet.SpriteList, textBox1.Text, ref textBox1);
+
+            if (sError != "")
+            {
+                e.Cancel = true;
+                this.epError.SetError(textBox1, sError);
+            }
+        }
+
+        private void textBox1_Validated(object sender, EventArgs e)
+        {
+            this.epError.SetError(textBox1, "");
         }
     }
 }

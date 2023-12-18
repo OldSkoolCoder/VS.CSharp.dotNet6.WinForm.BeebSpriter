@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             textBox1 = new System.Windows.Forms.TextBox();
             label3 = new System.Windows.Forms.Label();
             okButton = new System.Windows.Forms.Button();
             cancelButton = new System.Windows.Forms.Button();
+            epError = new System.Windows.Forms.ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)epError).BeginInit();
             SuspendLayout();
             // 
             // textBox1
@@ -42,6 +45,8 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new System.Drawing.Size(136, 23);
             textBox1.TabIndex = 1;
+            textBox1.Validating += textBox1_Validating;
+            textBox1.Validated += textBox1_Validated;
             // 
             // label3
             // 
@@ -66,6 +71,7 @@
             // 
             // cancelButton
             // 
+            cancelButton.CausesValidation = false;
             cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             cancelButton.Location = new System.Drawing.Point(112, 58);
             cancelButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -74,6 +80,10 @@
             cancelButton.TabIndex = 10;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // epError
+            // 
+            epError.ContainerControl = this;
             // 
             // CopySpriteDialog
             // 
@@ -92,6 +102,7 @@
             Name = "CopySpriteDialog";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Copy sprite";
+            ((System.ComponentModel.ISupportInitialize)epError).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -102,5 +113,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.ErrorProvider epError;
     }
 }

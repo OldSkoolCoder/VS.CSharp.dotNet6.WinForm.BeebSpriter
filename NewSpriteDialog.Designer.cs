@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             label1 = new System.Windows.Forms.Label();
@@ -36,8 +37,10 @@
             cancelButton = new System.Windows.Forms.Button();
             textBox1 = new System.Windows.Forms.TextBox();
             label3 = new System.Windows.Forms.Label();
+            epError = new System.Windows.Forms.ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)epError).BeginInit();
             SuspendLayout();
             // 
             // numericUpDown1
@@ -95,6 +98,7 @@
             // 
             // cancelButton
             // 
+            cancelButton.CausesValidation = false;
             cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             cancelButton.Location = new System.Drawing.Point(112, 113);
             cancelButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -112,6 +116,8 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new System.Drawing.Size(136, 23);
             textBox1.TabIndex = 0;
+            textBox1.Validating += textBox1_Validating;
+            textBox1.Validated += textBox1_Validated;
             // 
             // label3
             // 
@@ -122,6 +128,10 @@
             label3.Size = new System.Drawing.Size(39, 15);
             label3.TabIndex = 7;
             label3.Text = "Name";
+            // 
+            // epError
+            // 
+            epError.ContainerControl = this;
             // 
             // NewSpriteDialog
             // 
@@ -146,6 +156,7 @@
             Text = "New sprite";
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)epError).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -160,5 +171,6 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ErrorProvider epError;
     }
 }
