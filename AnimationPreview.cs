@@ -308,7 +308,8 @@ namespace BeebSpriter
 
                 foreach (Sprite spr in spriteList)
                 {
-                    animationSet.Sprites.Add(spr.Name);
+                    //animationSet.Sprites.Add(spr.Name);
+                    animationSet.Sprites.Add(spr.Guid);
                 }
 
                 SpriteSheetForm.Instance.SpriteSheet.AnimationSets.Add(animationSet);
@@ -328,11 +329,11 @@ namespace BeebSpriter
                 spriteList.Clear();
                 AnimationSet animationSetSelected = SpriteSheetForm.Instance.SpriteSheet.AnimationSets[cbAnimationSets.SelectedIndex];
 
-                foreach (string spriteName in animationSetSelected.Sprites)
+                foreach (Guid spriteGuid in animationSetSelected.Sprites)
                 {
                     foreach (Sprite spr in SpriteSheetForm.Instance.SpriteSheet.SpriteList)
                     {
-                        if (spr.Name == spriteName)
+                        if (spr.Guid == spriteGuid)
                         {
                             spriteList.Add(spr);
                         }
@@ -356,7 +357,7 @@ namespace BeebSpriter
                 animationSetSelected.Sprites.Clear();
                 foreach (Sprite spr in spriteList)
                 {
-                    animationSetSelected.Sprites.Add(spr.Name);
+                    animationSetSelected.Sprites.Add(spr.Guid);
                 }
 
                 SpriteSheetForm.Instance.IsUnsaved = true;

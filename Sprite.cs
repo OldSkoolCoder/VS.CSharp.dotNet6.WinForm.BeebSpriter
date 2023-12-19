@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace BeebSpriter
 {
@@ -10,6 +11,7 @@ namespace BeebSpriter
         private byte[] bitmap;
         private BeebPalette.Colour[] palette;
         private SpritePanel spritePanel;
+        private Guid guid;
 
         [XmlAttribute]
         public string Name
@@ -44,6 +46,13 @@ namespace BeebSpriter
             set { this.palette = value; }
         }
 
+        [XmlAttribute]
+        public Guid Guid
+        {
+            get { return this.guid; }
+            set { this.guid = value; }
+        }
+
         /// <summary>
         /// Get the number of colours used by the sprite
         /// </summary>
@@ -65,6 +74,7 @@ namespace BeebSpriter
             this.Height = height;
             this.Bitmap = new byte[this.Width * this.Height];
             this.Palette = (BeebPalette.Colour[])palette.Clone();
+            this.guid = Guid.NewGuid();
         }
 
         public Sprite(string name, Sprite toCopy)
@@ -74,6 +84,7 @@ namespace BeebSpriter
             this.Height = toCopy.Height;
             this.Bitmap = (byte[])toCopy.Bitmap.Clone();
             this.Palette = (BeebPalette.Colour[])toCopy.Palette.Clone();
+            this.guid = Guid.NewGuid();
         }
 
         public void SetSpritePanel(SpritePanel spritePanel)

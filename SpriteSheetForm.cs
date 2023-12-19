@@ -454,7 +454,6 @@ namespace BeebSpriter
         {
             Cursor.Current = Cursors.WaitCursor;
 
-            Dictionary<String, String> xRefForNames = new Dictionary<string, string>();
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(SpriteSheet));
@@ -464,29 +463,26 @@ namespace BeebSpriter
                 }
 
                 flowLayoutPanel1.Controls.Clear();
+
+                foreach (Sprite s in this.spriteSheet.SpriteList)
+                {
+                    if (s.Guid == Guid.Empty)
+                    {
+                        s.Guid = Guid.NewGuid();
+                        isUnsaved = true;
+                    }
+                }
                 int index = 0;
                 foreach (Sprite s in this.spriteSheet.SpriteList)
                 {
                     s.Name = Helper.CorrectSpriteName(s.Name);
                     if (Helper.CheckForDuplicateNames(this.spriteSheet.SpriteList, s.Name, 1))
                     {
-                        string newSpriteName = String.Format("Sprite_{0}{1}_{2}", DateTime.Now.ToString("yyMMdd"), DateTime.Now.ToString("HHmmss"),index);
-                        xRefForNames.Add(s.Name, newSpriteName);
+                        string newSpriteName = String.Format("{0}_{1}{2}_{3}", s.Name, DateTime.Now.ToString("yyMMdd"), DateTime.Now.ToString("HHmmss"), index);
                         s.Name = newSpriteName;
                     }
                     CreateSpritePanel(s);
                     index++;
-                }
-
-                foreach(AnimationSet aSet in this.spriteSheet.AnimationSets)
-                {
-                    for(index = 0; index<aSet.Sprites.Count;index++)
-                    {
-                        if (xRefForNames.ContainsKey(aSet.Sprites[index]))
-                        {
-                            aSet.Sprites[index] = xRefForNames[aSet.Sprites[index]];
-                        }
-                    }
                 }
             }
 

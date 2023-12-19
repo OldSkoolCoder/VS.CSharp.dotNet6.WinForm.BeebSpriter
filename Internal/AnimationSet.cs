@@ -13,11 +13,18 @@ namespace BeebSpriter.Internal
         /// <summary>
         /// 
         /// </summary>
-        public List<String> Sprites { get; set; }
+        //public List<String> Sprites { get; set; }
 
-        public AnimationSet() 
+        //public AnimationSet() 
+        //{
+        //    Sprites = new List<String>();
+        //}
+
+        public List<Guid> Sprites { get; set; }
+
+        public AnimationSet()
         {
-            Sprites = new List<String>();
+            Sprites = new List<Guid>();
         }
 
         public override string ToString()
